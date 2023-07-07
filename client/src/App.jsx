@@ -4,11 +4,11 @@ import { Navbar } from './components/Navbar';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import HomePage from "./routes/HomePage";
-import Footer from './components/Footer';
 import About from './routes/About';
 import Services from './routes/Services';
-import Contact from './routes/Contact';
-import ThankYou from './routes/ThankYou';
+import Basics from './routes/Basics';
+import Teaching from './routes/Teaching';
+import Footer from './components/Footer';
 
 export const serverURL = '/';
 
@@ -23,8 +23,8 @@ function App() {
             <Route path="*" element={<HomePage />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/basics" element={<Basics />} />
+            <Route path="/teaching" element={<Teaching />} />
           </Routes>
         <Footer />
       </div>

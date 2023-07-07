@@ -1,55 +1,10 @@
 import { Text, Link, Button } from '@nextui-org/react'
 import React, {useState, useEffect} from 'react'
 import logo from "../assets/images/logoTransparent.png";
-import footerBackground from "../assets/images/footerBackground.png";
-
-import { signOut } from 'firebase/auth';
-import { auth, signInWithGoogle } from '../api/firebase';
-import { firestore } from '../api/firebase';
-import { getDoc, doc, setDoc } from 'firebase/firestore';
+import footerBackground from "../assets/images/footerBackground.jpg";
 
 export default function Footer() {
 
-  const [currentSignIn, setCurrentSignIn] = useState(null);
-
-  useEffect(() => {
-    auth.onAuthStateChanged(u => {
-      setCurrentSignIn(u);
-    })
-  }, [])
-
-  function handleSignInClick() {
-    if (auth.currentUser) {
-      signOut(auth);
-      setCurrentSignIn(null);
-    } else {
-      signInWithGoogle().then(authUser => {
-        setCurrentSignIn(authUser);
-        if (authUser) {
-          const uid = authUser.uid;
-          const docRef = doc(firestore, "users", uid);
-          getDoc(docRef).then((docSnap) => {
-            if (!docSnap.exists()) {
-              // User does not exist
-              const newUser = {
-                testimonials: false,
-                offerings: false,
-                staff: false,
-                displayName: authUser.displayName,
-                email: authUser.email,
-                op: false,
-              }
-              setDoc(doc(firestore, "users", authUser.uid), newUser);
-            }
-          })
-        }
-      }).catch((err) => {
-        console.warn(err);
-        setCurrentSignIn(null);
-      });
-    }
-  }
-  
   return (
     <footer>
       <img src={footerBackground} className="footer-background" alt="footer-background" />
@@ -57,15 +12,9 @@ export default function Footer() {
         <div className="container-fluid mt-3 mb-3 d-flex flex-column align-items-center">
           <div className="row d-flex flex-row w-100 align-items-center gap-5 justify-content-center">
             <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
-              <img src={logo} alt="logo-transparent" className="m-2" style={{width: 150, height: 150}}/>
-              <Text h2>
-                Beyond the Bell Education
-              </Text>
+              <img src={logo} alt="logo-transparent" className="m-2" style={{maxHeight: 150, width: "auto"}}/>
               <Text>
-                3 Man-Mar Drive #14 <br /> Plainville, MA 02762
-              </Text>
-              <Text>
-                questions@beyondthebelleducation.com <br /> (508) 316-4751
+                (781) 799-6374
               </Text>
             </div>
             <div className="col-lg-12 col-xl-4 d-flex flex-column align-items-center">
@@ -106,11 +55,8 @@ export default function Footer() {
         <div className="fill-line mb-3" />
         <div className="d-flex flex-column gap-2 m-2 align-items-center">
           <Text size="$sm">
-            Copyright © 2023 Beyond the Bell Educational Services
+            Copyright © 2023 You Can Do It Gardening
           </Text>
-          <Button light onClick={handleSignInClick}>
-            {currentSignIn ? `Signed in as ${currentSignIn.displayName}` : "Admin Login"}
-          </Button>
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 .home-image {
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url("../images/stock/writing.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url("../images/homeImage.jpg");
   background-size: cover;
+  background-position: 50%;
 }
 
 .testimonial-img {

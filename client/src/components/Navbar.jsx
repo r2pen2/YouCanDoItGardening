@@ -1,14 +1,10 @@
 // Library Imports
 import React from 'react';
-import { Navbar as NextUINavbar, Dropdown, Text, Image, Button, Link } from "@nextui-org/react";
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import EmailIcon from '@mui/icons-material/Email';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import { Navbar as NextUINavbar, Dropdown, Text, Image, Button, Link, Divider } from "@nextui-org/react";
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
-import { SchoolDaysIcon, AfterSchoolIcon, ContractIcon, ScholarshipIcon, iconFills } from './Icons';
-
-import { afterSchoolFormLink, callLink, facebookLink, mapsLink, mailLink, schoolContractLink, schoolDayFormLink, scholarshipLink, } from '../api/links';
+import { instagramLink, youtubeLink, } from '../api/links';
 
 import logoBlack from "../assets/images/logoTransparentBlack.png";
 
@@ -38,25 +34,32 @@ export function NavbarPages() {
         Home
       </NextUINavbar.Link>
       <NextUINavbar.Link 
-        isActive={checkLinkActive("about")}
-        href="about"
-        itemCss={{fontSize: navbarItemFontSize}}
-      >
-        Who We Are
-      </NextUINavbar.Link>
-      <NextUINavbar.Link 
         isActive={checkLinkActive("services")}
         href="services"
         itemCss={{fontSize: navbarItemFontSize}}
       >
-        Services
+        Services & Fees
       </NextUINavbar.Link>
       <NextUINavbar.Link 
-        isActive={checkLinkActive("contact")}
-        href="contact"
+        isActive={checkLinkActive("about")}
+        href="about"
         itemCss={{fontSize: navbarItemFontSize}}
       >
-        Contact
+        About
+      </NextUINavbar.Link>
+      <NextUINavbar.Link 
+        isActive={checkLinkActive("basics")}
+        href="basics"
+        itemCss={{fontSize: navbarItemFontSize}}
+      >
+        Basic Principles
+      </NextUINavbar.Link>
+      <NextUINavbar.Link 
+        isActive={checkLinkActive("teaching")}
+        href="teaching"
+        itemCss={{fontSize: navbarItemFontSize}}
+      >
+        Teaching
       </NextUINavbar.Link>
     </NextUINavbar.Content>
   )
@@ -71,16 +74,20 @@ export function Navbar() {
       href: "home",
     },
     {
-      name: "Who We Are",
-      href: "about",
-    },
-    {
-      name: "Services",
+      name: "Services & Fees",
       href: "services",
     },
     {
-      name: "Contact",
-      href: "contact",
+      name: "About",
+      href: "about",
+    },
+    {
+      name: "Basic Principles",
+      href: "basics",
+    },
+    {
+      name: "Teaching",
+      href: "teaching",
     },
   ];
 
@@ -95,12 +102,7 @@ export function Navbar() {
       <BrandLarge />
       <BrandCentered />
       <NavbarPages />
-      <div className="d-flex flex-row align-items-center justify-content-center gap-2 px-2 w-25" >
-        <NavbarSocials />
-        <NavbarScheduleDropdown />
-        <NavbarScheduleDropdownSmall />
-      </div>
-      
+      <NavbarSocials />
       <NextUINavbar.Collapse >
         {collapseItems.map((item, index) => (
           <NextUINavbar.CollapseItem key={index}>
@@ -159,7 +161,7 @@ function BrandLarge() {
           alt="logo-black"
         />
         <Text b css={{fontSize: 20, marginLeft: "0.5em"}}>
-          Beyond The Bell
+          You Can Do It Gardening
         </Text>
       </div>
     </NextUINavbar.Brand>
@@ -184,7 +186,7 @@ function BrandCentered() {
             alt="logo-black"
           />
           <Text b css={{fontSize: 20, marginLeft: "0.5em"}}>
-            Beyond The Bell
+            You Can Do It Gardening
           </Text>
         </div>
       </div>
@@ -195,224 +197,21 @@ function BrandCentered() {
 function NavbarSocials() {
 
   return (
-    <NextUINavbar.Content hideIn="md" enableCursorHighlight activeColor="primary">
+    <NextUINavbar.Content enableCursorHighlight activeColor="primary">
       <div className="d-flex flex-row align-items-center justify-content-center w-100 gap-2">
         <Button
           light
           auto
-          icon={<LocalPhoneIcon />}
-          onClick={() => window.open(callLink)}
+          icon={<YouTubeIcon />}
+          onClick={() => window.open(youtubeLink, "_blank")}
         />
         <Button
           light
           auto
-          icon={<EmailIcon />}
-          onClick={() => window.open(mailLink)}
-        />
-        <Button
-          light
-          auto
-          icon={<LocationOnIcon />}
-          onClick={() => window.open(mapsLink, "_blank")}
-        />
-        <Button
-          light
-          auto
-          icon={<FacebookIcon />}
-          onClick={() => window.open(facebookLink, "_blank")}
+          icon={<InstagramIcon />}
+          onClick={() => window.open(instagramLink, "_blank")}
         />
       </div>
-    </NextUINavbar.Content>
-  )
-}
-
-function NavbarScheduleDropdown() {
-
-  function handleDropdownMenuAction(key) {
-    console.log(key)
-    let link = null;
-    switch (key) {
-      case "school-days":
-        link = schoolDayFormLink;
-        break;
-      case "after-school":
-        link = afterSchoolFormLink;
-        break;
-      case "contract":
-        link = schoolContractLink;
-        break;
-      case "scholarship":
-        link = scholarshipLink;
-        break;
-      default:
-        break;
-    }
-    if (link) {
-      window.open(link, "_blank");
-    }
-  }
-
-  return (
-    <NextUINavbar.Content css={{flex: 1}} className="d-none d-md-flex flex-row w-100 justify-content-end px-2">
-      <Dropdown isBordered>
-        <NextUINavbar.Item
-          css={{
-          fontSize: navbarItemFontSize
-        }}>
-          <Dropdown.Button
-            shadow
-          >
-            Schedule
-          </Dropdown.Button>
-        </NextUINavbar.Item>
-        <Dropdown.Menu
-          aria-label="BTB About"
-          css={{
-            $$dropdownMenuWidth: "340px",
-            $$dropdownItemHeight: "70px",
-            "& .nextui-dropdown-item": {
-              py: "$4",
-              // dropdown item left icon
-              svg: {
-                color: "$secondary",
-                mr: "$4",
-              },
-              // dropdown item title
-              "& .nextui-dropdown-item-content": {
-                w: "100%",
-                fontWeight: "$semibold",
-              },
-            },
-          }}
-          onAction={handleDropdownMenuAction}
-        >
-          <Dropdown.Item
-            key="school-days"
-            description="Click to open application"
-            icon={<SchoolDaysIcon fill={iconFills.orange} />}
-          >
-            School Days at BTB
-          </Dropdown.Item>
-          <Dropdown.Item
-            key="after-school"
-            description="Click to open application"
-            icon={<AfterSchoolIcon fill={iconFills.red} />}
-          >
-            After School at BTB
-          </Dropdown.Item>
-          <Dropdown.Item
-            withDivider
-            key="contract"
-            description="Click to open contract"
-            icon={<ContractIcon fill={iconFills.blue} />}
-          >
-            Contract for 2020/21 School Year
-          </Dropdown.Item>
-          <Dropdown.Item
-            withDivider
-            key="scholarship"
-            description="Click to open application"
-            icon={<ScholarshipIcon fill={iconFills.green} />}
-          >
-            The Little Fiddle Scholarship
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-    </NextUINavbar.Content>
-  )
-}
-
-function NavbarScheduleDropdownSmall() {
-
-  function handleDropdownMenuAction(key) {
-    console.log(key)
-    let link = null;
-    switch (key) {
-      case "school-days":
-        link = schoolDayFormLink;
-        break;
-      case "after-school":
-        link = afterSchoolFormLink;
-        break;
-      case "contract":
-        link = schoolContractLink;
-        break;
-      case "scholarship":
-        link = scholarshipLink;
-        break;
-      default:
-        break;
-    }
-    if (link) {
-      window.open(link, "_blank");
-    }
-  }
-
-  return (
-    <NextUINavbar.Content css={{flex: 1}} className="d-flex d-md-none flex-row w-100 justify-content-end px-2">
-      <Dropdown isBordered>
-        <NextUINavbar.Item
-          css={{
-          fontSize: navbarItemFontSize
-        }}>
-          <Dropdown.Button
-            shadow
-          >
-          </Dropdown.Button>
-        </NextUINavbar.Item>
-        <Dropdown.Menu
-          aria-label="BTB About"
-          css={{
-            $$dropdownMenuWidth: "340px",
-            $$dropdownItemHeight: "70px",
-            "& .nextui-dropdown-item": {
-              py: "$4",
-              // dropdown item left icon
-              svg: {
-                color: "$secondary",
-                mr: "$4",
-              },
-              // dropdown item title
-              "& .nextui-dropdown-item-content": {
-                w: "100%",
-                fontWeight: "$semibold",
-              },
-            },
-          }}
-          onAction={handleDropdownMenuAction}
-        >
-          <Dropdown.Item
-            key="school-days"
-            description="Click to open application"
-            icon={<SchoolDaysIcon fill={iconFills.orange} />}
-          >
-            School Days at BTB
-          </Dropdown.Item>
-          <Dropdown.Item
-            key="after-school"
-            description="Click to open application"
-            icon={<AfterSchoolIcon fill={iconFills.red} />}
-          >
-            After School at BTB
-          </Dropdown.Item>
-          <Dropdown.Item
-            withDivider
-            key="contract"
-            description="Click to open contract"
-            icon={<ContractIcon fill={iconFills.blue} />}
-          >
-            Contract for 2020/21 School Year
-          </Dropdown.Item>
-          <Dropdown.Item
-            withDivider
-            key="scholarship"
-            description="Click to open application"
-            icon={<ScholarshipIcon fill={iconFills.green} />}
-          >
-            The Little Fiddle Scholarship
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
     </NextUINavbar.Content>
   )
 }
