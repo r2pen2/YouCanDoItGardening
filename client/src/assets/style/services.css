@@ -1,0 +1,5 @@
+.service-image {
+  height: 100%;
+  object-fit: cover;
+  padding: 1em;
+}
