@@ -1,7 +1,8 @@
 .home-image {
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url("../images/homeImage.jpg");
-  background-size: cover;
-  background-position: 50%;
+  background-image: url("../images/gradient/home3.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: -50%;
 }
 
 .testimonial-img {
@@ -10,4 +11,14 @@
   border-radius: 50%;
   filter: drop-shadow(2px 2px 10px black);
   margin-bottom: 2rem;
+}
+
+.word-hover {
+  transition: 1s ease;
+}
+
+.word-hover:hover {
+  transform: scale(1.1);
+  padding-left: 1rem;
+  padding-right: 1rem;
 }

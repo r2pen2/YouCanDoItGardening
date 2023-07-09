@@ -20,24 +20,15 @@ header {
   background: url("./assets/images/rainbowstripe.jpg") repeat-x;
 }
 
-footer::before {
-  content: '';
-  height: 4px;
-  width: 100%;
-  display: block;
-  background: url("./assets/images/rainbowstripe.jpg") repeat-x;
-}
-
 footer {
   overflow: hidden;
   position: relative;
 }
 
 .footer-background {
-  opacity: 0.25;
   position: absolute;
   left: 0;
-  top: 0;
+  bottom: 0;
   width: 100%;
   height: auto;
 }

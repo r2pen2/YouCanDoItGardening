@@ -23,7 +23,6 @@ export const theme = createTheme({
   theme: {
     colors: {
 
-      text: "#666666",
       success: "#A6C437",
       white: "#ffffff",  
     },
