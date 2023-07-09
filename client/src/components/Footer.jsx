@@ -21,9 +21,6 @@ export default function Footer() {
               </Text>
             </div>
             <div className="col-lg-12 col-xl-4 d-flex flex-column align-items-center">
-              <Text>
-                Empowering gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere
-              </Text>
               <div className="d-flex flex-row align-items-center justify-content-center w-100 gap-2 py-4">
                 <Button
                   light
@@ -41,6 +38,9 @@ export default function Footer() {
               <Link block color="primary" href="https://sites.google.com/view/youcandoitgardening/contact-me-by-phone" target='blank'>
                 Contact Me
               </Link>
+              <Text>
+                Empowering gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere
+              </Text>
             </div>
             <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
               <Text>
