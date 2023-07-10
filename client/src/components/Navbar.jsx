@@ -148,7 +148,7 @@ export function Navbar() {
   return (
     <NextUINavbar 
       height="80px"
-      variant="sticky"
+      variant="floating"
       maxWidth="xl"
     >
       <NextUINavbar.Toggle className="d-flex d-lg-none" css={{flex: 1}} />
