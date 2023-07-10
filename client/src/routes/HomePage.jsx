@@ -173,7 +173,7 @@ export default function HomePage() {
                   Find me online!
                 </Text>
                 <Text>
-                  You can find me on <Link href={instagramLink} target="blank" isExternal>Instagram</Link>, <Link href={youtubeLink} target="blank" isExternal>YouTube</Link>, and <Link href={tiktokLink} target="blank" isExternal>TikTok</Link>.
+                  You can find me on <br className="d-inline d-sm-none"/><Link href={instagramLink} target="blank" isExternal>Instagram</Link>, <br className="d-inline d-sm-none"/><Link href={youtubeLink} target="blank" isExternal>YouTube</Link>, <br className="d-inline d-sm-none"/>and <Link href={tiktokLink} target="blank" isExternal>TikTok</Link>.
                 </Text>
               </div>
               <Button className="d-none d-md-inline" color="gradient" bordered size="lg" onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
