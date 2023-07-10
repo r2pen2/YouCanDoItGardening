@@ -25,9 +25,9 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb"}));
 app.use(express.static(__dirname + "/server/static/"));
 
 // Serve React build
-app.use(express.static(__dirname + "/btb-client/build"));
+app.use(express.static(__dirname + "/client/build"));
 
 // Serve react app
 app.get("*", (req, res) => {
-    res.sendFile(__dirname + "/btb-client/build/index.html");
+    res.sendFile(__dirname + "/client/build/index.html");
 });

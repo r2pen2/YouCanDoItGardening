@@ -26,7 +26,7 @@ function NavbarPages() {
   }
 
   return (
-    <NextUINavbar.Content enableCursorHighlight activeColor="primary" className='d-none d-xl-flex flex-row align-items-center justify-content-end w-100'>
+    <NextUINavbar.Content enableCursorHighlight activeColor="primary" className='d-none d-xl-flex flex-row align-items-center justify-content-end w-100 px-3'>
       <NextUINavbar.Link 
         isActive={checkLinkActive("home")}
         href="home"
@@ -78,7 +78,7 @@ function NavbarPagesSmall() {
   }
 
   return (
-    <NextUINavbar.Content enableCursorHighlight activeColor="primary" className='d-none d-lg-flex d-xl-none flex-row align-items-center justify-content-end w-100'>
+    <NextUINavbar.Content enableCursorHighlight activeColor="primary" className='d-none d-lg-flex d-xl-none flex-row align-items-center justify-content-end w-100 px-3'>
       <NextUINavbar.Link 
         isActive={checkLinkActive("home")}
         href="home"

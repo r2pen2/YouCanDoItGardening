@@ -23,6 +23,8 @@ const confidentGradientPadded = {textGradient: "0deg, $purple600 -20%, $pink600 
 export const empoweredGradient = {textGradient: "180deg, $yellow600 -20%, $red600 100%"}
 const confidentGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
+const transparentBackground = {backgroundColor: "transparent"}
+
 export default function HomePage() {
 
   return (
@@ -44,7 +46,7 @@ export default function HomePage() {
             }}>
             Demystifying gardening so you feel more
             <Text 
-              className="d-inline word-hover"
+              className="d-inline"
               b
               css={{
                 fontSize: headerSizeSm,
@@ -55,7 +57,7 @@ export default function HomePage() {
             </Text>
             and 
             <Text 
-              className="d-inline word-hover"
+              className="d-inline"
               b
               css={{
                 fontSize: headerSizeSm,
@@ -87,83 +89,77 @@ export default function HomePage() {
         <div className="container-fluid py-5">
           <div className="row d-flex flex-row justify-content-center">
             <div className={transparentCardClasses}>
-              <Card
+              <div
                 className='transparent-card'
                 isHoverable
-                
+                css={{transparentBackground}}
               >
-                <Card.Header>
                   <div className="d-flex flex-column w-100 align-items-center">
                     <SavingsTwoToneIcon sx={{fontSize: 50}}/>
                     <Text b className="w-100">
                       Save Money
                     </Text>
                   </div>
-                </Card.Header>
                 <Divider />
-                <Card.Body>
+                <div className="d-flex flex-column w-100 align-items-center">
                   <Text align="center">
                     Ensure that your garden will stay safe and healthy for years to come. No more paying for new plants or landscapers!
                   </Text>
-                </Card.Body>
-              </Card>
+                </div>
+              </div>
             </div>
             <div className={transparentCardClasses}>
-              <Card
+              <div
                 className='transparent-card'
                 isHoverable
-                
+                css={{transparentBackground}}
               >
-                <Card.Header>
                   <div className="d-flex flex-column w-100 align-items-center">
                     <VisibilityTwoToneIcon sx={{fontSize: 50}}/>
                     <Text b className="w-100">
                       Look Good
                     </Text>
                   </div>
-                </Card.Header>
                 <Divider />
-                <Card.Body>
+                <div className="d-flex flex-column w-100 align-items-center">
                   <Text align="center">
                     Professional designs will make your garden jaw-dropping. Your neighbors will be quick to notice.
                   </Text>
-                </Card.Body>
-              </Card>
+                </div>
+              </div>
             </div>
             <div className={transparentCardClasses}>
-              <Card
+              <div
                 className='transparent-card'
                 isHoverable
-                
+                css={{transparentBackground}}
               >
-                <Card.Header>
                   <div className="d-flex flex-column w-100 align-items-center">
                     <SelfImprovementTwoToneIcon sx={{fontSize: 50}}/>
                     <Text b className="w-100">
                     Feel Good
                     </Text>
                   </div>
-                </Card.Header>
                 <Divider />
-                <Card.Body>
+                <div className="d-flex flex-column w-100 align-items-center">
                   <Text align="center">
                     Have faith that your garden is happy, healthy, and beautiful. There's no need to stress.
                   </Text>
-                </Card.Body>
-              </Card>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <Spacer css={{height: 100}} />
+        <Spacer y={5} />
         <div className="container-fluid d-flex flex-row justify-content-center">
-          <Card className="row w-80 p-2 d-flex flex-row">
+          <Card css={{width: "80%"}} className="row p-2 d-flex flex-row">
             <div className="col-xl-4 col-md-12 d-none d-xl-flex flex-column h-100 justify-content-center align-items-center">
               <img src={jess} alt="jess" className="img-shadow img-round" />
             </div>
             <div className="col-xl-4 col-md-12 d-flex d-xl-none flex-row justify-content-center">
               <img src={jess} alt="jess" className="img-shadow img-round" style={{maxWidth: "50vw"}} />
             </div>
-            <div className="col-xl-8 col-md-12 d-flex flex-column p-5 justify-content-between">
+            <div className="col-xl-8 col-md-12 d-flex flex-column p-5 gap-5 justify-content-between">
               <div>
                 <Text h2>
                   Why this model works:
