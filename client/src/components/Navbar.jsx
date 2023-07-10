@@ -6,7 +6,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 import { instagramLink, youtubeLink, } from '../api/links';
 
-import logoBlack from "../assets/images/logoTransparentBlack.png";
+import logoBlack from "../assets/images/logoNoText.png";
 
 // Style Imports
 import "../assets/style/navbar.css";
