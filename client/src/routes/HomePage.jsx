@@ -18,10 +18,8 @@ const transparentCardClasses = "col-xl-4 col-md-12 p-3 d-flex flex-column align-
 
 const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
 
-const empoweredGradientPadded = {textGradient: "180deg, $yellow600 -20%, $red600 100%", ...gradientPadding}
-const confidentGradientPadded = {textGradient: "0deg, $purple600 -20%, $pink600 100%", ...gradientPadding}
-export const empoweredGradient = {textGradient: "180deg, $yellow600 -20%, $red600 100%"}
-const confidentGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
+const textGradientPadded = {textGradient: "0deg, $purple600 -20%, $pink600 100%", ...gradientPadding}
+export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
 const transparentBackground = {backgroundColor: "transparent"}
 
@@ -50,7 +48,7 @@ export default function HomePage() {
               b
               css={{
                 fontSize: headerSizeSm,
-                ...empoweredGradientPadded
+                ...textGradientPadded
               }}
             > 
              empowered
@@ -61,7 +59,7 @@ export default function HomePage() {
               b
               css={{
                 fontSize: headerSizeSm,
-                ...confidentGradientPadded,
+                ...textGradientPadded,
               }}
             > 
              confident
@@ -82,7 +80,7 @@ export default function HomePage() {
               className="px-5"
               css={{fontSize: "1.5rem"}}
               >
-              Demystifying gardening so you feel more <Text b className="d-inline" css={empoweredGradient}>empowered</Text> and <Text b className="d-inline" css={confidentGradient}>confident</Text> in doing it yourself
+              Demystifying gardening so you feel more <Text b className="d-inline" css={textGradient}>empowered</Text> and <Text b className="d-inline" css={textGradient}>confident</Text> in doing it yourself
             </Text>
           </div>
         </div>
@@ -150,7 +148,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <Spacer y={5} />
         <div className="container-fluid d-flex flex-row justify-content-center">
           <Card css={{width: "80%"}} className="row p-2 d-flex flex-row">
             <div className="col-xl-4 col-md-12 d-none d-xl-flex flex-column h-100 justify-content-center align-items-center">
@@ -159,21 +156,13 @@ export default function HomePage() {
             <div className="col-xl-4 col-md-12 d-flex d-xl-none flex-row justify-content-center">
               <img src={jess} alt="jess" className="img-shadow img-round" style={{maxWidth: "50vw"}} />
             </div>
-            <div className="col-xl-8 col-md-12 d-flex flex-column px-1 py-1 px-lg-3 py-lg-3 px-xl-5 py-xl-5 gap-5 justify-content-between">
+            <div className="col-xl-8 col-md-12 d-flex flex-column px-1 py-1 px-lg-5 py-3 px-lg-5 justify-content-around">
               <div>
                 <Text h2>
                   Why this model works:
                 </Text>
-                <Text>
+                <Text align="left">
                   Landscapers are in high demand and outsourcing may not be in the budget right now. Many people are more able than they realize. Doing it yourself can result in significant savings that can be used for other things. Also, it can be really gratifying to work in the garden, connect with nature and create something beautiful or improve on what you already have.
-                </Text>
-              </div>
-              <div>
-                <Text h2>
-                  Find me online!
-                </Text>
-                <Text>
-                  You can find me on <br className="d-inline d-sm-none"/><Link href={instagramLink} target="blank" isExternal>Instagram</Link>, <br className="d-inline d-sm-none"/><Link href={youtubeLink} target="blank" isExternal>YouTube</Link>, <br className="d-inline d-sm-none"/>and <Link href={tiktokLink} target="blank" isExternal>TikTok</Link>.
                 </Text>
               </div>
               <Button className="d-none d-md-inline" color="gradient" bordered size="lg" onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
@@ -182,8 +171,8 @@ export default function HomePage() {
               <Button className="d-none d-sm-inline d-md-none" color="gradient" bordered onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
                 Schedule A Consultation
               </Button>
-              <Button className="d-inline d-sm-none" color="gradient" bordered size="lg" onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
-                Schedule
+              <Button className="d-inline d-sm-none" color="gradient" bordered onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
+                Schedule A Consultation
               </Button>
             </div>
           </Card>

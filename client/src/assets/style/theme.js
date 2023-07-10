@@ -22,6 +22,16 @@ export const theme = createTheme({
   type: "light", // it could be "light" or "dark"
   theme: {
     colors: {
+      primaryLight: "$purple200",
+      primaryLightHover: "$purple300",
+      primaryLightActive: "$purple400",
+      primaryLightContrast: "$purple600",
+      primary: "$purple600",
+      primaryBorder: "$purple500",
+      primaryBorderHover: "$purple600",
+      primarySolidHover: "$purple700",
+      primarySolidContrast: white,
+      primaryShadow: "$purple600",
 
       success: "#A6C437",
       white: "#ffffff",  

@@ -11,6 +11,7 @@ import logoBlack from "../assets/images/logoNoText.png";
 // Style Imports
 import "../assets/style/navbar.css";
 import "../assets/style/layout.css";
+import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from './Socials';
 
 const navbarItemFontSize = "20px";
 const navbarItemFontSizeSm = "18px";
@@ -232,18 +233,10 @@ function NavbarSocials() {
   return (
     <NextUINavbar.Content enableCursorHighlight activeColor="primary" css={{flex: 1}}>
       <div className="d-flex flex-row align-items-right justify-content-end w-100 gap-2">
-        <Button
-          light
-          auto
-          icon={<YouTubeIcon />}
-          onClick={() => window.open(youtubeLink, "_blank")}
-        />
-        <Button
-          light
-          auto
-          icon={<InstagramIcon />}
-          onClick={() => window.open(instagramLink, "_blank")}
-        />
+        <InstagramButton size="30px"/>
+        <FacebookButton size="30px"/>
+        <TikTokButton size="30px"/>
+        <YouTubeButton size="30px"/>
       </div>
     </NextUINavbar.Content>
   )

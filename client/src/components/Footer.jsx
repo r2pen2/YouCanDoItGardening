@@ -1,11 +1,12 @@
-import { Text, Link, Button } from '@nextui-org/react'
+import { Text, Link, Button, Divider } from '@nextui-org/react'
 import React, {useState, useEffect} from 'react'
 import logo from "../assets/images/logoTransparent.png";
 import footerBackground from "../assets/images/gradient/footer.svg";
-import { instagramLink, youtubeLink } from '../api/links';
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import { contactMeLink, mailingListLink } from '../api/links';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { empoweredGradient } from '../routes/HomePage';
+import { textGradient } from '../routes/HomePage';
+import { IconButton } from '@mui/material';
+import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from './Socials';
 
 
 export default function Footer() {
@@ -17,30 +18,26 @@ export default function Footer() {
           <div className="row d-flex flex-row w-100 align-items-center gap-5 justify-content-center">
             <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
               <img src={logo} alt="logo-transparent" className="m-2" style={{maxHeight: 150, width: "auto"}}/>
-              <Text>
-                (781) 799-6374
-              </Text>
+              <Link block color="primary" href={contactMeLink} target='blank'>
+                Contact Me
+              </Link>
+              <Link block color="primary" href={mailingListLink} target='blank'>
+                Join My Mailing List
+              </Link>
             </div>
             <div className="col-lg-12 col-xl-4 d-flex flex-column align-items-center">
               <div className="d-flex flex-row align-items-center justify-content-center w-100 gap-2 py-4">
-                <Button
-                  light
-                  auto
-                  icon={<YouTubeIcon fontSize='large' />}
-                  onClick={() => window.open(youtubeLink, "_blank")}
-                />
-                <Button
-                  light
-                  auto
-                  icon={<InstagramIcon fontSize='large' />}
-                  onClick={() => window.open(instagramLink, "_blank")}
-                />
+                <InstagramButton />
+                <FacebookButton />
+                <TikTokButton />
+                <YouTubeButton />
               </div>
-              <Link block color="primary" href="https://sites.google.com/view/youcandoitgardening/contact-me-by-phone" target='blank'>
-                Contact Me
-              </Link>
+              <Divider />
               <Text>
-                <Text css={{maxWidth: "70vw", ...empoweredGradient}} b className="d-inline">Empowering</Text> gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere
+                300,000+ followers on Instagram, TikTok, FaceBook and YouTube combined. Come join the party!!
+              </Text>
+              <Text>
+                <Text css={{maxWidth: "70vw", ...textGradient}} b className="d-inline">Empowering</Text> gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere
               </Text>
             </div>
             <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
