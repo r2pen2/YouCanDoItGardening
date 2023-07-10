@@ -13,8 +13,8 @@ app.use(cors());
 dotenv.config();
 
 // Start listening on defined port
-app.listen(3000, () => {
-    console.log('Now listening on port ' + 3000);
+app.listen(3003, () => {
+    console.log('Now listening on port ' + 3003);
 });
 
 // BodyParser setup
