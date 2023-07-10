@@ -9,7 +9,7 @@ import { instagramLink, tiktokLink, youtubeLink } from '../api/links';
 
 import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
 import SavingsTwoToneIcon from '@mui/icons-material/SavingsTwoTone';
-import SelfImprovementTwoToneIcon from '@mui/icons-material/SelfImprovementTwoTone';
+import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 
 const headerSizeLg = "3rem";
 const headerSizeSm = "2rem";
@@ -115,7 +115,7 @@ export default function HomePage() {
                   <div className="d-flex flex-column w-100 align-items-center">
                     <VisibilityTwoToneIcon sx={{fontSize: 50}}/>
                     <Text b className="w-100">
-                      Look Good
+                      Looks Good
                     </Text>
                   </div>
                 <Divider />
@@ -133,9 +133,9 @@ export default function HomePage() {
                 css={{transparentBackground}}
               >
                   <div className="d-flex flex-column w-100 align-items-center">
-                    <SelfImprovementTwoToneIcon sx={{fontSize: 50}}/>
+                    <LocalFloristTwoToneIcon sx={{fontSize: 50}}/>
                     <Text b className="w-100">
-                    Feel Good
+                    Feels Good
                     </Text>
                   </div>
                 <Divider />
