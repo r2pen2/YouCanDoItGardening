@@ -5,6 +5,7 @@ import footerBackground from "../assets/images/gradient/footer.svg";
 import { instagramLink, youtubeLink } from '../api/links';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { empoweredGradient } from '../routes/HomePage';
 
 
 export default function Footer() {
@@ -39,7 +40,7 @@ export default function Footer() {
                 Contact Me
               </Link>
               <Text>
-                Empowering gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere
+                <Text css={empoweredGradient} b className="d-inline">Empowering</Text> gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere
               </Text>
             </div>
             <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">

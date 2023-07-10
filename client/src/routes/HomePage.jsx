@@ -7,132 +7,147 @@ import jess from "../assets/images/jess.jpg";
 import "../assets/style/homepage.css"
 import { instagramLink, tiktokLink, youtubeLink } from '../api/links';
 
+import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
+import SavingsTwoToneIcon from '@mui/icons-material/SavingsTwoTone';
+import SelfImprovementTwoToneIcon from '@mui/icons-material/SelfImprovementTwoTone';
+
+const headerSizeLg = "3rem";
+const headerSizeSm = "2rem";
+
+const transparentCardClasses = "col-xl-4 col-md-12 p-3 d-flex flex-column align-items-center";
+
+const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
+
+const empoweredGradientPadded = {textGradient: "180deg, $yellow600 -20%, $red600 100%", ...gradientPadding}
+const confidentGradientPadded = {textGradient: "0deg, $purple600 -20%, $pink600 100%", ...gradientPadding}
+export const empoweredGradient = {textGradient: "180deg, $yellow600 -20%, $red600 100%"}
+const confidentGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
 export default function HomePage() {
 
   return (
     <div className="d-flex flex-column">
-      <section className="home-image d-flex flex-column w-100 align-items-center" style={{paddingTop: "10rem", minHeight: "150vh"}}>
-        <div className="d-flex flex-column align-items-center">
-          <div className="d-flex flex-row" style={{gap: ".5rem"}}>
-            <Text h1 
+      <section className="home-image d-flex flex-column w-100 align-items-center" style={{minHeight: "150vh"}}>
+        <div className="d-none d-md-flex flex-column align-items-center" style={{paddingTop: "10rem"}}>
+          <Text h1 
+            className="px-2"
+            css={{
+              fontSize: headerSizeLg,
+            }}>
+            You Can Do It Gardening
+          </Text>
+          <Spacer y={2} />
+          <Text p 
+            css={{
+              paddingLeft:"20%", paddingRight: "20%",
+              fontSize: headerSizeSm,
+            }}>
+            Demystifying gardening so you feel more
+            <Text 
+              className="d-inline word-hover"
+              b
               css={{
-                fontSize: "4rem",
-              }}>
-              Demystifying gardening so you feel
-            </Text>
-          </div>
-          <div className="d-flex flex-row" style={{gap: ".5rem"}}>
-            <Text h1 
-              css={{
-                fontSize: "4rem",
-              }}>
-              more
-            </Text>
-            <Text h1 
-              className="word-hover"
-              css={{
-                fontSize: "4rem",
-                textGradient: "180deg, $yellow600 -20%, $red600 100%",
+                fontSize: headerSizeSm,
+                ...empoweredGradientPadded
               }}
-              weight="bold"
-            >
-              empowered
+            > 
+             empowered
             </Text>
-            <Text h1 
+            and 
+            <Text 
+              className="d-inline word-hover"
+              b
               css={{
-                fontSize: "4rem",
-              }}>
-              and
-            </Text>
-            <Text h1 
-              className="word-hover"
-              css={{
-                fontSize: "4rem",
-                textGradient: "180deg, $yellow600 -20%, $red600 100%",
+                fontSize: headerSizeSm,
+                ...confidentGradientPadded,
               }}
-              weight="bold"
-            >
-              confident
+            > 
+             confident
             </Text>
-          </div>
-          <div className="d-flex flex-row" style={{gap: ".5rem"}}>
+            in doing it yourself
+          </Text>
+        </div>
+        <div className="d-flex d-md-none flex-column align-items-center" style={{paddingTop: "5rem"}}>
+          <div className="d-flex flex-column" style={{gap: ".5rem"}}>
             <Text h1 
+              className="px-2"
               css={{
-                fontSize: "4rem",
+                fontSize: headerSizeLg,
               }}>
-              in doing it
+              You Can Do It Gardening
             </Text>
-            <Text h1 
-              css={{
-                fontSize: "4rem",
-                textGradient: "0deg, $purple600 -20%, $pink600 100%",
-              }}
-              className="word-hover"
-              weight="bold"
-            >
-              yourself
+            <Text p 
+              className="px-5"
+              css={{fontSize: "1.5rem"}}
+              >
+              Demystifying gardening so you feel more <Text b className="d-inline" css={empoweredGradient}>empowered</Text> and <Text b className="d-inline" css={confidentGradient}>confident</Text> in doing it yourself
             </Text>
           </div>
         </div>
         <div className="container-fluid py-5">
           <div className="row d-flex flex-row justify-content-center">
-            <div className="col-xl-4 col-md-12 p-3">
+            <div className={transparentCardClasses}>
               <Card
-                variant="bordered"
+                className='transparent-card'
                 isHoverable
-                css={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}
                 
               >
                 <Card.Header>
-                  <Text b className="w-100">
-                    Save Money
-                  </Text>
+                  <div className="d-flex flex-column w-100 align-items-center">
+                    <SavingsTwoToneIcon sx={{fontSize: 50}}/>
+                    <Text b className="w-100">
+                      Save Money
+                    </Text>
+                  </div>
                 </Card.Header>
                 <Divider />
                 <Card.Body>
                   <Text align="center">
-                    Ensure that your garden will stay safe and healthy for years to come
+                    Ensure that your garden will stay safe and healthy for years to come. No more paying for new plants or landscapers!
                   </Text>
                 </Card.Body>
               </Card>
             </div>
-            <div className="col-xl-4 col-md-12 p-3">
+            <div className={transparentCardClasses}>
               <Card
+                className='transparent-card'
                 isHoverable
-                variant="bordered"
-                css={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}
                 
               >
                 <Card.Header>
-                  <Text b className="w-100">
-                    Look Good
-                  </Text>
+                  <div className="d-flex flex-column w-100 align-items-center">
+                    <VisibilityTwoToneIcon sx={{fontSize: 50}}/>
+                    <Text b className="w-100">
+                      Look Good
+                    </Text>
+                  </div>
                 </Card.Header>
                 <Divider />
                 <Card.Body>
                   <Text align="center">
-                    Professional designs will make your garden jaw-dropping
+                    Professional designs will make your garden jaw-dropping. Your neighbors will be quick to notice.
                   </Text>
                 </Card.Body>
               </Card>
             </div>
-            <div className="col-xl-4 col-md-12 p-3">
+            <div className={transparentCardClasses}>
               <Card
+                className='transparent-card'
                 isHoverable
-                variant="bordered"
-                css={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}
                 
               >
                 <Card.Header>
-                  <Text b className="w-100">
+                  <div className="d-flex flex-column w-100 align-items-center">
+                    <SelfImprovementTwoToneIcon sx={{fontSize: 50}}/>
+                    <Text b className="w-100">
                     Feel Good
-                  </Text>
+                    </Text>
+                  </div>
                 </Card.Header>
                 <Divider />
                 <Card.Body>
                   <Text align="center">
-                    Have faith that your garden is happy, healthy, and beautiful
+                    Have faith that your garden is happy, healthy, and beautiful. There's no need to stress.
                   </Text>
                 </Card.Body>
               </Card>
@@ -142,8 +157,11 @@ export default function HomePage() {
         <Spacer css={{height: 100}} />
         <div className="container-fluid d-flex flex-row justify-content-center">
           <Card className="row w-80 p-2 d-flex flex-row">
-            <div className="col-xl-4 col-md-12">
+            <div className="col-xl-4 col-md-12 d-none d-xl-flex flex-column h-100 justify-content-center align-items-center">
               <img src={jess} alt="jess" className="img-shadow img-round" />
+            </div>
+            <div className="col-xl-4 col-md-12 d-flex d-xl-none flex-row justify-content-center">
+              <img src={jess} alt="jess" className="img-shadow img-round" style={{maxWidth: "50vw"}} />
             </div>
             <div className="col-xl-8 col-md-12 d-flex flex-column p-5 justify-content-between">
               <div>
@@ -162,7 +180,7 @@ export default function HomePage() {
                   You can find me on <Link href={instagramLink} target="blank" isExternal>Instagram</Link>, <Link href={youtubeLink} target="blank" isExternal>YouTube</Link>, and <Link href={tiktokLink} target="blank" isExternal>TikTok</Link>.
                 </Text>
               </div>
-              <Button color="gradient" bordered size="xl" onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
+              <Button color="gradient" bordered size="lg" onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
                 Schedule A Consultation
               </Button>
             </div>
