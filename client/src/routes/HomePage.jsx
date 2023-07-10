@@ -159,7 +159,7 @@ export default function HomePage() {
             <div className="col-xl-4 col-md-12 d-flex d-xl-none flex-row justify-content-center">
               <img src={jess} alt="jess" className="img-shadow img-round" style={{maxWidth: "50vw"}} />
             </div>
-            <div className="col-xl-8 col-md-12 d-flex flex-column p-5 gap-5 justify-content-between">
+            <div className="col-xl-8 col-md-12 d-flex flex-column px-1 py-1 px-lg-3 py-lg-3 px-xl-5 py-xl-5 gap-5 justify-content-between">
               <div>
                 <Text h2>
                   Why this model works:
@@ -176,8 +176,14 @@ export default function HomePage() {
                   You can find me on <Link href={instagramLink} target="blank" isExternal>Instagram</Link>, <Link href={youtubeLink} target="blank" isExternal>YouTube</Link>, and <Link href={tiktokLink} target="blank" isExternal>TikTok</Link>.
                 </Text>
               </div>
-              <Button color="gradient" bordered size="lg" onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
+              <Button className="d-none d-md-inline" color="gradient" bordered size="lg" onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
                 Schedule A Consultation
+              </Button>
+              <Button className="d-none d-sm-inline d-md-none" color="gradient" bordered onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
+                Schedule A Consultation
+              </Button>
+              <Button className="d-inline d-sm-none" color="gradient" bordered size="lg" onClick={() => window.open("https://sites.google.com/view/youcandoitgardening/contact-me-by-phone", "blank")}>
+                Schedule
               </Button>
             </div>
           </Card>
