@@ -6,7 +6,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./routes/HomePage";
 import About from './routes/About';
 import Services from './routes/Services';
-import Basics from './routes/Basics';
+import Media from './routes/Media';
+import Resources from './routes/Resources';
+import Testimonials from './routes/Testimonials';
+import Shop from './routes/Shop';
 import Teaching from './routes/Teaching';
 import Footer from './components/Footer';
 
@@ -23,7 +26,10 @@ function App() {
             <Route path="*" element={<HomePage />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/basics" element={<Basics />} />
+            <Route path="/media" element={<Media />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/teaching" element={<Teaching />} />
           </Routes>
         <Footer />

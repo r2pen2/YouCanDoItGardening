@@ -13,8 +13,43 @@ import "../assets/style/navbar.css";
 import "../assets/style/layout.css";
 import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from './Socials';
 
-const navbarItemFontSize = "20px";
-const navbarItemFontSizeSm = "18px";
+const navbarItemFontSize = "18px";
+
+
+const collapseItems = [
+  {
+    name: "Home",
+    href: "home",
+  },
+  {
+    name: "About",
+    href: "about",
+  },
+  {
+    name: "Services & Fees",
+    href: "services",
+  },
+  {
+    name: "Shop",
+    href: "shop",
+  },
+  {
+    name: "Testimonials",
+    href: "testimonials",
+  },
+  {
+    name: "Media",
+    href: "media",
+  },
+  {
+    name: "Resources",
+    href: "resources",
+  },
+  {
+    name: "Teaching & Speaking",
+    href: "teaching",
+  },
+];
 
 function NavbarPages() {
 
@@ -27,20 +62,13 @@ function NavbarPages() {
   }
 
   return (
-    <NextUINavbar.Content enableCursorHighlight activeColor="primary" className='d-none d-xl-flex flex-row align-items-center justify-content-end w-100 px-3'>
+    <NextUINavbar.Content enableCursorHighlight activeColor="primary" className='d-none d-xxl-flex flex-row align-items-center justify-content-end w-100 px-3'>
       <NextUINavbar.Link 
         isActive={checkLinkActive("home")}
         href="home"
         itemCss={{fontSize: navbarItemFontSize}}
       >
         Home
-      </NextUINavbar.Link>
-      <NextUINavbar.Link 
-        isActive={checkLinkActive("services")}
-        href="services"
-        itemCss={{fontSize: navbarItemFontSize}}
-      >
-        Services & Fees
       </NextUINavbar.Link>
       <NextUINavbar.Link 
         isActive={checkLinkActive("about")}
@@ -50,70 +78,46 @@ function NavbarPages() {
         About
       </NextUINavbar.Link>
       <NextUINavbar.Link 
-        isActive={checkLinkActive("basics")}
-        href="basics"
-        itemCss={{fontSize: navbarItemFontSize}}
-      >
-        Basic Principles
-      </NextUINavbar.Link>
-      <NextUINavbar.Link 
-        isActive={checkLinkActive("teaching")}
-        href="teaching"
-        itemCss={{fontSize: navbarItemFontSize}}
-      >
-        Teaching
-      </NextUINavbar.Link>
-    </NextUINavbar.Content>
-  )
-}
-
-
-function NavbarPagesSmall() {
-
-  function checkLinkActive(route) {
-    const location = window.location.pathname;
-    if (route === "home" && window.location.pathname.length < 2) {
-      return true;
-    }
-    return location.includes(route);
-  }
-
-  return (
-    <NextUINavbar.Content enableCursorHighlight activeColor="primary" className='d-none d-lg-flex d-xl-none flex-row align-items-center justify-content-end w-100 px-3'>
-      <NextUINavbar.Link 
-        isActive={checkLinkActive("home")}
-        href="home"
-        itemCss={{fontSize: navbarItemFontSizeSm}}
-      >
-        Home
-      </NextUINavbar.Link>
-      <NextUINavbar.Link 
         isActive={checkLinkActive("services")}
         href="services"
-        itemCss={{fontSize: navbarItemFontSizeSm}}
+        itemCss={{fontSize: navbarItemFontSize}}
       >
         Services & Fees
       </NextUINavbar.Link>
       <NextUINavbar.Link 
-        isActive={checkLinkActive("about")}
-        href="about"
-        itemCss={{fontSize: navbarItemFontSizeSm}}
+        isActive={checkLinkActive("shop")}
+        href="shop"
+        itemCss={{fontSize: navbarItemFontSize}}
       >
-        About
+        Shop
       </NextUINavbar.Link>
       <NextUINavbar.Link 
-        isActive={checkLinkActive("basics")}
-        href="basics"
-        itemCss={{fontSize: navbarItemFontSizeSm}}
+        isActive={checkLinkActive("testimonials")}
+        href="testimonials"
+        itemCss={{fontSize: navbarItemFontSize}}
       >
-        Basic Principles
+        Testimonials
+      </NextUINavbar.Link>
+      <NextUINavbar.Link 
+        isActive={checkLinkActive("media")}
+        href="media"
+        itemCss={{fontSize: navbarItemFontSize}}
+      >
+        Media
+      </NextUINavbar.Link>
+      <NextUINavbar.Link 
+        isActive={checkLinkActive("resources")}
+        href="resources"
+        itemCss={{fontSize: navbarItemFontSize}}
+      >
+        Resources
       </NextUINavbar.Link>
       <NextUINavbar.Link 
         isActive={checkLinkActive("teaching")}
         href="teaching"
-        itemCss={{fontSize: navbarItemFontSizeSm}}
+        itemCss={{fontSize: navbarItemFontSize}}
       >
-        Teaching
+        Teaching & Speaking
       </NextUINavbar.Link>
     </NextUINavbar.Content>
   )
@@ -122,41 +126,15 @@ function NavbarPagesSmall() {
 
 export function Navbar() {
 
-  
-  const collapseItems = [
-    {
-      name: "Home",
-      href: "home",
-    },
-    {
-      name: "Services & Fees",
-      href: "services",
-    },
-    {
-      name: "About",
-      href: "about",
-    },
-    {
-      name: "Basic Principles",
-      href: "basics",
-    },
-    {
-      name: "Teaching",
-      href: "teaching",
-    },
-  ];
-
   return (
     <NextUINavbar 
       height="80px"
       variant="floating"
       maxWidth="xl"
     >
-      <NextUINavbar.Toggle className="d-flex d-lg-none" css={{flex: 1}} />
+      <NextUINavbar.Toggle className="d-flex d-xxl-none" />
       <BrandLarge />
-      <BrandCentered />
       <NavbarPages />
-      <NavbarPagesSmall />
       <NavbarSocials />
       <NextUINavbar.Collapse >
         {collapseItems.map((item, index) => (
@@ -180,8 +158,7 @@ export function Navbar() {
 function BrandLarge() {
   return (
     <NextUINavbar.Brand
-    className="d-lg-inline d-none w-100"
-      css={{width: "25%", flex: 3}}
+      className="d-md-flex flex-row justify-content-left align-items-center d-none px-2"
     >
       <div 
         className="navbar-brand-content"
@@ -196,33 +173,6 @@ function BrandLarge() {
         <Text b css={{fontSize: 20, marginLeft: "0.5em"}}>
           You Can Do It Gardening
         </Text>
-      </div>
-    </NextUINavbar.Brand>
-  )
-}
-
-function BrandCentered() {
-  return (
-    <NextUINavbar.Brand
-      className="d-none d-md-inline d-lg-none"
-      css={{flex: 6}}
-    >
-      <div className="d-flex flex-row justify-content-center w-100" 
-          onClick={() => window.location = "/"}>
-        <div 
-          className="d-none d-sm-flex flex-row align-items-center"
-          onClick={() => window.location = "/"}
-        >
-          <Image
-            width={40}
-            height={40}
-            src={logoBlack}
-            alt="logo-black"
-          />
-          <Text b css={{fontSize: 20, marginLeft: "0.5em"}}>
-            You Can Do It Gardening
-          </Text>
-        </div>
       </div>
     </NextUINavbar.Brand>
   )

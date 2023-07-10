@@ -161,7 +161,7 @@ export default function HomePage() {
                 <Text h2>
                   Why this model works:
                 </Text>
-                <Text align="left">
+                <Text align="left" className="text-indent">
                   Landscapers are in high demand and outsourcing may not be in the budget right now. Many people are more able than they realize. Doing it yourself can result in significant savings that can be used for other things. Also, it can be really gratifying to work in the garden, connect with nature and create something beautiful or improve on what you already have.
                 </Text>
               </div>
