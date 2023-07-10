@@ -1,6 +1,5 @@
 .color-hover {
   transition: all .5s ease;
-  overflow: visible;
 }
 
 .color-hover:hover {
