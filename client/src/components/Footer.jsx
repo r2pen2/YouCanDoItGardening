@@ -40,7 +40,7 @@ export default function Footer() {
                 Contact Me
               </Link>
               <Text>
-                <Text css={empoweredGradient} b className="d-inline">Empowering</Text> gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere
+                <Text css={{maxWidth: "70vw", ...empoweredGradient}} b className="d-inline">Empowering</Text> gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere
               </Text>
             </div>
             <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
