@@ -180,10 +180,10 @@ function NavbarSocials() {
   return (
     <NextUINavbar.Content enableCursorHighlight activeColor="primary" css={{flex: 1}}>
       <div className="d-flex flex-row align-items-right justify-content-end w-100 gap-2">
-        <InstagramButton size="30px" link={instagramLink}/>
-        <FacebookButton size="30px" link={facebookLink}/>
-        <TikTokButton size="30px" link={tiktokLink}/>
-        <YouTubeButton size="30px" link={youtubeLink}/>
+          <InstagramButton iconSize="30px" instagramLink={instagramLink}/>
+          <FacebookButton iconSize="30px" facebookLink={facebookLink}/>
+          <TikTokButton iconSize="30px" tiktokLink={tiktokLink}/>
+          <YouTubeButton iconSize="30px" youtubeLink={youtubeLink}/>
       </div>
     </NextUINavbar.Content>
   )

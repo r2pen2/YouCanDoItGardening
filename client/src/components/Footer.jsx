@@ -7,6 +7,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import { textGradient } from '../routes/HomePage';
 import { IconButton } from '@mui/material';
 import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from '../libraries/Web-Legos/components/Socials';
+import { Copyright } from '../libraries/Web-Legos/components/Footer';
 
 
 export default function Footer() {
@@ -19,9 +20,7 @@ export default function Footer() {
         </div>
         <div className="fill-line mb-3" />
         <div className="d-flex flex-column gap-2 m-2 align-items-center">
-          <Text size="$sm">
-            Copyright © 2023 You Can Do It Gardening
-          </Text>
+          <Copyright year="2023" name="You Can Do It Gardening" />
         </div>
       </div>
     </footer>
@@ -46,10 +45,10 @@ function NewFooterContent() {
       </div>
       <div className="col-lg-12 col-xl-4 d-flex flex-column align-items-center">
         <div className="d-flex flex-row align-items-center justify-content-center w-100 gap-2 py-4">
-          <InstagramButton size="30px" link={instagramLink}/>
-          <FacebookButton size="30px" link={facebookLink}/>
-          <TikTokButton size="30px" link={tiktokLink}/>
-          <YouTubeButton size="30px" link={youtubeLink}/>
+          <InstagramButton instagramLink={instagramLink}/>
+          <FacebookButton facebookLink={facebookLink}/>
+          <TikTokButton tiktokLink={tiktokLink}/>
+          <YouTubeButton youtubeLink={youtubeLink}/>
         </div>
         <Divider />
         <Text>
