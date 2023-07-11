@@ -2,11 +2,11 @@ import { Text, Link, Button, Divider } from '@nextui-org/react'
 import React, {useState, useEffect} from 'react'
 import logo from "../assets/images/logoTransparent.png";
 import footerBackground from "../assets/images/gradient/footer.svg";
-import { contactMeLink, mailingListLink } from '../api/links';
+import { contactMeLink, facebookLink, instagramLink, mailingListLink, tiktokLink, youtubeLink } from '../api/links';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { textGradient } from '../routes/HomePage';
 import { IconButton } from '@mui/material';
-import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from './Socials';
+import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from '../libraries/Web-Legos/components/Socials';
 
 
 export default function Footer() {
@@ -46,10 +46,10 @@ function NewFooterContent() {
       </div>
       <div className="col-lg-12 col-xl-4 d-flex flex-column align-items-center">
         <div className="d-flex flex-row align-items-center justify-content-center w-100 gap-2 py-4">
-          <InstagramButton />
-          <FacebookButton />
-          <TikTokButton />
-          <YouTubeButton />
+          <InstagramButton size="30px" link={instagramLink}/>
+          <FacebookButton size="30px" link={facebookLink}/>
+          <TikTokButton size="30px" link={tiktokLink}/>
+          <YouTubeButton size="30px" link={youtubeLink}/>
         </div>
         <Divider />
         <Text>

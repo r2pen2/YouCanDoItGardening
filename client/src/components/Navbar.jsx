@@ -1,17 +1,14 @@
 // Library Imports
 import React from 'react';
 import { Navbar as NextUINavbar, Dropdown, Text, Image, Button, Link, Divider } from "@nextui-org/react";
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import InstagramIcon from '@mui/icons-material/Instagram';
-
-import { instagramLink, youtubeLink, } from '../api/links';
 
 import logoBlack from "../assets/images/logoNoText.png";
 
 // Style Imports
 import "../assets/style/navbar.css";
 import "../assets/style/layout.css";
-import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from './Socials';
+import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from '../libraries/Web-Legos/components/Socials';
+import { facebookLink, instagramLink, tiktokLink, youtubeLink } from '../api/links';
 
 const navbarItemFontSize = "18px";
 
@@ -183,10 +180,10 @@ function NavbarSocials() {
   return (
     <NextUINavbar.Content enableCursorHighlight activeColor="primary" css={{flex: 1}}>
       <div className="d-flex flex-row align-items-right justify-content-end w-100 gap-2">
-        <InstagramButton size="30px"/>
-        <FacebookButton size="30px"/>
-        <TikTokButton size="30px"/>
-        <YouTubeButton size="30px"/>
+        <InstagramButton size="30px" link={instagramLink}/>
+        <FacebookButton size="30px" link={facebookLink}/>
+        <TikTokButton size="30px" link={tiktokLink}/>
+        <YouTubeButton size="30px" link={youtubeLink}/>
       </div>
     </NextUINavbar.Content>
   )
