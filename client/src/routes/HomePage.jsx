@@ -12,6 +12,8 @@ import SavingsTwoToneIcon from '@mui/icons-material/SavingsTwoTone';
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import { ContactModal } from '../components/Modals';
 
+import { TextBlock } from "../libraries/Web-Legos/components/Text";
+
 const headerSizeLg = "3rem";
 const headerSizeSm = "2rem";
 
@@ -144,9 +146,9 @@ export default function HomePage() {
                 <Text h2>
                   Why this model works:
                 </Text>
-                <Text align="left" className="text-indent">
+                <TextBlock>
                   Landscapers are in high demand and outsourcing may not be in the budget right now. Many people are more able than they realize. Doing it yourself can result in significant savings that can be used for other things. Also, it can be really gratifying to work in the garden, connect with nature and create something beautiful or improve on what you already have.
-                </Text>
+                </TextBlock>
               </div>
               <ScheduleButton />
             </div>
