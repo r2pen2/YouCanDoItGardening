@@ -45,10 +45,10 @@ function NewFooterContent() {
       </div>
       <div className="col-lg-12 col-xl-4 d-flex flex-column align-items-center">
         <div className="d-flex flex-row align-items-center justify-content-center w-100 gap-2 py-4">
-          <InstagramButton instagramLink={instagramLink}/>
-          <FacebookButton facebookLink={facebookLink}/>
-          <TikTokButton tiktokLink={tiktokLink}/>
-          <YouTubeButton youtubeLink={youtubeLink}/>
+          <InstagramButton instagramLink={instagramLink} />
+          <FacebookButton facebookLink={facebookLink} />
+          <TikTokButton tiktokLink={tiktokLink} />
+          <YouTubeButton youtubeLink={youtubeLink} />
         </div>
         <Divider />
         <Text>
