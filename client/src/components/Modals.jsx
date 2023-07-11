@@ -5,6 +5,8 @@ import { scheduleInPersonLink, scheduleOnlineLink } from "../api/links";
 import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
 import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone';
 
+import "../assets/style/modals.css";
+
 /**
  * Some icon fill presets to be used in modals
  */
@@ -14,27 +16,6 @@ const iconFills = {
   red: "#f0214e",
   blue: "#009bdf",
   green: "#7ac22d",
-}
-
-function GardeningIcon(props) {
-
-  /** Default size for YouCanDoItGardening Icons */
-  const defaultIconSize = "1.875rem";
-
-  return (
-    <svg style={{marginRight: props.marginRight}} xmlns="http://www.w3.org/2000/svg" height={props.size ? `${props.size}` : defaultIconSize} viewBox="0 -960 960 960" width={props.size ? `${props.size}` : defaultIconSize} fill={props.fill}>
-      {props.children}
-    </svg>
-  )
-}
-
-function ComputerIcon({fill, size, marginRight}) {
-  return (
-    <GardeningIcon fill={fill} size={size} marginRight={marginRight}>
-      <path d="M4 6h16v10H4z" opacity=".3"/>
-      <path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
-    </GardeningIcon>
-  )
 }
 
 export function ContactModal({open, setOpen}) {
@@ -54,14 +35,26 @@ export function ContactModal({open, setOpen}) {
         css={{flex:1}}
       >
         <Card.Body>
-          <div className="d-flex flex-row align-items-center justify-content-space-between">
+          <div className="d-none d-md-flex flex-row align-items-center justify-content-space-between">
             {icon}
             <div className="d-flex flex-column align-items-start justify-content-center w-100">
               <Text b>
                 {title}
               </Text>
-              {subtitle}
+              <Text size="$sm">
+                {subtitle}
+              </Text>
             </div>
+            <LaunchIcon />
+          </div>
+          <div className="d-flex d-md-none flex-column align-items-center justify-content-center">
+            {icon}
+            <Text b align="center">
+              {title}
+            </Text>
+            <Text size="$sm" align="center">
+              {subtitle}
+            </Text>
             <LaunchIcon />
           </div>
         </Card.Body>
@@ -72,7 +65,7 @@ export function ContactModal({open, setOpen}) {
   function InPersonScheduleOptionCard() {
     return (
       <ModalOptionCard 
-        icon={<ComputerTwoToneIcon fontSize="large" style={{marginRight: "1rem", color: iconFills.purple}} />}
+        icon={<ComputerTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.purple}} />}
         title="In-Person Consultations" 
         subtitle="Arrange an in-person consultation in Greater Boston and beyond!" 
         href={scheduleInPersonLink}
@@ -83,7 +76,7 @@ export function ContactModal({open, setOpen}) {
   function VirtualScheduleOptionCard() {
     return (
       <ModalOptionCard 
-        icon={<LocationOnTwoToneIcon fontSize="large" style={{marginRight: "1rem", color: iconFills.blue}}/>}
+        icon={<LocationOnTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.blue}}/>}
         title="Virtual Consultations" 
         subtitle="Book your zoom lawn check-up now!" 
         href={scheduleOnlineLink}
@@ -96,6 +89,7 @@ export function ContactModal({open, setOpen}) {
       closeButton
       open={open}
       blur
+      width="80vw"
       onClose={() => setOpen(false)}
     >
       <Modal.Header>
