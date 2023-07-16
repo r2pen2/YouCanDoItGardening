@@ -5,7 +5,7 @@ import footerBackground from "../assets/images/gradient/footer.svg";
 import { contactMeLink, facebookLink, instagramLink, mailingListLink, tiktokLink, youtubeLink } from '../api/links';
 import { textGradient } from '../routes/HomePage';
 import { Copyright, WLFooterLogo, WLFooterSocials } from '../libraries/Web-Legos/components/Footer';
-import { WLText } from '../libraries/Web-Legos/components/Text';
+import { WLCopyright, WLText } from '../libraries/Web-Legos/components/Text';
 
 
 export default function Footer() {
@@ -18,7 +18,7 @@ export default function Footer() {
         </div>
         <div className="fill-line mb-3" />
         <div className="d-flex flex-column gap-2 m-2 align-items-center">
-          <Copyright year="2023" name="You Can Do It Gardening" />
+          <WLCopyright editable={userCanEditText}/>
         </div>
       </div>
     </footer>
