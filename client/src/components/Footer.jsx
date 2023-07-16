@@ -1,10 +1,9 @@
-import { Text, Link, Button, Divider } from '@nextui-org/react'
+import { Text, Link, } from '@nextui-org/react'
 import React, {useState, useEffect} from 'react'
 import logo from "../assets/images/logoTransparent.png";
-import footerBackground from "../assets/images/gradient/footer.svg";
 import { contactMeLink, facebookLink, instagramLink, mailingListLink, tiktokLink, youtubeLink } from '../api/links';
 import { textGradient } from '../routes/HomePage';
-import { Copyright, WLFooterLogo, WLFooterSocials } from '../libraries/Web-Legos/components/Footer';
+import {  WLFooterLogo, WLFooterSocials } from '../libraries/Web-Legos/components/Footer';
 import { WLCopyright, WLText } from '../libraries/Web-Legos/components/Text';
 
 

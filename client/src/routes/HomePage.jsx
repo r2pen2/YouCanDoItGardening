@@ -9,7 +9,7 @@ import SavingsTwoToneIcon from '@mui/icons-material/SavingsTwoTone';
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import { ContactModal } from '../components/Modals';
 
-import { TextBlock, WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components/Text";
+import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components/Text";
 
 import { WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
 import { WLImage } from '../libraries/Web-Legos/components/Images';

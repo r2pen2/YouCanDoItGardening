@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import "../assets/style/services.css"
-import { PageHeader, } from '../components/Bar';
 import { WLBlockHeader } from '../libraries/Web-Legos/components/Text';
 
 import { blockHeaderFill } from "../assets/style/colors";
