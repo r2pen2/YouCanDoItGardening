@@ -129,18 +129,18 @@ export default function HomePage() {
           <div className="row d-flex flex-row justify-content-center">
             <TransparentHookCard
               icon={<SavingsTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded} />}
-              subtitleText={<WLText firestoreId="save-money-description" editable={userCanEditText} setLoaded={setSaveDescriptionLoaded} />}
+              titleText={<WLText size="$lg" firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded} />}
+              subtitleText={<WLText size="$lg" firestoreId="save-money-description" editable={userCanEditText} setLoaded={setSaveDescriptionLoaded} />}
             />
             <TransparentHookCard
               icon={<VisibilityTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}/>}
-              subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}/>}
+              titleText={<WLText size="$lg" firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}/>}
+              subtitleText={<WLText size="$lg" firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}/>}
               />
             <TransparentHookCard
               icon={<LocalFloristTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="feels-good-hook" editable={userCanEditText} setLoaded={setFeelHookLoaded}/>}
-              subtitleText={<WLText firestoreId="feels-good-description" editable={userCanEditText} setLoaded={setFeelDescriptionLoaded}/>}
+              titleText={<WLText size="$lg" firestoreId="feels-good-hook" editable={userCanEditText} setLoaded={setFeelHookLoaded}/>}
+              subtitleText={<WLText size="$lg" firestoreId="feels-good-description" editable={userCanEditText} setLoaded={setFeelDescriptionLoaded}/>}
             />
           </div>
         </div>
@@ -154,7 +154,7 @@ export default function HomePage() {
             </div>
             <div className="col-xl-8 col-md-12 d-flex flex-column px-1 py-1 px-lg-5 py-3 px-lg-5 justify-content-around">
               <div>
-                <WLHeader headerLevel={2} editable={userCanEditText} firstoreId="why-it-works-header" setLoaded={setWhyItWorksHeaderLoaded}/>
+                <WLHeader headerLevel={2} editable={userCanEditText} firestoreId="why-it-works-header" setLoaded={setWhyItWorksHeaderLoaded}/>
                 <WLTextBlock firestoreId="why-it-works" editable={userCanEditText} setLoaded={setWhyItWorksDescriptionLoaded}/>
               </div>
               <ScheduleButton />
