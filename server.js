@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const siteImages = require('./libraries/Server-Legos/siteImages');
+const siteText = require('./libraries/Server-Legos/siteText');
 
 // Init express application
 const app = express();
@@ -17,12 +19,21 @@ app.listen(3003, () => {
     console.log('Now listening on port ' + 3003);
 });
 
+// Serve static files
+app.use(express.static(__dirname + "/static/"));
+
+// Server site text
+app.use("/site-text", siteText);
+// Server site images
+app.use("/site-images", siteImages);
+
+app.get("/images/*", (req, res) => {
+    res.sendFile(__dirname + req._parsedOriginalUrl.path);
+})
+
 // BodyParser setup
 app.use(bodyParser.json({ limit: "50mb"}));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb"}));
-
-// Serve static files
-app.use(express.static(__dirname + "/server/static/"));
 
 // Serve React build
 app.use(express.static(__dirname + "/client/build"));

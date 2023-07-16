@@ -10,6 +10,8 @@ import "../assets/style/layout.css";
 import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from '../libraries/Web-Legos/components/Socials';
 import { facebookLink, instagramLink, tiktokLink, youtubeLink } from '../api/links';
 
+import {WLNavContent, WLNavSocials} from "../libraries/Web-Legos/components/Navigation";
+
 const navbarItemFontSize = "18px";
 
 
@@ -129,10 +131,21 @@ export function Navbar() {
       variant="floating"
       maxWidth="xl"
     >
-      <NextUINavbar.Toggle className="d-flex d-xxl-none" />
-      <BrandLarge />
-      <NavbarPages />
-      <NavbarSocials />
+      <WLNavContent>
+        <WLNavContent.Left>
+          <NextUINavbar.Toggle className="d-flex d-xxl-none" />
+          <BrandLarge />
+        </WLNavContent.Left>
+        <WLNavContent.Right>
+          <NavbarPages />
+          <WLNavSocials noHide>
+            <WLNavSocials.Button platformKey="instagram" href={instagramLink} />
+            <WLNavSocials.Button platformKey="facebook" href={facebookLink} />
+            <WLNavSocials.Button platformKey="tiktok" href={tiktokLink} />
+            <WLNavSocials.Button platformKey="youtube" href={youtubeLink} />
+          </WLNavSocials>
+        </WLNavContent.Right>
+      </WLNavContent>
       <NextUINavbar.Collapse >
         {collapseItems.map((item, index) => (
           <NextUINavbar.CollapseItem key={index}>
@@ -172,19 +185,5 @@ function BrandLarge() {
         </Text>
       </div>
     </NextUINavbar.Brand>
-  )
-}
-
-function NavbarSocials() {
-
-  return (
-    <NextUINavbar.Content enableCursorHighlight activeColor="primary" css={{flex: 1}}>
-      <div className="d-flex flex-row align-items-right justify-content-end w-100 gap-2">
-          <InstagramButton iconSize="30px" instagramLink={instagramLink}/>
-          <FacebookButton iconSize="30px" facebookLink={facebookLink}/>
-          <TikTokButton iconSize="30px" tiktokLink={tiktokLink}/>
-          <YouTubeButton iconSize="30px" youtubeLink={youtubeLink}/>
-      </div>
-    </NextUINavbar.Content>
   )
 }

@@ -3,11 +3,9 @@ import React, {useState, useEffect} from 'react'
 import logo from "../assets/images/logoTransparent.png";
 import footerBackground from "../assets/images/gradient/footer.svg";
 import { contactMeLink, facebookLink, instagramLink, mailingListLink, tiktokLink, youtubeLink } from '../api/links';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import { textGradient } from '../routes/HomePage';
-import { IconButton } from '@mui/material';
-import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from '../libraries/Web-Legos/components/Socials';
-import { Copyright } from '../libraries/Web-Legos/components/Footer';
+import { Copyright, WLFooterLogo, WLFooterSocials } from '../libraries/Web-Legos/components/Footer';
+import { WLText } from '../libraries/Web-Legos/components/Text';
 
 
 export default function Footer() {
@@ -27,11 +25,13 @@ export default function Footer() {
   )
 }
 
+const userCanEditText = true;
+
 function NewFooterContent() {
   return (
     <div className="row d-flex flex-row w-100 align-items-center gap-5 justify-content-center">
       <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
-        <img src={logo} alt="logo-transparent" className="m-2" style={{maxHeight: 150, width: "auto"}}/>
+        <WLFooterLogo source={logo} />
         <Text>
           <Link block color="primary" href={contactMeLink} target='blank'>
             Contact Me
@@ -44,20 +44,17 @@ function NewFooterContent() {
         </Text>
       </div>
       <div className="col-lg-12 col-xl-4 d-flex flex-column align-items-center">
-        <div className="d-flex flex-row align-items-center justify-content-center w-100 gap-2 py-4">
-          <InstagramButton instagramLink={instagramLink} />
-          <FacebookButton facebookLink={facebookLink} />
-          <TikTokButton tiktokLink={tiktokLink} />
-          <YouTubeButton youtubeLink={youtubeLink} />
-        </div>
-        <Divider />
-        <Text>
-          300,000+ followers on Instagram, TikTok, FaceBook and YouTube combined. Come join the party!!
-        </Text>
+        <WLFooterSocials lineBottom>
+          <WLFooterSocials.Button platformKey="instagram" href={instagramLink} />
+          <WLFooterSocials.Button platformKey="facebook" href={facebookLink} />
+          <WLFooterSocials.Button platformKey="tiktok" href={tiktokLink} />
+          <WLFooterSocials.Button platformKey="youtube" href={youtubeLink} />
+        </WLFooterSocials>
+        <WLText editable={userCanEditText} firestoreId="footer-follower-count" />
       </div>
       <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
         <Text>
-          <Text css={{maxWidth: "70vw", ...textGradient}} b className="d-inline">Empowering</Text> gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere
+          <Text css={{maxWidth: "70vw", ...textGradient}} b className="d-inline">Empowering</Text> gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere.
         </Text>
       </div>
     </div>

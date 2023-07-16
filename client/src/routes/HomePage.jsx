@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 
-import { Button, Text, Card, Modal, Textarea, Divider, Spacer, Link } from "@nextui-org/react";
-
-import jess from "../assets/images/jess.jpg";
+import { Button, Text, Card, Divider, Spacer, } from "@nextui-org/react";
 
 import "../assets/style/homepage.css"
-import { instagramLink, tiktokLink, youtubeLink } from '../api/links';
 
 import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
 import SavingsTwoToneIcon from '@mui/icons-material/SavingsTwoTone';
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import { ContactModal } from '../components/Modals';
 
-import { TextBlock } from "../libraries/Web-Legos/components/Text";
+import { TextBlock, WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components/Text";
+
+import { WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
+import { WLImage } from '../libraries/Web-Legos/components/Images';
 
 const headerSizeLg = "3rem";
 const headerSizeSm = "2rem";
@@ -22,10 +22,14 @@ const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
 const textGradientPadded = {textGradient: "0deg, $purple600 -20%, $pink600 100%", ...gradientPadding}
 export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
+const userCanEditText = true;
+
 export default function HomePage() {
 
   // Initialize all states
   const [contactModalOpen, setContactModalOpen] = useState(false); // Whether contact modal is open
+
+  const [whyItWorksLoaded, setWhyItWorksLoaded] = useState(false); // Whether "Why This Model Works" header has loaded
 
   /**
    * A button scaled to the screen width that opens the {@link ContactModal}
@@ -55,7 +59,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="d-flex flex-column">
+    <WLSpinnerPage dependencies={[whyItWorksLoaded]}>
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
       <section className="home-image d-flex flex-column w-100 align-items-center" style={{minHeight: "150vh"}}>
         <div className="d-none d-md-flex flex-column align-items-center" style={{paddingTop: "10rem"}}>
@@ -118,48 +122,44 @@ export default function HomePage() {
           <div className="row d-flex flex-row justify-content-center">
             <TransparentHookCard
               icon={<SavingsTwoToneIcon sx={{fontSize: 50}}/>} 
-              title="Save Money"
-              subtitle="Ensure that your garden will stay safe and healthy for years to come. No more paying for new plants or landscapers!"
+              titleText={<WLText firestoreId="save-money-hook" editable={userCanEditText} />}
+              subtitleText={<WLText firestoreId="save-money-description" editable={userCanEditText} />}
             />
             <TransparentHookCard
               icon={<VisibilityTwoToneIcon sx={{fontSize: 50}}/>} 
-              title="Looks Good"
-              subtitle="Professional designs will make your garden jaw-dropping. Your neighbors will be quick to notice."
-            />
+              titleText={<WLText firestoreId="looks-good-hook" editable={userCanEditText} />}
+              subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} />}
+              />
             <TransparentHookCard
               icon={<LocalFloristTwoToneIcon sx={{fontSize: 50}}/>} 
-              title="Feels Good"
-              subtitle="Have faith that your garden is happy, healthy, and beautiful. There's no need to stress."
+              titleText={<WLText firestoreId="feels-good-hook" editable={userCanEditText} />}
+              subtitleText={<WLText firestoreId="feels-good-description" editable={userCanEditText} />}
             />
           </div>
         </div>
         <div className="container-fluid d-flex flex-row justify-content-center">
           <Card css={{width: "80%"}} className="row p-2 d-flex flex-row">
             <div className="col-xl-4 col-md-12 d-none d-xl-flex flex-column h-100 justify-content-center align-items-center">
-              <img src={jess} alt="jess" className="img-shadow img-round" />
+              <WLImage firestoreId="jess" shadow round editable={userCanEditText} />
             </div>
             <div className="col-xl-4 col-md-12 d-flex d-xl-none flex-row justify-content-center">
-              <img src={jess} alt="jess" className="img-shadow img-round" style={{maxWidth: "50vw"}} />
+              <WLImage firestoreId="jess" shadow round editable={userCanEditText} imageCss={{maxWidth: "50vw"}} />
             </div>
             <div className="col-xl-8 col-md-12 d-flex flex-column px-1 py-1 px-lg-5 py-3 px-lg-5 justify-content-around">
               <div>
-                <Text h2>
-                  Why this model works:
-                </Text>
-                <TextBlock>
-                  Landscapers are in high demand and outsourcing may not be in the budget right now. Many people are more able than they realize. Doing it yourself can result in significant savings that can be used for other things. Also, it can be really gratifying to work in the garden, connect with nature and create something beautiful or improve on what you already have.
-                </TextBlock>
+                <WLHeader headerLevel={2} editable={userCanEditText} firstoreId="why-it-works-header" setLoaded={setWhyItWorksLoaded}/>
+                <WLTextBlock firestoreId="why-it-works" editable={userCanEditText} />
               </div>
               <ScheduleButton />
             </div>
           </Card>
         </div>
       </section>
-    </div>
+    </WLSpinnerPage>
   )
 }
 
-function TransparentHookCard({icon, title, subtitle}) {
+function TransparentHookCard({icon, titleText, subtitleText}) {
   return (
     <div className="col-xl-4 col-md-12 p-3 d-flex flex-column align-items-center">
       <div
@@ -169,15 +169,11 @@ function TransparentHookCard({icon, title, subtitle}) {
       >
           <div className="d-flex flex-column w-100 align-items-center">
             {icon}
-            <Text b className="w-100">
-            {title}
-            </Text>
+            {titleText}
           </div>
         <Divider />
         <div className="d-flex flex-column w-100 align-items-center">
-          <Text align="center">
-            {subtitle}
-          </Text>
+          {subtitleText}
         </div>
       </div>
     </div>
