@@ -29,7 +29,14 @@ export default function HomePage() {
   // Initialize all states
   const [contactModalOpen, setContactModalOpen] = useState(false); // Whether contact modal is open
 
-  const [whyItWorksLoaded, setWhyItWorksLoaded] = useState(false); // Whether "Why This Model Works" header has loaded
+  const [whyItWorksHeaderLoaded, setWhyItWorksHeaderLoaded] = useState(false);            // Whether "Why This Model Works" header has loaded
+  const [whyItWorksDescriptionLoaded, setWhyItWorksDescriptionLoaded] = useState(false);  // Whether "Why This Model Works" description has loaded
+  const [saveHookLoaded, setSaveHookLoaded] = useState(false);                            // Whether "Save Money" hook has loaded
+  const [saveDescriptionLoaded, setSaveDescriptionLoaded] = useState(false);              // Whether "Save Money" desctiption has loaded
+  const [lookHookLoaded, setLookHookLoaded] = useState(false);                            // Whether "Looks Good" hook has loaded
+  const [lookDescriptionLoaded, setLookDescriptionLoaded] = useState(false);              // Whether "Looks Good" description has loaded
+  const [feelHookLoaded, setFeelHookLoaded] = useState(false);                            // Whether "Feels Good" hook has loaded
+  const [feelDescriptionLoaded, setFeelDescriptionLoaded] = useState(false);              // Whether "Feels Good" description has loaded
 
   /**
    * A button scaled to the screen width that opens the {@link ContactModal}
@@ -59,7 +66,7 @@ export default function HomePage() {
   }
 
   return (
-    <WLSpinnerPage dependencies={[whyItWorksLoaded]}>
+    <WLSpinnerPage dependencies={[whyItWorksHeaderLoaded, whyItWorksDescriptionLoaded, saveHookLoaded, saveDescriptionLoaded, lookHookLoaded, lookDescriptionLoaded, feelHookLoaded, feelDescriptionLoaded]}>
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
       <section className="home-image d-flex flex-column w-100 align-items-center" style={{minHeight: "150vh"}}>
         <div className="d-none d-md-flex flex-column align-items-center" style={{paddingTop: "10rem"}}>
@@ -122,18 +129,18 @@ export default function HomePage() {
           <div className="row d-flex flex-row justify-content-center">
             <TransparentHookCard
               icon={<SavingsTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="save-money-hook" editable={userCanEditText} />}
-              subtitleText={<WLText firestoreId="save-money-description" editable={userCanEditText} />}
+              titleText={<WLText firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded} />}
+              subtitleText={<WLText firestoreId="save-money-description" editable={userCanEditText} setLoaded={setSaveDescriptionLoaded} />}
             />
             <TransparentHookCard
               icon={<VisibilityTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="looks-good-hook" editable={userCanEditText} />}
-              subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} />}
+              titleText={<WLText firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}/>}
+              subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}/>}
               />
             <TransparentHookCard
               icon={<LocalFloristTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="feels-good-hook" editable={userCanEditText} />}
-              subtitleText={<WLText firestoreId="feels-good-description" editable={userCanEditText} />}
+              titleText={<WLText firestoreId="feels-good-hook" editable={userCanEditText} setLoaded={setFeelHookLoaded}/>}
+              subtitleText={<WLText firestoreId="feels-good-description" editable={userCanEditText} setLoaded={setFeelDescriptionLoaded}/>}
             />
           </div>
         </div>
@@ -147,8 +154,8 @@ export default function HomePage() {
             </div>
             <div className="col-xl-8 col-md-12 d-flex flex-column px-1 py-1 px-lg-5 py-3 px-lg-5 justify-content-around">
               <div>
-                <WLHeader headerLevel={2} editable={userCanEditText} firstoreId="why-it-works-header" setLoaded={setWhyItWorksLoaded}/>
-                <WLTextBlock firestoreId="why-it-works" editable={userCanEditText} />
+                <WLHeader headerLevel={2} editable={userCanEditText} firstoreId="why-it-works-header" setLoaded={setWhyItWorksHeaderLoaded}/>
+                <WLTextBlock firestoreId="why-it-works" editable={userCanEditText} setLoaded={setWhyItWorksDescriptionLoaded}/>
               </div>
               <ScheduleButton />
             </div>
