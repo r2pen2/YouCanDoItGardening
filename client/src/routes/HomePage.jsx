@@ -52,13 +52,13 @@ export default function HomePage() {
 
     return (
       <div className="w-100">
-        <Button className="w-100 d-none d-md-inline" color="gradient" bordered size="lg" onClick={handleScheduleButtonClick}>
+        <Button className="w-100 d-none d-md-inline mt-2" color="gradient" bordered size="lg" onClick={handleScheduleButtonClick}>
           Schedule A Consultation
         </Button>
-        <Button className="w-100 d-none d-sm-inline d-md-none" color="gradient" bordered onClick={handleScheduleButtonClick}>
+        <Button className="w-100 d-none d-sm-inline d-md-none mt-2" color="gradient" bordered onClick={handleScheduleButtonClick}>
           Schedule A Consultation
         </Button>
-        <Button className="w-100 d-inline d-sm-none" color="gradient" bordered onClick={handleScheduleButtonClick}>
+        <Button className="w-100 d-inline d-sm-none mt-2" color="gradient" bordered onClick={handleScheduleButtonClick}>
           Schedule A Consultation
         </Button>
       </div>
@@ -68,17 +68,14 @@ export default function HomePage() {
   return (
     <WLSpinnerPage dependencies={[whyItWorksHeaderLoaded, whyItWorksDescriptionLoaded, saveHookLoaded, saveDescriptionLoaded, lookHookLoaded, lookDescriptionLoaded, feelHookLoaded, feelDescriptionLoaded]}>
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
-      <section className="home-image d-flex flex-column w-100 align-items-center" style={{minHeight: "150vh"}}>
-        <div className="d-none d-md-flex flex-column align-items-center" style={{paddingTop: "10rem"}}>
+      <div className="background-image" />
+      <div className="background-pattern" />
+      <section className="elevated d-flex flex-column w-100 align-items-center" style={{minHeight: "150vh"}}>
+        <div className="d-none elevated d-md-flex flex-column align-items-center" style={{paddingTop: "10rem", height: "60vh"}}>
           <Text h1 
-            className="px-2"
-            css={{
-              fontSize: headerSizeLg,
-            }}>
-            You Can Do It Gardening
-          </Text>
-          <Spacer y={2} />
-          <Text p 
+            className="px-2 py-2 text-background text-large">
+            You Can Do It Gardening<br/>
+            <Text p
             css={{
               paddingLeft:"20%", paddingRight: "20%",
               fontSize: headerSizeSm,
@@ -107,26 +104,28 @@ export default function HomePage() {
             </Text>
             in doing it yourself
           </Text>
+          </Text>
         </div>
-        <div className="d-flex d-md-none flex-column align-items-center" style={{paddingTop: "5rem"}}>
-          <div className="d-flex flex-column" style={{gap: ".5rem"}}>
+        <div className="d-flex elevated d-md-none flex-column align-items-center" style={{paddingTop: "5rem"}}>
+          <div className="d-flex elevated flex-column" >
             <Text h1 
-              className="px-2"
+              className="px-2 text-background"
               css={{
                 fontSize: headerSizeLg,
               }}>
-              You Can Do It Gardening
-            </Text>
-            <Text p 
+              You Can Do It Gardening<br/>
+              <Text p 
               className="px-5"
               css={{fontSize: "1.5rem"}}
               >
               Demystifying gardening so you feel more <Text b className="d-inline" css={textGradient}>empowered</Text> and <Text b className="d-inline" css={textGradient}>confident</Text> in doing it yourself
             </Text>
+            </Text>
+
           </div>
         </div>
-        <div className="container-fluid py-5">
-          <div className="row d-flex flex-row justify-content-center">
+        <div className="elevated container-fluid">
+          <div className="elevated row d-flex flex-row justify-content-center">
             <TransparentHookCard
               icon={<SavingsTwoToneIcon sx={{fontSize: 50}}/>} 
               titleText={<WLText size="$lg" firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded} />}
@@ -172,7 +171,6 @@ function TransparentHookCard({icon, titleText, subtitleText}) {
       <div
         className='transparent-card'
         isHoverable
-        css={{backgroundColor: "transparent"}}
       >
           <div className="d-flex flex-column w-100 align-items-center">
             {icon}

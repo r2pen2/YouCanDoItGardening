@@ -76,3 +76,12 @@ section {
   opacity: .5;
   border: 2px solid black;
 }
+
+
+.section-divider {
+  content: '';
+  height: 4px;
+  width: 100%;
+  display: block;
+  background: url("./assets/images/purple-stripe.jpg") repeat-x;
+}

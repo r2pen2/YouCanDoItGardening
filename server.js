@@ -22,6 +22,10 @@ app.listen(3003, () => {
 // Serve static files
 app.use(express.static(__dirname + "/static/"));
 
+// BodyParser setup
+app.use(bodyParser.json({ limit: "50mb"}));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb"}));
+
 // Server site text
 app.use("/site-text", siteText);
 // Server site images
@@ -31,9 +35,6 @@ app.get("/images/*", (req, res) => {
     res.sendFile(__dirname + req._parsedOriginalUrl.path);
 })
 
-// BodyParser setup
-app.use(bodyParser.json({ limit: "50mb"}));
-app.use(bodyParser.urlencoded({ extended: true, limit: "50mb"}));
 
 // Serve React build
 app.use(express.static(__dirname + "/client/build"));
