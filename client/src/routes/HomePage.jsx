@@ -11,7 +11,7 @@ import { ContactModal } from '../components/Modals';
 
 import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components/Text";
 
-import { WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
+import { WLCenteredColumn, WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 
 const headerSizeLg = "3rem";
@@ -68,60 +68,14 @@ export default function HomePage() {
   return (
     <WLSpinnerPage dependencies={[whyItWorksHeaderLoaded, whyItWorksDescriptionLoaded, saveHookLoaded, saveDescriptionLoaded, lookHookLoaded, lookDescriptionLoaded, feelHookLoaded, feelDescriptionLoaded]}>
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
-      <div className="background-image" />
       <div className="background-pattern" />
-      <section className="elevated d-flex flex-column w-100 align-items-center" style={{minHeight: "150vh"}}>
-        <div className="d-none elevated d-md-flex flex-column align-items-center" style={{paddingTop: "5rem", height: "60vh"}}>
-          <Text h1 
-            className="px-2 py-2 text-background text-large">
-            You Can Do It Gardening<br/>
-            <Text p
-            css={{
-              paddingLeft:"20%", paddingRight: "20%",
-              fontSize: headerSizeSm,
-            }}>
-            Demystifying gardening so you feel more
-            <Text 
-              className="d-inline"
-              b
-              css={{
-                fontSize: headerSizeSm,
-                ...textGradientPadded
-              }}
-            > 
-             empowered
-            </Text>
-            and 
-            <Text 
-              className="d-inline"
-              b
-              css={{
-                fontSize: headerSizeSm,
-                ...textGradientPadded,
-              }}
-            > 
-             confident
-            </Text>
-            in doing it yourself
-          </Text>
-          </Text>
-        </div>
-        <div className="d-flex elevated d-md-none flex-column align-items-center" style={{paddingTop: "5rem"}}>
-          <div className="d-flex elevated flex-column" >
-            <Text h1 
-              className="px-2 text-background"
-              css={{
-                fontSize: headerSizeLg,
-              }}>
-              You Can Do It Gardening<br/>
-              <Text p 
-              className="px-5"
-              css={{fontSize: "1.5rem"}}
-              >
-              Demystifying gardening so you feel more <Text b className="d-inline" css={textGradient}>empowered</Text> and <Text b className="d-inline" css={textGradient}>confident</Text> in doing it yourself
-            </Text>
-            </Text>
-
+      <section className="d-flex flex-column w-100 align-items-center">
+        <div className="w-100 flex-column align-items-center background-image" style={{paddingTop: "10vh", paddingBottom: "40vh",}}>
+          <div className="elevated d-flex flex-column w-100 text-background py-5">
+            <WLHeader>
+              You Can Do It Gardening
+            </WLHeader>
+            <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText} />
           </div>
         </div>
         <div className="elevated container-fluid">

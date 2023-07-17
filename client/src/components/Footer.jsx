@@ -52,9 +52,7 @@ function NewFooterContent() {
         <WLText editable={userCanEditText} firestoreId="footer-follower-count" />
       </div>
       <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
-        <Text>
-          <Text css={{maxWidth: "70vw", ...textGradient}} b className="d-inline">Empowering</Text> gardeners at all levels to get their hands dirty. <br /> Serving Great Boston in person and virtual consultations anywhere.
-        </Text>
+        <WLText firestoreId="footer-hook" editable={userCanEditText} />
       </div>
     </div>
   )

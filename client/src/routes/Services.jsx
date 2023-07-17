@@ -18,7 +18,7 @@ export default function Services() {
 
   return (
   <WLSpinnerPage dependencies={[virtualLoaded, inPersonLoaded]}>
-    <WLBlockHeader text="Serices & Fees" color={blockHeaderFill} short />
+    <WLBlockHeader text="Services & Fees" color={blockHeaderFill} short />
     <WLResponsiveSectionEditable
       setLoaded={setInPersonLoaded}
       editable={userCanEditText} 
