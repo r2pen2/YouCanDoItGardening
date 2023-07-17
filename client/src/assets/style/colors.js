@@ -1,1 +1,1 @@
-export const blockHeaderFill = "rgba(56,118,29, 0.90)";
+export const blockHeaderFill = "rgba(96,29,185, 0.90)";
