@@ -1,18 +1,36 @@
 import React, { useState } from 'react'
 
 import "../assets/style/services.css"
-import { WLBlockHeader } from '../libraries/Web-Legos/components/Text';
+import { WLBlockHeader, WLText } from '../libraries/Web-Legos/components/Text';
+import { WLResponsiveSectionEditable, WLSpinnerPage } from '../libraries/Web-Legos/components/Layout';
 
 import { blockHeaderFill } from "../assets/style/colors";
 import { Text } from '@nextui-org/react';
 import { markdownToHTML } from '../libraries/Web-Legos/api/strings';
 
+
+const userCanEditText = true;
+
 export default function Services() {
+  
+  const [virtualLoaded, setVirtualLoaded] = useState(false);
+  const [inPersonLoaded, setInPersonLoaded] = useState(false);
+
   return (
-  <div className="d-flex flex-column align-items-center">
+  <WLSpinnerPage dependencies={[virtualLoaded, inPersonLoaded]}>
     <WLBlockHeader text="Serices & Fees" color={blockHeaderFill} short />
-      <section className="d-flex flex-column align-items-center justify-content-center m-5 w-80">
-      </section>
-    </div>
+    <WLResponsiveSectionEditable
+      setLoaded={setInPersonLoaded}
+      editable={userCanEditText} 
+      firestoreId="in-person-sessions"
+    />
+    <div className="section-divider"/>
+    <WLResponsiveSectionEditable
+      textRight
+      setLoaded={setVirtualLoaded}
+      editable={userCanEditText} 
+      firestoreId="virtual-sessions" 
+    />
+    </WLSpinnerPage>
   )
 }

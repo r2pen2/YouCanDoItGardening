@@ -144,7 +144,8 @@ export default function HomePage() {
           </div>
         </div>
         <div className="container-fluid d-flex flex-row justify-content-center">
-          <Card css={{width: "80%"}} className="row p-2 d-flex flex-row">
+          
+          <Card css={{width: "80%", backgroundColor: "rgba(255,255,255,0.55)", border: "2px solid lightsteelblue"}} className="row p-2 d-flex flex-row">
             <div className="col-xl-4 col-md-12 d-none d-xl-flex flex-column h-100 justify-content-center align-items-center">
               <WLImage firestoreId="jess" shadow round editable={userCanEditText} />
             </div>
@@ -170,7 +171,6 @@ function TransparentHookCard({icon, titleText, subtitleText}) {
     <div className="col-xl-4 col-md-12 p-3 d-flex flex-column align-items-center">
       <div
         className='transparent-card'
-        isHoverable
       >
           <div className="d-flex flex-column w-100 align-items-center">
             {icon}

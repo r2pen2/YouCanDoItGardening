@@ -20,42 +20,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url("../images/IMG_1574.jpeg");
-  background-size: 100vw;
+  background-image: url("../images/IMG_1574rot.jpeg");
+  filter: blur(1px);
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-}
-
-@media (min-width: 1400px) {
-  .background-image {
-    background-position-y: 100%;
-  }
-}
-@media (max-width: 1400px) and (min-width: 1200px) {
-  .background-image {
-    background-position-y: 160%;
-  }
-}
-@media (max-width: 1200px) and (min-width: 800px) {
-  .background-image {
-    top: -25%;
-  }
-}
-@media (max-width: 800px) and (min-width: 700px) {
-  .background-image {
-    top: -10%;
-  }
-}
-@media (max-width: 700px) and (min-width: 600px) {
-  .background-image {
-    top: -5%;
-  }
-}
-@media (max-width: 500px) {
-  .background-image {
-    background-size: auto 100vh;
-    top: -35%;
-    background-position: center;
-  }
 }
 
 
