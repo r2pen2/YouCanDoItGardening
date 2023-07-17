@@ -1,16 +1,19 @@
 // Library Imports
 import React from 'react';
-import { Navbar as NextUINavbar, Dropdown, Text, Image, Button, Link, Divider } from "@nextui-org/react";
+import { Navbar as NextUINavbar, Text, Image, Link, Dropdown } from "@nextui-org/react";
 
 import logoBlack from "../assets/images/logoNoText.png";
+
+import LocalCafeTwoToneIcon from '@mui/icons-material/LocalCafeTwoTone';
+import MenuBookTwoToneIcon from '@mui/icons-material/MenuBookTwoTone';
+import AutoAwesomeTwoToneIcon from '@mui/icons-material/AutoAwesomeTwoTone';
 
 // Style Imports
 import "../assets/style/navbar.css";
 import "../assets/style/layout.css";
-import { FacebookButton, InstagramButton, TikTokButton, YouTubeButton } from '../libraries/Web-Legos/components/Socials';
 import { facebookLink, instagramLink, tiktokLink, youtubeLink } from '../api/links';
 
-import {WLNavContent, WLNavSocials} from "../libraries/Web-Legos/components/Navigation";
+import {WLNavBrandLeft, WLNavContent, WLNavDropdownMenu, WLNavSocials} from "../libraries/Web-Legos/components/Navigation";
 
 const navbarItemFontSize = "18px";
 
@@ -84,13 +87,6 @@ function NavbarPages() {
         Services & Fees
       </NextUINavbar.Link>
       <NextUINavbar.Link 
-        isActive={checkLinkActive("shop")}
-        href="shop"
-        itemCss={{fontSize: navbarItemFontSize}}
-      >
-        Shop
-      </NextUINavbar.Link>
-      <NextUINavbar.Link 
         isActive={checkLinkActive("testimonials")}
         href="testimonials"
         itemCss={{fontSize: navbarItemFontSize}}
@@ -118,6 +114,52 @@ function NavbarPages() {
       >
         Teaching & Speaking
       </NextUINavbar.Link>
+      <WLNavDropdownMenu 
+        buttonLight 
+        buttonText="Shop" 
+        buttonFontSize={navbarItemFontSize} 
+        links={[
+          {
+            key: "coffee",
+            href: "https://www.buymeacoffee.com/youcandoitg",
+          },
+          {
+            key: "pruning",
+            href: "https://stan.store/youcandoitgardening",
+          },
+          {
+            key: "clothing",
+            href: "https://youcandoitgardening.creator-spring.com/",
+          },
+        ]}
+      >
+        <Dropdown.Item
+          key="coffee"
+          showFullDescription 
+          description="Help keep my content free by buying me a virtual cup of coffee!"
+          icon={<LocalCafeTwoToneIcon style={{color: "#603815"}} />}
+        >
+          Buy Me A Coffee
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="pruning"
+          showFullDescription 
+          withDivider
+          description="E-books on pruning sent directly to your email"
+          icon={<MenuBookTwoToneIcon style={{color: "#0037C4"}} />}
+        >
+          Pruning Guides
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="clothing"
+          showFullDescription 
+          withDivider
+          description="Show the world your support with You Can Do It Gardening merch"
+          icon={<AutoAwesomeTwoToneIcon style={{color: "orange"}} />}
+        >
+          Clothing
+        </Dropdown.Item>
+      </WLNavDropdownMenu>
     </NextUINavbar.Content>
   )
 }
@@ -128,13 +170,13 @@ export function Navbar() {
   return (
     <NextUINavbar 
       height="80px"
-      variant="floating"
+      variant="sticky"
       maxWidth="xl"
     >
       <WLNavContent>
         <WLNavContent.Left>
           <NextUINavbar.Toggle className="d-flex d-xxl-none" />
-          <BrandLarge />
+          <WLNavBrandLeft showIn="md" source={logoBlack} title="You Can Do It Gardening" />
         </WLNavContent.Left>
         <WLNavContent.Right>
           <NavbarPages />
@@ -162,28 +204,5 @@ export function Navbar() {
         ))}
       </NextUINavbar.Collapse>
     </NextUINavbar>
-  )
-}
-
-function BrandLarge() {
-  return (
-    <NextUINavbar.Brand
-      className="d-md-flex flex-row justify-content-left align-items-center d-none px-2"
-    >
-      <div 
-        className="navbar-brand-content"
-        onClick={() => window.location = "/"}
-      >
-        <Image
-          width={40}
-          height={40}
-          src={logoBlack}
-          alt="logo-black"
-        />
-        <Text b css={{fontSize: 20, marginLeft: "0.5em"}}>
-          You Can Do It Gardening
-        </Text>
-      </div>
-    </NextUINavbar.Brand>
   )
 }

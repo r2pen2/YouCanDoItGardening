@@ -13,11 +13,10 @@ import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components
 
 import { WLCenteredColumn, WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
 import { WLImage } from '../libraries/Web-Legos/components/Images';
-
-const headerSizeLg = "3rem";
-const headerSizeSm = "2rem";
+import home3 from "../assets/images/gradient/markup-cropped.svg"
 
 const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
+
 
 const textGradientPadded = {textGradient: "0deg, $purple600 -20%, $pink600 100%", ...gradientPadding}
 export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
@@ -51,24 +50,15 @@ export default function HomePage() {
     }
 
     return (
-      <div className="w-100">
-        <Button className="w-100 d-none d-md-inline mt-2" color="gradient" bordered size="lg" onClick={handleScheduleButtonClick}>
+        <Button className="w-100 d-inline mt-2" css={{minHeight: 50}} color="gradient" bordered size="$sm" onClick={handleScheduleButtonClick}>
           Schedule A Consultation
         </Button>
-        <Button className="w-100 d-none d-sm-inline d-md-none mt-2" color="gradient" bordered onClick={handleScheduleButtonClick}>
-          Schedule A Consultation
-        </Button>
-        <Button className="w-100 d-inline d-sm-none mt-2" color="gradient" bordered onClick={handleScheduleButtonClick}>
-          Schedule A Consultation
-        </Button>
-      </div>
     )
   }
 
   return (
     <WLSpinnerPage dependencies={[whyItWorksHeaderLoaded, whyItWorksDescriptionLoaded, saveHookLoaded, saveDescriptionLoaded, lookHookLoaded, lookDescriptionLoaded, feelHookLoaded, feelDescriptionLoaded]}>
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
-      <div className="background-pattern" />
       <section className="d-flex flex-column w-100 align-items-center">
         <div className="w-100 flex-column align-items-center background-image" style={{paddingTop: "10vh", paddingBottom: "40vh",}}>
           <div className="elevated d-flex flex-column w-100 text-background py-5">
@@ -78,7 +68,8 @@ export default function HomePage() {
             <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText} />
           </div>
         </div>
-        <div className="elevated container-fluid">
+        <img alt="leaf-line" src={home3} className="background-pattern" />
+        <div className="elevated container-fluid" style={{marginTop: -250, marginBottom: 50}}>
           <div className="elevated row d-flex flex-row justify-content-center">
             <TransparentHookCard
               icon={<SavingsTwoToneIcon sx={{fontSize: 50}}/>} 
@@ -98,13 +89,9 @@ export default function HomePage() {
           </div>
         </div>
         <div className="container-fluid d-flex flex-row justify-content-center">
-          
-          <Card css={{width: "80%", backgroundColor: "rgba(255,255,255,0.55)", border: "2px solid lightsteelblue"}} className="row p-2 d-flex flex-row">
-            <div className="col-xl-4 col-md-12 d-none d-xl-flex flex-column h-100 justify-content-center align-items-center">
-              <WLImage firestoreId="jess" shadow round editable={userCanEditText} />
-            </div>
-            <div className="col-xl-4 col-md-12 d-flex d-xl-none flex-row justify-content-center">
-              <WLImage firestoreId="jess" shadow round editable={userCanEditText} imageCss={{maxWidth: "50vw"}} />
+          <Card css={{width: "80%", backgroundColor: "rgba(255,255,255,0.55)", border: "2px solid lightsteelblue"}} className="row p-2 d-flex flex-row" >
+            <div className="col-xl-4 col-md-12 d-flex flex-column align-items-center justify-content-center">
+              <WLImage firestoreId="jess" shadow round editable={userCanEditText} imgClasses="jess-image" />
             </div>
             <div className="col-xl-8 col-md-12 d-flex flex-column px-1 py-1 px-lg-5 py-3 px-lg-5 justify-content-around">
               <div>
