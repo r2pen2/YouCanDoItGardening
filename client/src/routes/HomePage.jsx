@@ -128,18 +128,18 @@ export default function HomePage() {
           <div className="elevated row d-flex flex-row justify-content-center">
             <TransparentHookCard
               icon={<SavingsTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText size="$lg" firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded} />}
-              subtitleText={<WLText size="$lg" firestoreId="save-money-description" editable={userCanEditText} setLoaded={setSaveDescriptionLoaded} />}
+              titleText={<WLText firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded} />}
+              subtitleText={<WLText firestoreId="save-money-description" editable={userCanEditText} setLoaded={setSaveDescriptionLoaded} />}
             />
             <TransparentHookCard
               icon={<VisibilityTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText size="$lg" firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}/>}
-              subtitleText={<WLText size="$lg" firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}/>}
+              titleText={<WLText firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}/>}
+              subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}/>}
               />
             <TransparentHookCard
               icon={<LocalFloristTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText size="$lg" firestoreId="feels-good-hook" editable={userCanEditText} setLoaded={setFeelHookLoaded}/>}
-              subtitleText={<WLText size="$lg" firestoreId="feels-good-description" editable={userCanEditText} setLoaded={setFeelDescriptionLoaded}/>}
+              titleText={<WLText firestoreId="feels-good-hook" editable={userCanEditText} setLoaded={setFeelHookLoaded}/>}
+              subtitleText={<WLText firestoreId="feels-good-description" editable={userCanEditText} setLoaded={setFeelDescriptionLoaded}/>}
             />
           </div>
         </div>
