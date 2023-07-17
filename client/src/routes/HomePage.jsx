@@ -71,7 +71,7 @@ export default function HomePage() {
       <div className="background-image" />
       <div className="background-pattern" />
       <section className="elevated d-flex flex-column w-100 align-items-center" style={{minHeight: "150vh"}}>
-        <div className="d-none elevated d-md-flex flex-column align-items-center" style={{paddingTop: "10rem", height: "60vh"}}>
+        <div className="d-none elevated d-md-flex flex-column align-items-center" style={{paddingTop: "5rem", height: "60vh"}}>
           <Text h1 
             className="px-2 py-2 text-background text-large">
             You Can Do It Gardening<br/>
