@@ -36,6 +36,7 @@ export default function HomePage() {
   const [lookDescriptionLoaded, setLookDescriptionLoaded] = useState(false);              // Whether "Looks Good" description has loaded
   const [feelHookLoaded, setFeelHookLoaded] = useState(false);                            // Whether "Feels Good" hook has loaded
   const [feelDescriptionLoaded, setFeelDescriptionLoaded] = useState(false);              // Whether "Feels Good" description has loaded
+  const [beforesAndAftersHeaderLoaded, setBeforesAndAftersHeaderLoaded] = useState(false);// Whether "Befores and Afters" header has loaded
 
   /**
    * A button scaled to the screen width that opens the {@link ContactModal}
@@ -57,7 +58,19 @@ export default function HomePage() {
   }
 
   return (
-    <WLSpinnerPage dependencies={[whyItWorksHeaderLoaded, whyItWorksDescriptionLoaded, saveHookLoaded, saveDescriptionLoaded, lookHookLoaded, lookDescriptionLoaded, feelHookLoaded, feelDescriptionLoaded]}>
+    <WLSpinnerPage 
+      dependencies={[
+        beforesAndAftersHeaderLoaded, 
+        whyItWorksHeaderLoaded, 
+        whyItWorksDescriptionLoaded, 
+        saveHookLoaded, 
+        saveDescriptionLoaded, 
+        lookHookLoaded, 
+        lookDescriptionLoaded, 
+        feelHookLoaded, 
+        feelDescriptionLoaded
+      ]}
+      >
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
       <section className="d-flex flex-column w-100 align-items-center">
         <div className="w-100 flex-column align-items-center background-image" style={{paddingTop: "10vh", paddingBottom: "40vh",}}>
@@ -102,6 +115,9 @@ export default function HomePage() {
             </div>
           </Card>
         </div>
+      </section>
+      <section>
+        <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText} />
       </section>
     </WLSpinnerPage>
   )
