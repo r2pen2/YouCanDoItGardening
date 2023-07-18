@@ -18,6 +18,7 @@ export default function Teaching() {
   <WLSpinnerPage dependencies={[teachingHookLoaded, teachingDescriptionLoaded]}>
     <WLBlockHeader text="Teaching & Speaking" color={blockHeaderFill} short />
     <WLResponsiveSectionEditable
+      headerBlack
       setLoaded={setTeachingHookLoaded}
       stackHeader 
       columnWidthLeft="8" 
@@ -38,6 +39,7 @@ export default function Teaching() {
     />
     <div className="section-divider"/>
     <WLResponsiveSectionEditable
+      headerBlack
       setLoaded={setTeachingDescriptionLoaded}
       stackHeader 
       textRight

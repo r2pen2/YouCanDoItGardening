@@ -20,12 +20,14 @@ export default function Services() {
   <WLSpinnerPage dependencies={[virtualLoaded, inPersonLoaded]}>
     <WLBlockHeader text="Services & Fees" color={blockHeaderFill} short />
     <WLResponsiveSectionEditable
+      headerBlack
       setLoaded={setInPersonLoaded}
       editable={userCanEditText} 
       firestoreId="in-person-sessions"
     />
     <div className="section-divider"/>
     <WLResponsiveSectionEditable
+      headerBlack
       textRight
       setLoaded={setVirtualLoaded}
       editable={userCanEditText} 

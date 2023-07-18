@@ -18,6 +18,7 @@ export default function About() {
   <WLSpinnerPage dependencies={[aboutLoaded]}>
     <WLBlockHeader text="About" color={blockHeaderFill} short />
     <WLResponsiveSectionEditable
+      headerBlack
       setLoaded={setAboutLoaded}
       stackHeader 
       columnWidthLeft="8" 
