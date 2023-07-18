@@ -14,7 +14,7 @@ import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components
 import { WLCenteredColumn, WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 import home3 from "../assets/images/gradient/markup-cropped.svg"
-import { WLAliceCarousel } from '../libraries/Web-Legos/components/Content';
+import { WLAliceCarousel, WLAliceCarouselItem, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 
 const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
 
@@ -118,21 +118,15 @@ export default function HomePage() {
         </div>
       </section>
       <section className='d-flex flex-column align-items-center justify-content-center'>
-        <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText} />
-        <WLAliceCarousel>
-          <WLAliceCarousel.Item>
-            Test
-          </WLAliceCarousel.Item>
-          <WLAliceCarousel.Item>
-            Test
-          </WLAliceCarousel.Item>
-          <WLAliceCarousel.Item>
-            Test
-          </WLAliceCarousel.Item>
-          <WLAliceCarousel.Item>
-            Test
-          </WLAliceCarousel.Item>
-        </WLAliceCarousel>
+        <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}/>
+        <WLAliceCarousel
+          items={[
+            <BeforeAndAfterCard number={1}/>,
+            <BeforeAndAfterCard number={2}/>,
+            <BeforeAndAfterCard number={3}/>,
+            <BeforeAndAfterCard number={4}/>,
+          ]}
+        />
       </section>
     </WLSpinnerPage>
   )
@@ -151,6 +145,22 @@ function TransparentHookCard({icon, titleText, subtitleText}) {
         <Divider />
         <div className="d-flex flex-column w-100 align-items-center">
           {subtitleText}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function BeforeAndAfterCard({number}) {
+  return (
+    <div className="transparent-card container-fluid d-flex flex-column align-items-center justify-content-center">
+      <Text>{number}</Text>
+      <div className="row">
+        <div className="col-xl-6 col-lg-12 d-flex flex-column align-items-center justify-content-center">
+          <Text>Before</Text>
+        </div>
+        <div className="col-xl-6 col-lg-12 d-flex flex-column align-items-center justify-content-center">
+          <Text>After</Text>
         </div>
       </div>
     </div>
