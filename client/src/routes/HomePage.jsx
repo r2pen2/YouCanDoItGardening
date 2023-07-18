@@ -14,6 +14,7 @@ import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components
 import { WLCenteredColumn, WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 import home3 from "../assets/images/gradient/markup-cropped.svg"
+import { WLAliceCarousel } from '../libraries/Web-Legos/components/Content';
 
 const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
 
@@ -116,8 +117,22 @@ export default function HomePage() {
           </Card>
         </div>
       </section>
-      <section>
+      <section className='d-flex flex-column align-items-center justify-content-center'>
         <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText} />
+        <WLAliceCarousel>
+          <WLAliceCarousel.Item>
+            Test
+          </WLAliceCarousel.Item>
+          <WLAliceCarousel.Item>
+            Test
+          </WLAliceCarousel.Item>
+          <WLAliceCarousel.Item>
+            Test
+          </WLAliceCarousel.Item>
+          <WLAliceCarousel.Item>
+            Test
+          </WLAliceCarousel.Item>
+        </WLAliceCarousel>
       </section>
     </WLSpinnerPage>
   )
