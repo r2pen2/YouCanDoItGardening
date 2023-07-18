@@ -9,6 +9,12 @@ import SavingsTwoToneIcon from '@mui/icons-material/SavingsTwoTone';
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import { ContactModal } from '../components/Modals';
 
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+
+import beforeExample from "../assets/images/beforeExample.jpg"
+import afterExample from "../assets/images/afterExample.jpg"
+
 import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components/Text";
 
 import { WLCenteredColumn, WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
@@ -103,7 +109,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="container-fluid d-flex flex-row justify-content-center">
-          <Card css={{width: "80%", backgroundColor: "rgba(255,255,255,0.55)", border: "2px solid lightsteelblue"}} className="row p-2 d-flex flex-row" >
+          <Card css={{width: "80vw", backgroundColor: "rgba(255,255,255,0.55)", border: "2px solid lightsteelblue"}} className="row p-2 d-flex flex-row" >
             <div className="col-xl-4 col-md-12 d-flex flex-column align-items-center justify-content-center">
               <WLImage firestoreId="jess" shadow round editable={userCanEditText} imgClasses="jess-image" />
             </div>
@@ -120,11 +126,12 @@ export default function HomePage() {
       <section className='d-flex flex-column align-items-center justify-content-center'>
         <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}/>
         <WLAliceCarousel
+          pagination
           items={[
-            <BeforeAndAfterCard number={1}/>,
-            <BeforeAndAfterCard number={2}/>,
-            <BeforeAndAfterCard number={3}/>,
-            <BeforeAndAfterCard number={4}/>,
+            <BeforeAndAfterCard imgBefore={beforeExample} imgAfter={afterExample} description="To start, this area was almost a blank slate. We were able to put in new beds, new plants, and fill the space with soothing colors. Looks great, don't you think?"/>,
+            <BeforeAndAfterCard imgBefore={beforeExample} imgAfter={afterExample} description="This is the description for card number 2"/>,
+            <BeforeAndAfterCard imgBefore={beforeExample} imgAfter={afterExample} description="This is the description for card number 3"/>,
+            <BeforeAndAfterCard imgBefore={beforeExample} imgAfter={afterExample} description="This is the description for card number 4"/>,
           ]}
         />
       </section>
@@ -151,17 +158,28 @@ function TransparentHookCard({icon, titleText, subtitleText}) {
   )
 }
 
-function BeforeAndAfterCard({number}) {
+function BeforeAndAfterCard({description, imgBefore, imgAfter}) {
   return (
     <div className="transparent-card container-fluid d-flex flex-column align-items-center justify-content-center">
-      <Text>{number}</Text>
-      <div className="row">
-        <div className="col-xl-6 col-lg-12 d-flex flex-column align-items-center justify-content-center">
-          <Text>Before</Text>
+      <div className="row w-100 d-flex flex-row align-items-center justify-content-center py-2">
+        <div className="col-xl-5 col-lg-12 d-flex flex-column align-items-center justify-content-center">
+          <WLHeader headerLevel={4}>Before</WLHeader>
+          <img src={imgBefore} draggable={false} className="no-select" alt="before-pic" style={{width: "100%", height: "auto", objectFit: "cover"}} />
         </div>
-        <div className="col-xl-6 col-lg-12 d-flex flex-column align-items-center justify-content-center">
-          <Text>After</Text>
+        <div className="col-xl-1 d-xl-flex d-none flex-column align-items-center justify-content-center">
+          <ArrowForwardIcon fontSize="large" />
         </div>
+        <div className="col-xl-5 col-lg-12 d-flex flex-column align-items-center justify-content-center">
+          <WLHeader headerLevel={4}>After</WLHeader>
+          <img src={imgAfter} draggable={false} className="no-select" alt="after-pic" style={{width: "100%", height: "auto", objectFit: "cover"}} />
+        </div>
+      </div>
+      <div className="row w-100">
+        <Divider />
+        <Spacer y={1} />
+        <Text>
+          {description}
+        </Text>
       </div>
     </div>
   )
