@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const siteImages = require('./libraries/Server-Legos/siteImages');
 const siteText = require('./libraries/Server-Legos/siteText');
+const siteModels = require('./libraries/Server-Legos/siteModels');
 
 // Init express application
 const app = express();
@@ -30,6 +31,8 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb"}));
 app.use("/site-text", siteText);
 // Server site images
 app.use("/site-images", siteImages);
+// Server site models
+app.use("/site-models", siteModels);
 
 app.get("/images/*", (req, res) => {
     res.sendFile(__dirname + req._parsedOriginalUrl.path);

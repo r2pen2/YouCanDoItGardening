@@ -12,15 +12,13 @@ import { ContactModal } from '../components/Modals';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-import beforeExample from "../assets/images/beforeExample.jpg"
-import afterExample from "../assets/images/afterExample.jpg"
-
 import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components/Text";
 
 import { WLCenteredColumn, WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 import home3 from "../assets/images/gradient/markup-cropped.svg"
 import { WLAliceCarousel, WLAliceCarouselItem, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
+import { fetchModelData } from '../libraries/Web-Legos/api/models';
 
 const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
 
@@ -31,6 +29,20 @@ export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%
 const userCanEditText = true;
 
 export default function HomePage() {
+
+  const [beforesAndAfters, setBeforesAndAfters] = useState([]);
+  const [beforesAndAftersCarouselItems, setBeforesAndAftersCarouselItems] = useState([]);
+
+  useEffect(() => {
+    fetchModelData("befores-and-afters").then((data) => {
+      setBeforesAndAfters(data);
+      let newItems = [];
+      for (const item of data) {
+        newItems.push(<BeforeAndAfterCard imgAfter={item.afterSource} imgBefore={item.beforeSource} description={item.description} />);
+      }
+      setBeforesAndAftersCarouselItems(newItems)
+    })
+  }, [])
 
   // Initialize all states
   const [contactModalOpen, setContactModalOpen] = useState(false); // Whether contact modal is open
@@ -127,12 +139,11 @@ export default function HomePage() {
         <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}/>
         <WLAliceCarousel
           pagination
-          items={[
-            <BeforeAndAfterCard imgBefore={beforeExample} imgAfter={afterExample} description="To start, this area was almost a blank slate. We were able to put in new beds, new plants, and fill the space with soothing colors. Looks great, don't you think?"/>,
-            <BeforeAndAfterCard imgBefore={beforeExample} imgAfter={afterExample} description="This is the description for card number 2"/>,
-            <BeforeAndAfterCard imgBefore={beforeExample} imgAfter={afterExample} description="This is the description for card number 3"/>,
-            <BeforeAndAfterCard imgBefore={beforeExample} imgAfter={afterExample} description="This is the description for card number 4"/>,
-          ]}
+          buttonBlock
+          backgroundColor="#E3FAEA"
+          paginationTop
+          forceButtons
+          items={beforesAndAftersCarouselItems}
         />
       </section>
     </WLSpinnerPage>
@@ -160,26 +171,21 @@ function TransparentHookCard({icon, titleText, subtitleText}) {
 
 function BeforeAndAfterCard({description, imgBefore, imgAfter}) {
   return (
-    <div className="transparent-card container-fluid d-flex flex-column align-items-center justify-content-center">
-      <div className="row w-100 d-flex flex-row align-items-center justify-content-center py-2">
-        <div className="col-xl-5 col-lg-12 d-flex flex-column align-items-center justify-content-center">
-          <WLHeader headerLevel={4}>Before</WLHeader>
-          <img src={imgBefore} draggable={false} className="no-select" alt="before-pic" style={{width: "100%", height: "auto", objectFit: "cover"}} />
-        </div>
-        <div className="col-xl-1 d-xl-flex d-none flex-column align-items-center justify-content-center">
-          <ArrowForwardIcon fontSize="large" />
-        </div>
-        <div className="col-xl-5 col-lg-12 d-flex flex-column align-items-center justify-content-center">
-          <WLHeader headerLevel={4}>After</WLHeader>
-          <img src={imgAfter} draggable={false} className="no-select" alt="after-pic" style={{width: "100%", height: "auto", objectFit: "cover"}} />
-        </div>
-      </div>
-      <div className="row w-100">
-        <Divider />
-        <Spacer y={1} />
+    <div className="container-fluid d-flex flex-column align-items-center justify-content-center">
+      <div className="row">
         <Text>
           {description}
         </Text>
+        <Spacer y={1} />
+      </div>
+      <Divider/>
+      <div className="row w-100 d-flex flex-row align-items-center justify-content-center py-2">
+        <div className="p-2 col-xl-6 col-lg-12 d-flex flex-column align-items-center justify-content-center">
+          <img src={imgBefore} draggable={false} className="img-shadow no-select" alt="before-pic" style={{maxHeight: 600, width: "100%", height: "auto", objectFit: "cover"}} />
+        </div>
+        <div className="p-2 col-xl-6 col-lg-12 d-flex flex-column align-items-center justify-content-center">
+          <img src={imgAfter} draggable={false} className="img-shadow no-select" alt="after-pic" style={{maxHeight: 600, width: "100%", height: "auto", objectFit: "cover"}} />
+        </div>
       </div>
     </div>
   )
