@@ -143,9 +143,9 @@ export default function HomePage() {
           buttonBlock
           backgroundColor="#E3FAEA"
           paginationTop
-          forceButtons
           items={beforesAndAftersCarouselItems}
         />
+        <Divider />
       </section>
     </WLSpinnerPage>
   )
