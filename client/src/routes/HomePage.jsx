@@ -123,7 +123,7 @@ export default function HomePage() {
           </Card>
         </div>
       </section>
-      <section className='d-flex flex-column align-items-center justify-content-center'>
+      <section className='d-flex flex-column align-items-center justify-content-center py-5'>
         <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}/>
         <WLAliceCarousel
           pagination
