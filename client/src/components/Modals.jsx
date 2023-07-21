@@ -10,7 +10,7 @@ import "../assets/style/modals.css";
 /**
  * Some icon fill presets to be used in modals
  */
-const iconFills = {
+export const iconFills = {
   purple: "#8a4fcc",
   orange: "#f05c21",
   red: "#f0214e",

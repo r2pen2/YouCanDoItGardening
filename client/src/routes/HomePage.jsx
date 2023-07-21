@@ -21,7 +21,7 @@ import { WLImage } from '../libraries/Web-Legos/components/Images';
 import home3 from "../assets/images/gradient/markup-cropped.svg"
 import { WLAliceCarousel, WLAliceCarouselItem, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 import { SiteModel, fetchModelData, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
-import { ModelEditModal } from '../libraries/Web-Legos/components/Modals';
+import { ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 
 const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
 
@@ -32,13 +32,13 @@ const userCanEditBeforesAndAfters = true;
 
 export default function HomePage() {
 
-  const [beforesAndAftersEditModalOpen, setBeforesAndAftersEditModalOpen] = useState(false);
-  const [currentBeforeAndAfter, setCurrentBeforeAndAfter] = useState(new BeforeAndAfter());
+  const [modelEditModalOpen, setModelEditModalOpen] = useState(false);
+  const [currentModel, setCurrentModel] = useState(new SiteModel());
 
   const [beforesAndAftersCarouselItems, setBeforesAndAftersCarouselItems] = useState([]);
 
   useEffect(() => {
-    SiteModel.get(BeforeAndAfter).then((data) => {
+    BeforeAndAfter.get().then((data) => {
       const sortedData = sortByOrder(data);
       let newItems = [];
       for (const item of sortedData) {
@@ -81,26 +81,14 @@ export default function HomePage() {
   }
 
   function handleAddBeforeAndAfterClick() {
-    setCurrentBeforeAndAfter(new BeforeAndAfter());
-    setBeforesAndAftersEditModalOpen(true);
+    setCurrentModel(new BeforeAndAfter());
+    setModelEditModalOpen(true);
   }
   
   function BeforeAndAfterCard({beforeAndAfter}) {
-    
-    function handleCardClick() {
-      const b = new BeforeAndAfter();
-      b.id = beforeAndAfter.id;
-      b.images.beforeSource = beforeAndAfter.beforeSource;
-      b.images.afterSource = beforeAndAfter.afterSource;
-      b.longStrings.description = beforeAndAfter.description;
-      b.numbers.order = beforeAndAfter.order;
-      setCurrentBeforeAndAfter(b);
-      setBeforesAndAftersEditModalOpen(true);
-    }
-
     return (
       <div className="container-fluid d-flex flex-column align-items-center justify-content-center" style={{width: '100%', maxWidth: 1400}}>
-        { userCanEditBeforesAndAfters && <Button onClick={handleCardClick} css={{marginBottom: "1rem"}} flat>Edit</Button> }
+        <ModelEditButton model={BeforeAndAfter} data={beforeAndAfter} userCanEdit={userCanEditBeforesAndAfters} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
         <div className="row">
           <Text>
             {beforeAndAfter.description}
@@ -134,7 +122,7 @@ export default function HomePage() {
         feelDescriptionLoaded
       ]}
     >
-      <ModelEditModal model={currentBeforeAndAfter} open={beforesAndAftersEditModalOpen} setOpen={setBeforesAndAftersEditModalOpen} />
+      <ModelEditModal model={currentModel} open={modelEditModalOpen} setOpen={setModelEditModalOpen} />
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
       <section className="d-flex flex-column w-100 align-items-center">
         <div className="w-100 flex-column align-items-center background-image" style={{paddingTop: "10vh", paddingBottom: "40vh",}}>
