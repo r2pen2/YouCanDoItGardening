@@ -1,6 +1,6 @@
 // Library Imports
 import React from 'react';
-import { Navbar as NextUINavbar, Link, Dropdown, } from "@nextui-org/react";
+import { Navbar as NextUINavbar, Link, Dropdown, Divider, } from "@nextui-org/react";
 
 import logoBlack from "../assets/images/logoNoText.png";
 
@@ -62,7 +62,7 @@ function NavbarPages() {
   }
 
   return (
-    <NextUINavbar.Content enableCursorHighlight activeColor="primary" className='d-none d-xxl-flex flex-row align-items-center justify-content-end w-100 px-3'>
+    <NextUINavbar.Content enableCursorHighlight activeColor="primary" className='d-none d-xxl-flex flex-row align-items-center justify-content-end w-100 px-0'>
       <NextUINavbar.Link 
         isActive={checkLinkActive("home")}
         href="home"
@@ -129,10 +129,10 @@ export function Navbar() {
         <WLNavContent.Left>
           <NextUINavbar.Toggle className="d-flex d-xxl-none px-3" />
           <WLNavBrandLeft showIn="md" source={logoBlack} title="You Can Do It Gardening" />
+          <Divider className="d-none d-xxl-inline" css={{width: "3rem", marginLeft: "1rem"}}/>
+          <NavbarPages />
         </WLNavContent.Left>
         <WLNavContent.Right>
-          <NavbarPages />
-          <VerticalDivider showIn="xxl" height={40} color="#212529" padding="1.5rem"/>
           <WLNavSocials noHide>
             <WLNavSocials.Button size={30} platformKey="instagram" href={instagramLink} />
             <WLNavSocials.Button size={30} platformKey="facebook" href={facebookLink} />

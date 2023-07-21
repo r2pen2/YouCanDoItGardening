@@ -20,7 +20,7 @@ import { WLCenteredColumn, WLSpinnerPage } from "../libraries/Web-Legos/componen
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 import home3 from "../assets/images/gradient/markup-cropped.svg"
 import { WLAliceCarousel, WLAliceCarouselItem, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
-import { fetchModelData, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
+import { SiteModel, fetchModelData, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
 import { ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 
 const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
@@ -38,7 +38,7 @@ export default function HomePage() {
   const [beforesAndAftersCarouselItems, setBeforesAndAftersCarouselItems] = useState([]);
 
   useEffect(() => {
-    fetchModelData("befores-and-afters").then((data) => {
+    SiteModel.get(BeforeAndAfter).then((data) => {
       const sortedData = sortByOrder(data);
       let newItems = [];
       for (const item of sortedData) {
@@ -186,7 +186,6 @@ export default function HomePage() {
         <WLAliceCarousel
           pagination
           buttonBlock
-          backgroundColor="#E3FAEA"
           paginationTop
           items={beforesAndAftersCarouselItems}
         />
