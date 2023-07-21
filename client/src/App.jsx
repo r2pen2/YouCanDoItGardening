@@ -9,7 +9,6 @@ import Services from './routes/Services';
 import Media from './routes/Media';
 import Resources from './routes/Resources';
 import Testimonials from './routes/Testimonials';
-import Shop from './routes/Shop';
 import Teaching from './routes/Teaching';
 import Footer from './components/Footer';
 
@@ -27,7 +26,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/media" element={<Media />} />
-            <Route path="/shop" element={<Shop />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/teaching" element={<Teaching />} />

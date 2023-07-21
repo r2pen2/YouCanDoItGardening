@@ -1,6 +1,6 @@
 // Library Imports
 import React from 'react';
-import { Navbar as NextUINavbar, Text, Image, Link, Dropdown, Divider } from "@nextui-org/react";
+import { Navbar as NextUINavbar, Link, Dropdown, } from "@nextui-org/react";
 
 import logoBlack from "../assets/images/logoNoText.png";
 
@@ -32,10 +32,6 @@ const collapseItems = [
   {
     name: "Services & Fees",
     href: "services",
-  },
-  {
-    name: "Shop",
-    href: "shop",
   },
   {
     name: "Testimonials",
