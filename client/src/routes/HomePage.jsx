@@ -14,32 +14,35 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components/Text";
 
+import {BeforeAndAfter} from "../api/siteModels.ts";
+
 import { WLCenteredColumn, WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 import home3 from "../assets/images/gradient/markup-cropped.svg"
 import { WLAliceCarousel, WLAliceCarouselItem, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
-import { fetchModelData, sortByOrder } from '../libraries/Web-Legos/api/models';
+import { fetchModelData, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
+import { ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 
 const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
 
-
-const textGradientPadded = {textGradient: "0deg, $purple600 -20%, $pink600 100%", ...gradientPadding}
 export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
 const userCanEditText = true;
+const userCanEditBeforesAndAfters = true;
 
 export default function HomePage() {
 
-  const [beforesAndAfters, setBeforesAndAfters] = useState([]);
+  const [beforesAndAftersEditModalOpen, setBeforesAndAftersEditModalOpen] = useState(false);
+  const [currentBeforeAndAfter, setCurrentBeforeAndAfter] = useState(new BeforeAndAfter());
+
   const [beforesAndAftersCarouselItems, setBeforesAndAftersCarouselItems] = useState([]);
 
   useEffect(() => {
     fetchModelData("befores-and-afters").then((data) => {
       const sortedData = sortByOrder(data);
-      setBeforesAndAfters(sortedData);
       let newItems = [];
       for (const item of sortedData) {
-        newItems.push(<BeforeAndAfterCard imgAfter={item.afterSource} imgBefore={item.beforeSource} description={item.description} />);
+        newItems.push(<BeforeAndAfterCard beforeAndAfter={item} />);
       }
       setBeforesAndAftersCarouselItems(newItems)
     })
@@ -77,6 +80,46 @@ export default function HomePage() {
     )
   }
 
+  function handleAddBeforeAndAfterClick() {
+    setCurrentBeforeAndAfter(new BeforeAndAfter());
+    setBeforesAndAftersEditModalOpen(true);
+  }
+  
+  function BeforeAndAfterCard({beforeAndAfter}) {
+    
+    function handleCardClick() {
+      const b = new BeforeAndAfter();
+      b.id = beforeAndAfter.id;
+      b.images.beforeSource = beforeAndAfter.beforeSource;
+      b.images.afterSource = beforeAndAfter.afterSource;
+      b.longStrings.description = beforeAndAfter.description;
+      b.numbers.order = beforeAndAfter.order;
+      setCurrentBeforeAndAfter(b);
+      setBeforesAndAftersEditModalOpen(true);
+    }
+
+    return (
+      <div className="container-fluid d-flex flex-column align-items-center justify-content-center" style={{width: '100%', maxWidth: 1400}}>
+        { userCanEditBeforesAndAfters && <Button onClick={handleCardClick} css={{marginBottom: "1rem"}} flat>Edit</Button> }
+        <div className="row">
+          <Text>
+            {beforeAndAfter.description}
+          </Text>
+          <Spacer y={1} />
+        </div>
+        <Divider/>
+        <div className="row w-100 d-flex flex-row align-items-start justify-content-start py-2">
+          <div className="p-2 col-xl-6 col-lg-12 d-flex flex-column align-items-end justify-content-start">
+            <img src={beforeAndAfter.beforeSource} draggable={false} className="img-shadow no-select" alt="before-pic" style={{maxHeight: 500, width: "100%", height: "auto", objectFit: "contain"}} />
+          </div>
+          <div className="p-2 col-xl-6 col-lg-12 d-flex flex-column align-items-start justify-content-start">
+            <img src={beforeAndAfter.afterSource} draggable={false} className="img-shadow no-select" alt="after-pic" style={{maxHeight: 500, width: "100%", height: "auto", objectFit: "contain"}} />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <WLSpinnerPage 
       dependencies={[
@@ -90,7 +133,8 @@ export default function HomePage() {
         feelHookLoaded, 
         feelDescriptionLoaded
       ]}
-      >
+    >
+      <ModelEditModal model={currentBeforeAndAfter} open={beforesAndAftersEditModalOpen} setOpen={setBeforesAndAftersEditModalOpen} />
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
       <section className="d-flex flex-column w-100 align-items-center">
         <div className="w-100 flex-column align-items-center background-image" style={{paddingTop: "10vh", paddingBottom: "40vh",}}>
@@ -138,6 +182,7 @@ export default function HomePage() {
       </section>
       <section className='d-flex flex-column align-items-center justify-content-center py-5'>
         <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}/>
+        { userCanEditBeforesAndAfters && <Button className="my-5" flat onClick={handleAddBeforeAndAfterClick}>Add a "Before and After"</Button>}
         <WLAliceCarousel
           pagination
           buttonBlock
@@ -164,28 +209,6 @@ function TransparentHookCard({icon, titleText, subtitleText}) {
         <Divider />
         <div className="d-flex flex-column w-100 align-items-center">
           {subtitleText}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function BeforeAndAfterCard({description, imgBefore, imgAfter}) {
-  return (
-    <div className="container-fluid d-flex flex-column align-items-center justify-content-center">
-      <div className="row">
-        <Text>
-          {description}
-        </Text>
-        <Spacer y={1} />
-      </div>
-      <Divider/>
-      <div className="row w-100 d-flex flex-row align-items-center justify-content-center py-2">
-        <div className="p-2 col-xl-6 col-lg-12 d-flex flex-column align-items-center justify-content-center">
-          <img src={imgBefore} draggable={false} className="img-shadow no-select" alt="before-pic" style={{maxHeight: 600, width: "100%", height: "auto", objectFit: "cover"}} />
-        </div>
-        <div className="p-2 col-xl-6 col-lg-12 d-flex flex-column align-items-center justify-content-center">
-          <img src={imgAfter} draggable={false} className="img-shadow no-select" alt="after-pic" style={{maxHeight: 600, width: "100%", height: "auto", objectFit: "cover"}} />
         </div>
       </div>
     </div>

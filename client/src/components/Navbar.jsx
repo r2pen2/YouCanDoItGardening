@@ -1,12 +1,13 @@
 // Library Imports
 import React from 'react';
-import { Navbar as NextUINavbar, Text, Image, Link, Dropdown } from "@nextui-org/react";
+import { Navbar as NextUINavbar, Text, Image, Link, Dropdown, Divider } from "@nextui-org/react";
 
 import logoBlack from "../assets/images/logoNoText.png";
 
 import LocalCafeTwoToneIcon from '@mui/icons-material/LocalCafeTwoTone';
 import MenuBookTwoToneIcon from '@mui/icons-material/MenuBookTwoTone';
 import AutoAwesomeTwoToneIcon from '@mui/icons-material/AutoAwesomeTwoTone';
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 
 // Style Imports
 import "../assets/style/navbar.css";
@@ -14,6 +15,7 @@ import "../assets/style/layout.css";
 import { facebookLink, instagramLink, tiktokLink, youtubeLink } from '../api/links';
 
 import {WLNavBrandLeft, WLNavContent, WLNavDropdownMenu, WLNavSocials} from "../libraries/Web-Legos/components/Navigation";
+import { VerticalDivider } from '../libraries/Web-Legos/components/Layout';
 
 const navbarItemFontSize = "18px";
 
@@ -114,52 +116,6 @@ function NavbarPages() {
       >
         Teaching & Speaking
       </NextUINavbar.Link>
-      <WLNavDropdownMenu 
-        buttonLight 
-        buttonText="Shop" 
-        buttonFontSize={navbarItemFontSize} 
-        links={[
-          {
-            key: "coffee",
-            href: "https://www.buymeacoffee.com/youcandoitg",
-          },
-          {
-            key: "pruning",
-            href: "https://stan.store/youcandoitgardening",
-          },
-          {
-            key: "clothing",
-            href: "https://youcandoitgardening.creator-spring.com/",
-          },
-        ]}
-      >
-        <Dropdown.Item
-          key="coffee"
-          showFullDescription 
-          description="Help keep my content free by buying me a virtual cup of coffee!"
-          icon={<LocalCafeTwoToneIcon style={{color: "#603815"}} />}
-        >
-          Buy Me A Coffee
-        </Dropdown.Item>
-        <Dropdown.Item
-          key="pruning"
-          showFullDescription 
-          withDivider
-          description="E-books on pruning sent directly to your email"
-          icon={<MenuBookTwoToneIcon style={{color: "#0037C4"}} />}
-        >
-          Pruning Guides
-        </Dropdown.Item>
-        <Dropdown.Item
-          key="clothing"
-          showFullDescription 
-          withDivider
-          description="Show the world your support with You Can Do It Gardening merch"
-          icon={<AutoAwesomeTwoToneIcon style={{color: "orange"}} />}
-        >
-          Clothing
-        </Dropdown.Item>
-      </WLNavDropdownMenu>
     </NextUINavbar.Content>
   )
 }
@@ -175,17 +131,69 @@ export function Navbar() {
     >
       <WLNavContent>
         <WLNavContent.Left>
-          <NextUINavbar.Toggle className="d-flex d-xxl-none" />
+          <NextUINavbar.Toggle className="d-flex d-xxl-none px-3" />
           <WLNavBrandLeft showIn="md" source={logoBlack} title="You Can Do It Gardening" />
         </WLNavContent.Left>
         <WLNavContent.Right>
           <NavbarPages />
+          <VerticalDivider showIn="xxl" height={40} color="#212529" padding="1.5rem"/>
           <WLNavSocials noHide>
-            <WLNavSocials.Button platformKey="instagram" href={instagramLink} />
-            <WLNavSocials.Button platformKey="facebook" href={facebookLink} />
-            <WLNavSocials.Button platformKey="tiktok" href={tiktokLink} />
-            <WLNavSocials.Button platformKey="youtube" href={youtubeLink} />
+            <WLNavSocials.Button size={30} platformKey="instagram" href={instagramLink} />
+            <WLNavSocials.Button size={30} platformKey="facebook" href={facebookLink} />
+            <WLNavSocials.Button size={30} platformKey="tiktok" href={tiktokLink} />
+            <WLNavSocials.Button size={30} platformKey="youtube" href={youtubeLink} />
           </WLNavSocials>
+          <VerticalDivider height={40} color="#212529" padding="1.5rem"/>
+          <NextUINavbar.Content css={{padding: 0}}>
+            <WLNavDropdownMenu 
+              hideTextIn="all"
+              buttonIcon={<ShoppingCartTwoToneIcon style={{fontSize: 30}}/>}
+              buttonLight 
+              buttonText="Shop" 
+              buttonFontSize={navbarItemFontSize} 
+              links={[
+                {
+                  key: "coffee",
+                  href: "https://www.buymeacoffee.com/youcandoitg",
+                },
+                {
+                  key: "pruning",
+                  href: "https://stan.store/youcandoitgardening",
+                },
+                {
+                  key: "clothing",
+                  href: "https://youcandoitgardening.creator-spring.com/",
+                },
+              ]}
+            >
+              <Dropdown.Item
+                key="coffee"
+                showFullDescription 
+                description="Help keep my content free by buying me a virtual cup of coffee!"
+                icon={<LocalCafeTwoToneIcon style={{color: "#603815"}} />}
+              >
+                Buy Me A Coffee
+              </Dropdown.Item>
+              <Dropdown.Item
+                key="pruning"
+                showFullDescription 
+                withDivider
+                description="E-books on pruning sent directly to your email"
+                icon={<MenuBookTwoToneIcon style={{color: "#0037C4"}} />}
+              >
+                Pruning Guides
+              </Dropdown.Item>
+              <Dropdown.Item
+                key="clothing"
+                showFullDescription 
+                withDivider
+                description="Show the world your support with You Can Do It Gardening merch"
+                icon={<AutoAwesomeTwoToneIcon style={{color: "orange"}} />}
+              >
+                Clothing
+              </Dropdown.Item>
+            </WLNavDropdownMenu>
+          </NextUINavbar.Content>
         </WLNavContent.Right>
       </WLNavContent>
       <NextUINavbar.Collapse >
