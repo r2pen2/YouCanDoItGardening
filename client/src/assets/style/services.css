@@ -10,3 +10,11 @@
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+
+.slideshow-background {
+  background-image: url("../images/gradient/SlideshowBackground.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: drop-shadow(1px 1px 1px black)
+}

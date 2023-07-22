@@ -1,7 +1,7 @@
 // @ts-ignore
 import { FirestoreSerializable, SiteModel } from "../libraries/Web-Legos/api/models.ts";
 
-export class BeforeAndAfter extends SiteModel {
+export class BeforeAndAfter extends SiteModel implements FirestoreSerializable {
   constructor() {
     super("befores-and-afters", "Before And After")
   }
@@ -116,5 +116,45 @@ export class TestimonialSlideshowPicture extends SiteModel {
     tsp.numbers.order = data.order;
     tsp.images.imageSource = data.imageSource;
     return tsp;
+  }
+}
+
+
+export class TeachingItem extends SiteModel {
+  
+  constructor() {
+    super("teaching-items", "Teaching Item")
+  }
+  
+  booleans = {
+  }
+  images = {}
+  numbers = {
+    order: null,
+  }
+  shortStrings = {
+  }
+  longStrings = {
+    title: "",
+    desctiption: "",
+  }
+
+  fillConstantExampleData() {
+    this.longStrings.title = "The Arlington Community Education Catalog";
+    this.longStrings.desctiption = "I usually teach at least one class on gardening for beginners in the spring and fall, so look out for those if you're local!";
+    return this;
+  }
+
+  static examples = {
+    default: (new TeachingItem()).fillConstantExampleData().toFirestore(),
+  }
+
+  fromFirestore(data: any) : TeachingItem {
+    const ti = new TeachingItem();
+    ti.id = data.id;
+    ti.longStrings.title = data.title;
+    ti.longStrings.desctiption = data.description;
+    ti.numbers.order = data.order;
+    return ti;
   }
 }

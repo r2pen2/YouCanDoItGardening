@@ -25,31 +25,16 @@ const userCanEditTestimonials = true;
 export default function Testimonials() {
 
   const [testimonialsFetched, setTestimonialsFetched] = useState(false);
-  const [slideshowItemsFetched, setSlideshowItemsFetched] = useState(false);
 
   const [testimonials, setTestimonials] = useState([]);
-  const [slideshowItems, setSlideshowItems] = useState([]);
 
   useEffect(() => {
     Testimonial.getAndSet(setTestimonials, setTestimonialsFetched);
-    TestimonialSlideshowPicture.getAndSet(setSlideshowItems, setSlideshowItemsFetched);
   }, [])
   
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  function SlideshowItemCard({testimonialSlideshowPicture}) {
-    return (
-      <div className="p-2 gap-2 d-flex flex-column align-items-center justify-content-center" style={{height: '100%', userSelect: "none"}}>
-        <ModelEditButton model={TestimonialSlideshowPicture} data={testimonialSlideshowPicture} userCanEdit={userCanEditTestimonials} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen}/>
-        <img className="img-shadow no-select" src={testimonialSlideshowPicture.imageSource} alt="slideshow-item" style={{width: '100%', height: '100%', objectFit: "contain"}}/>
-        <Divider />
-        <Text>
-          {testimonialSlideshowPicture.caption}
-        </Text>
-      </div>
-    )
-  }
 
   const quoteSvg = (
     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" style={{borderRadius: "50%", border: "1px solid #d4d4d4", maxWidth: 50}}>
@@ -100,31 +85,20 @@ export default function Testimonials() {
   }
 
   return (
-    <WLSpinnerPage dependencies={[testimonialsFetched, slideshowItemsFetched]}>
+    <WLSpinnerPage dependencies={[testimonialsFetched]}>
       <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
       <WLBlockHeader text="Testimonials" color={blockHeaderFill} short />
       <section className='d-flex flex-column align-items-center justify-content-center'>
+        <div className="fill-line" style={{marginBottom: "1rem"}}></div>
         <WLHeader firestoreId="testimonial-quotes-header" editable={userCanEditText} />
         <AddModelButton userCanEdit={userCanEditTestimonials} model={Testimonial} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
         <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
           <WLAliceCarousel
-            underlineColor="rgba(87,36,170,0.05)"
+            scaleActive
             paginationTop
             pagination
             breakpoints={createCarouselBreakpoints(1, null, 2, null, 3)}
             items={testimonials.map((t, i) => <TestimonialCard testimonial={t} key={i} />)}
-          />
-        </div>
-      </section>
-      <section className='d-flex flex-column align-items-center justify-content-center'>
-        <div className="fill-line" style={{marginBottom: "1rem"}}></div>
-        <AddModelButton userCanEdit={userCanEditTestimonials} model={TestimonialSlideshowPicture} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
-        <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
-          <WLAliceCarousel
-            underlineColor="rgba(87,36,170,0.25)"
-            pagination
-            breakpoints={createCarouselBreakpoints(1, 2, 3, null, 4)}
-            items={slideshowItems.map((s, i) => <SlideshowItemCard testimonialSlideshowPicture={s} key={i} />)}
           />
         </div>
       </section>
