@@ -11,10 +11,16 @@
   user-select: none; /* Standard syntax */
 }
 
+.fade-to-pink {
+  background-image: url("../images/gradient/FadeToPink.svg");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 100vw;
+}
+
 .slideshow-background {
   background-image: url("../images/gradient/SlideshowBackground.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: drop-shadow(1px 1px 1px black)
 }

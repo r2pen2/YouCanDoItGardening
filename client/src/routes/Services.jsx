@@ -61,6 +61,7 @@ export default function Services() {
     />
     <div className="section-divider"/>
     <WLResponsiveSectionEditable
+      sectionClasses="fade-to-pink"
       headerBlack
       textRight
       setLoaded={setVirtualLoaded}
