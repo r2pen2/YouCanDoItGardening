@@ -44,7 +44,7 @@ export default function Services() {
           </Text>
         </div>
         <Divider />
-        <img className="no-select" src={testimonialSlideshowPicture.imageSource} alt="slideshow-item" style={{border: "2px solid white", borderRadius: "1rem", width: '100%', height: '100%', objectFit: "contain"}}/>
+        <img className="no-select img-shadow" src={testimonialSlideshowPicture.imageSource} alt="slideshow-item" style={{borderRadius: "1rem", width: '100%', height: '100%', objectFit: "contain"}}/>
       </div>
     )
   }
@@ -72,7 +72,7 @@ export default function Services() {
       <AddModelButton userCanEdit={userCanEditTestimonials} model={TestimonialSlideshowPicture} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
-          scaleActive
+          autoPlay={4000}
           pagination
           paginationTop
           breakpoints={createCarouselBreakpoints(1, 2, 2, 3, 4)}

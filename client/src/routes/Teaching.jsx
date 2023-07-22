@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import "../assets/style/teaching.css"
-import { WLBlockHeader, WLHeader } from '../libraries/Web-Legos/components/Text';
+import { WLBlockHeader, WLHeader, WLText } from '../libraries/Web-Legos/components/Text';
 
 import { blockHeaderFill } from "../assets/style/colors";
 import { WLResponsiveSectionEditable, WLSpinnerPage } from '../libraries/Web-Legos/components/Layout';
@@ -59,30 +59,15 @@ export default function Teaching() {
   <WLSpinnerPage dependencies={[teachingHookLoaded, teachingDescriptionLoaded]} containerClasses="page-background">
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
     <WLBlockHeader text="Teaching & Speaking" color={blockHeaderFill} short />
-    <WLResponsiveSectionEditable
-      headerBlack
-      setLoaded={setTeachingHookLoaded}
-      stackHeader 
-      columnWidthLeft="8" 
-      columnWidthRight="4" 
-      editable={userCanEditText} 
-      firestoreId="teaching-hook" 
-      image={
-        <WLImage 
-          editable={userCanEditText} 
-          firestoreId="teaching-hook" 
-          shadow 
-          imgCss={{
-            height: "100%", 
-            maxHeight: 600
-          }}
-        />
-      }
-    />
-    <div className="section-divider"/>
-    <div className="section container-fluid d-flex flex-column align-items-center jusytify-content-start">
+    <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
+      <WLHeader firestoreId="teaching-hook-header" editable={userCanEditText}></WLHeader>
+      <div style={{maxWidth: 1400}}>
+        <WLText firestoreId="teaching-hook" editable={userCanEditText}></WLText>
+      </div>
+    </section>
+    <section className="container-fluid d-flex flex-column align-items-center jusytify-content-start">
       <div className="row w-100">
-        <div className="col-xxl-4 py-xl-4 py-3 col-xl-12 d-flex flex-column align-items-center justify-content-center">
+        <div className="col-xxl-4 py-xl-4 py-3 col-xl-0 d-flex flex-column align-items-center justify-content-center">
           <WLImage 
             editable={userCanEditText} 
             firestoreId="teaching-description" 
@@ -101,7 +86,7 @@ export default function Teaching() {
             </div>
         </div>
       </div>
-    </div>
+    </section>
     </WLSpinnerPage>
   )
 }

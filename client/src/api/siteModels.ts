@@ -119,7 +119,6 @@ export class TestimonialSlideshowPicture extends SiteModel {
   }
 }
 
-
 export class TeachingItem extends SiteModel {
   
   constructor() {
@@ -156,5 +155,73 @@ export class TeachingItem extends SiteModel {
     ti.longStrings.desctiption = data.description;
     ti.numbers.order = data.order;
     return ti;
+  }
+}
+
+export class VirtualServiceItem extends SiteModel {
+  
+  constructor() {
+    super("virtual-service-items", "Virtual Service Item")
+  }
+  
+  booleans = {}
+  images = {}
+  numbers = {
+    order: null,
+  }
+  shortStrings = {
+    text: "",
+  }
+  longStrings = {}
+
+  fillConstantExampleData() {
+    this.shortStrings.text = "Sessions are conveniently conducted over FaceTime or Google Meet.";
+    return this;
+  }
+
+  static examples = {
+    default: (new VirtualServiceItem()).fillConstantExampleData().toFirestore(),
+  }
+
+  fromFirestore(data: any) : VirtualServiceItem {
+    const vsi = new VirtualServiceItem();
+    vsi.id = data.id;
+    vsi.shortStrings.text = data.text;
+    vsi.numbers.order = data.order;
+    return vsi;
+  }
+}
+
+export class InPersonServiceItem extends SiteModel {
+  
+  constructor() {
+    super("in-person-service-items", "In-Person Service Item")
+  }
+  
+  booleans = {}
+  images = {}
+  numbers = {
+    order: null,
+  }
+  shortStrings = {
+    text: "",
+  }
+  longStrings = {}
+
+  fillConstantExampleData() {
+    this.shortStrings.text = "I will personally guide you on plant care and propose improvements customized to your garden.";
+    return this;
+  }
+
+  static examples = {
+    default: (new InPersonServiceItem()).fillConstantExampleData().toFirestore(),
+  }
+
+  fromFirestore(data: any) : InPersonServiceItem {
+    const ipsi = new InPersonServiceItem();
+    ipsi.id = data.id;
+    ipsi.shortStrings.text = data.text;
+    ipsi.numbers.order = data.order;
+    return ipsi;
   }
 }

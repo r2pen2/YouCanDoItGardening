@@ -57,7 +57,7 @@ export default function Testimonials() {
             {quoteSvg}
           </div>
           <div className="col-10 p-2 gap-2 d-flex flex-column align-items-center justify-content-center">
-            <Text align="center">
+            <Text align="center" size="$lg">
               {testimonial.message}
             </Text>
             <div className="w-100 d-flex flex-row align-items-center justify-content-center gap-2">
