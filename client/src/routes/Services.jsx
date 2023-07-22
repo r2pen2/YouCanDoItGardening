@@ -36,7 +36,7 @@ export default function Services() {
   
   function SlideshowItemCard({testimonialSlideshowPicture}) {
     return (
-      <div className="p-2 gap-2 d-flex flex-column align-items-center justify-content-center" style={{height: '100%', userSelect: "none"}}>
+      <div className="p-2 p-lg-4 gap-2 d-flex flex-column align-items-center justify-content-center" style={{height: '100%', userSelect: "none"}}>
         <ModelEditButton solid model={TestimonialSlideshowPicture} data={testimonialSlideshowPicture} userCanEdit={userCanEditTestimonials} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen}/>
         <div style={{filter: "drop-shadow(1px 1px 24px white)"}}>
           <Text>
