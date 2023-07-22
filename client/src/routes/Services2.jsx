@@ -141,7 +141,6 @@ export default function Services() {
       </div>
     </section>
     <section className='d-flex flex-column align-items-center justify-content-center slideshow-background'>
-      <AddModelButton userCanEdit={userCanEditTestimonials} model={TestimonialSlideshowPicture} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
           autoPlay={4000}
@@ -151,6 +150,7 @@ export default function Services() {
           items={slideshowItems.map((s, i) => <SlideshowItemCard testimonialSlideshowPicture={s} key={i} />)}
         />
       </div>
+      <AddModelButton userCanEdit={userCanEditTestimonials} model={TestimonialSlideshowPicture} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
     </section>
     </WLSpinnerPage>
   )

@@ -19,6 +19,7 @@ export default function About() {
     <WLBlockHeader text="About" color={blockHeaderFill} short />
     <WLResponsiveSectionEditable
       headerBlack
+      headerAlign="left"
       setLoaded={setAboutLoaded}
       stackHeader 
       columnWidthLeft="8" 

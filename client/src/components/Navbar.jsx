@@ -34,10 +34,6 @@ const collapseItems = [
     href: "services",
   },
   {
-    name: "Testimonials",
-    href: "testimonials",
-  },
-  {
     name: "Media",
     href: "media",
   },
@@ -83,13 +79,6 @@ function NavbarPages() {
         itemCss={{fontSize: navbarItemFontSize}}
       >
         Services & Fees
-      </NextUINavbar.Link>
-      <NextUINavbar.Link 
-        isActive={checkLinkActive("testimonials")}
-        href="testimonials"
-        itemCss={{fontSize: navbarItemFontSize}}
-      >
-        Testimonials
       </NextUINavbar.Link>
       <NextUINavbar.Link 
         isActive={checkLinkActive("media")}

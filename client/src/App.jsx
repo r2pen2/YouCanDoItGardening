@@ -8,7 +8,6 @@ import About from './routes/About';
 import Services from './routes/Services2';
 import Media from './routes/Media';
 import Resources from './routes/Resources';
-import Testimonials from './routes/Testimonials';
 import Teaching from './routes/Teaching';
 import Footer from './components/Footer';
 
@@ -27,7 +26,6 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/media" element={<Media />} />
             <Route path="/resources" element={<Resources />} />
-            <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/teaching" element={<Teaching />} />
           </Routes>
         <Footer />
