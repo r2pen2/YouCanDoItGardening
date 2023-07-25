@@ -61,7 +61,7 @@ export default function Teaching() {
     <WLBlockHeader text="Teaching & Speaking" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
       <WLHeader firestoreId="teaching-hook-header" editable={userCanEditText}></WLHeader>
-      <div style={{maxWidth: 1400}}>
+      <div style={{maxWidth: 1400, width: "100%"}}>
         <WLText firestoreId="teaching-hook" editable={userCanEditText}></WLText>
       </div>
     </section>

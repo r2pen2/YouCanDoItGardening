@@ -76,7 +76,7 @@ export function ContactModal({open, setOpen}) {
   function VirtualScheduleOptionCard() {
     return (
       <ModalOptionCard 
-        icon={<ComputerTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.blue}}/>}
+        icon={<ComputerTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.purple}}/>}
         title="Virtual Consultations" 
         subtitle="Book your zoom lawn check-up now!" 
         href={scheduleOnlineLink}

@@ -52,7 +52,7 @@ export default function Services() {
           </Text>
         </div>
         <Divider />
-        <img className="no-select img-shadow" src={testimonialSlideshowPicture.imageSource} alt="slideshow-item" style={{borderRadius: "1rem", width: '100%', height: '100%', objectFit: "contain"}}/>
+        <img className="no-select" src={testimonialSlideshowPicture.imageSource} alt="slideshow-item" style={{borderRadius: "1rem", width: '100%', height: '100%', objectFit: "contain"}}/>
       </div>
     )
   }
@@ -65,10 +65,10 @@ export default function Services() {
             { virtual ? <ComputerTwoToneIcon style={{color: "#934eb1"}}/> : <LocationOnTwoToneIcon style={{color: "#934eb1"}}/> }
           </div>
           <div className="col-md-10 col-12 d-flex flex-row">
-            <div style={{border: "2px solid #AB84D4", borderRightWidth: 0, width: "1rem"}}/>
-            <Text className="d-none d-md-flex" size="$lg" style={{width: "100%", marginBottom: "0.5rem", marginLeft:"1rem", marginRight:"1rem"}}>{serviceItem.text}</Text>
+            <div style={{border: "2px solid #A67FCF", borderRightWidth: 0, width: "1rem"}}/>
+            <Text className="d-none d-md-flex" align="center" size="$lg" style={{width: "100%", marginBottom: "0.5rem", marginLeft:"1rem", marginRight:"1rem"}}>{serviceItem.text}</Text>
             <Text className="d-inline d-md-none" align="center" style={{width: "100%", marginBottom: "0.5rem", marginLeft:"1rem", marginRight:"1rem"}}>{serviceItem.text}</Text>
-            <div style={{border: "2px solid #AB84D4", borderLeftWidth: 0, width: "1rem"}}/>
+            <div style={{border: "2px solid #A67FCF", borderLeftWidth: 0, width: "1rem"}}/>
           </div>
           <div className="col-md-1 col-12 d-flex flex-row justify-content-center">
             <ModelEditButton small userCanEdit={userCanEditText} model={virtual ? VirtualServiceItem : InPersonServiceItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} data={serviceItem} />
@@ -92,7 +92,7 @@ export default function Services() {
     <WLBlockHeader text="Services & Fees" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center">
       <WLHeader firestoreId="services-header" editable={userCanEditText}></WLHeader>
-      <div style={{maxWidth: 1400}}>
+      <div style={{maxWidth: 1400, width: "100%"}}>
         <WLText firestoreId="services-description" editable={userCanEditText}></WLText>
       </div>
     </section>
@@ -143,7 +143,6 @@ export default function Services() {
     <section className='d-flex flex-column align-items-center justify-content-center slideshow-background'>
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
-          autoPlay={4000}
           pagination
           paginationTop
           breakpoints={createCarouselBreakpoints(1, 2, 2, 3, 4)}

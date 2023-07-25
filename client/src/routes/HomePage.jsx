@@ -80,7 +80,7 @@ export default function HomePage() {
                 { 
                   testimonial.virtual 
                   ? 
-                    <ComputerTwoToneIcon style={{color: iconFills.blue}} />
+                    <ComputerTwoToneIcon style={{color: iconFills.purple}} />
                   : 
                     <LocationOnTwoToneIcon style={{color: iconFills.purple}} />
                 }
@@ -139,7 +139,7 @@ export default function HomePage() {
     }
 
     return (
-        <Button className="w-100 d-inline mt-2" css={{minHeight: 50}} color="gradient" bordered size="$sm" onClick={handleScheduleButtonClick}>
+        <Button className="w-100 d-inline mt-2" css={{minHeight: 50}} flat size="$sm" onClick={handleScheduleButtonClick}>
           Schedule A Consultation
         </Button>
     )
@@ -156,12 +156,18 @@ export default function HomePage() {
           <Spacer y={1} />
         </div>
         <Divider/>
-        <div className="row w-100 d-flex flex-row align-items-start justify-content-start py-2">
-          <div className="p-2 col-xl-6 col-lg-12 d-flex flex-column align-items-end justify-content-start">
-            <img src={beforeAndAfter.beforeSource} draggable={false} className="img-shadow no-select" alt="before-pic" style={{maxHeight: 500, width: "100%", height: "auto", objectFit: "contain"}} />
+        <div className="row w-100 py-2">
+          <div className="p-2 col-6 d-none d-xl-flex flex-column align-items-end justify-content-start">
+            <img src={beforeAndAfter.beforeSource} draggable={false} className="no-select" alt="before-pic" style={{maxHeight: 500, maxWidth: 750, width: "100%", height: "auto", objectFit: "contain"}} />
           </div>
-          <div className="p-2 col-xl-6 col-lg-12 d-flex flex-column align-items-start justify-content-start">
-            <img src={beforeAndAfter.afterSource} draggable={false} className="img-shadow no-select" alt="after-pic" style={{maxHeight: 500, width: "100%", height: "auto", objectFit: "contain"}} />
+          <div className="p-2 col-6 d-none d-xl-flex flex-column align-items-start justify-content-start">
+            <img src={beforeAndAfter.afterSource} draggable={false} className="no-select" alt="after-pic" style={{maxHeight: 500, maxWidth: 750, width: "100%", height: "auto", objectFit: "contain"}} />
+          </div>
+          <div className="p-2 col-12 d-flex d-xl-none flex-column align-items-center justify-content-start">
+            <img src={beforeAndAfter.beforeSource} draggable={false} className="no-select" alt="before-pic" style={{maxHeight: 500, maxWidth: 750, width: "100%", height: "auto", objectFit: "contain"}} />
+          </div>
+          <div className="p-2 col-12 d-flex d-xl-none flex-column align-items-center justify-content-start">
+            <img src={beforeAndAfter.afterSource} draggable={false} className="no-select" alt="after-pic" style={{maxHeight: 500, maxWidth: 750, width: "100%", height: "auto", objectFit: "contain"}} />
           </div>
         </div>
       </div>
@@ -219,7 +225,7 @@ export default function HomePage() {
         <div className="container d-flex flex-row justify-content-center align-items-center">
           <div className="row w-100 justify-content-center">
             <div className="col-xl-6 col-md-12 p-2 d-flex flex-row justify-content-center align-items-center">
-              <WLImage firestoreId="jess" shadow round editable={userCanEditText} imgClasses="jess-image" />
+              <WLImage firestoreId="jess" round editable={userCanEditText} imgClasses="jess-image" />
             </div>
             <div className="col-xl-6 col-md-12 d-flex flex-column px-1 py-1 px-lg-5 py-3 px-lg-5 justify-content-around" style={{maxWidth: 750}}>
               <div>
@@ -233,7 +239,7 @@ export default function HomePage() {
       </section>
       <img src={grayWaveTop} alt="gray-wave-top" style={{width: "100%", objectFit: "cover"}} />
       <section className='d-flex flex-column align-items-center justify-content-center' style={{backgroundColor: "#F5F5F5"}}>
-        <WLHeader color="#481379" firestoreId="testimonial-quotes-header" editable={userCanEditText} />
+        <WLHeader color="#a67fcf" firestoreId="testimonial-quotes-header" editable={userCanEditText} />
         <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
           <WLAliceCarousel
             scaleActive

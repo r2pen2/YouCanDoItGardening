@@ -32,6 +32,7 @@ export default function About() {
           shadow 
           imgCss={{
             height: "100%", 
+            objectFit: "cover",
             maxHeight: 600
           }}
         />
