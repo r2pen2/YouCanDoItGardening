@@ -135,12 +135,12 @@ export class TeachingItem extends SiteModel {
   }
   longStrings = {
     title: "",
-    desctiption: "",
+    description: "",
   }
 
   fillConstantExampleData() {
     this.longStrings.title = "The Arlington Community Education Catalog";
-    this.longStrings.desctiption = "I usually teach at least one class on gardening for beginners in the spring and fall, so look out for those if you're local!";
+    this.longStrings.description = "I usually teach at least one class on gardening for beginners in the spring and fall, so look out for those if you're local!";
     return this;
   }
 
@@ -152,7 +152,7 @@ export class TeachingItem extends SiteModel {
     const ti = new TeachingItem();
     ti.id = data.id;
     ti.longStrings.title = data.title;
-    ti.longStrings.desctiption = data.description;
+    ti.longStrings.description = data.description;
     ti.numbers.order = data.order;
     return ti;
   }
@@ -223,5 +223,102 @@ export class InPersonServiceItem extends SiteModel {
     ipsi.shortStrings.text = data.text;
     ipsi.numbers.order = data.order;
     return ipsi;
+  }
+}
+
+
+export class HomeItem extends SiteModel {
+  constructor() {
+    super("home-pictures", "Home Picture")
+  }
+  booleans = {}
+  images = {
+    imageSource: "",
+  }
+  numbers = {
+    order: null,
+  }
+  shortStrings = {}
+  longStrings = {}
+
+  fillConstantExampleData() {
+    this.images.imageSource = "https://ih1.redbubble.net/image.3309736636.6267/st,small,507x507-pad,600x600,f8f8f8.jpg";
+    return this;
+  }
+
+  static examples = {
+    default: (new HomeItem()).fillConstantExampleData().toFirestore(),
+  }
+
+  fromFirestore(data: any) : HomeItem {
+    const hi = new HomeItem();
+    hi.id = data.id;
+    hi.numbers.order = data.order;
+    hi.images.imageSource = data.imageSource;
+    return hi;
+  }
+}
+
+export class NewHampshireItem extends SiteModel {
+  constructor() {
+    super("nh-pictures", "NH Picture")
+  }
+  booleans = {}
+  images = {
+    imageSource: "",
+  }
+  numbers = {
+    order: null,
+  }
+  shortStrings = {}
+  longStrings = {}
+
+  fillConstantExampleData() {
+    this.images.imageSource = "https://ih1.redbubble.net/image.3309736636.6267/st,small,507x507-pad,600x600,f8f8f8.jpg";
+    return this;
+  }
+
+  static examples = {
+    default: (new NewHampshireItem()).fillConstantExampleData().toFirestore(),
+  }
+
+  fromFirestore(data: any) : NewHampshireItem {
+    const nhi = new NewHampshireItem();
+    nhi.id = data.id;
+    nhi.numbers.order = data.order;
+    nhi.images.imageSource = data.imageSource;
+    return nhi;
+  }
+}
+
+export class ClientItem extends SiteModel {
+  constructor() {
+    super("client-pictures", "Client Picture")
+  }
+  booleans = {}
+  images = {
+    imageSource: "",
+  }
+  numbers = {
+    order: null,
+  }
+  shortStrings = {}
+  longStrings = {}
+
+  fillConstantExampleData() {
+    this.images.imageSource = "https://ih1.redbubble.net/image.3309736636.6267/st,small,507x507-pad,600x600,f8f8f8.jpg";
+    return this;
+  }
+
+  static examples = {
+    default: (new ClientItem()).fillConstantExampleData().toFirestore(),
+  }
+
+  fromFirestore(data: any) : ClientItem {
+    const ci = new ClientItem();
+    ci.id = data.id;
+    ci.numbers.order = data.order;
+    ci.images.imageSource = data.imageSource;
+    return ci;
   }
 }

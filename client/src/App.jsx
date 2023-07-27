@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import HomePage from "./routes/HomePage";
 import About from './routes/About';
-import Services from './routes/Services2';
-import Media from './routes/Media';
+import Services from './routes/Services';
 import Resources from './routes/Resources';
-import Teaching from './routes/Teaching';
+import FindMe from './routes/FindMe';
 import Footer from './components/Footer';
+import Gallery from './routes/Gallery';
 
 export const serverURL = '/';
 
@@ -24,9 +24,9 @@ function App() {
             <Route path="*" element={<HomePage />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/media" element={<Media />} />
             <Route path="/resources" element={<Resources />} />
-            <Route path="/teaching" element={<Teaching />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/find-me" element={<FindMe />} />
           </Routes>
         <Footer />
       </div>

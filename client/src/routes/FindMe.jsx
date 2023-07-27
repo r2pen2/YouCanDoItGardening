@@ -15,7 +15,7 @@ import { Card, Divider, Text } from '@nextui-org/react';
 
 const userCanEditText = true;
 
-export default function Teaching() {
+export default function FindMe() {
 
   const [teachingItems, setTeachingItems] = useState([]);
 
@@ -58,7 +58,7 @@ export default function Teaching() {
   return (
   <WLSpinnerPage dependencies={[teachingHookLoaded, teachingDescriptionLoaded]} containerClasses="page-background">
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
-    <WLBlockHeader text="Teaching & Speaking" color={blockHeaderFill} short />
+    <WLBlockHeader text="Find Me" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
       <WLHeader firestoreId="teaching-hook-header" editable={userCanEditText}></WLHeader>
       <div style={{maxWidth: 1400, width: "100%"}}>

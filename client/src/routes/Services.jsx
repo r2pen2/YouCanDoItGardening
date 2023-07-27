@@ -1,23 +1,21 @@
 import React, { useState } from 'react'
 
 import "../assets/style/services.css"
-import { WLBlockHeader, WLHeader, WLText, WLTextBlock } from '../libraries/Web-Legos/components/Text';
-import { WLResponsiveSectionEditable, WLSpinnerPage } from '../libraries/Web-Legos/components/Layout';
+import { WLBlockHeader, WLHeader, WLText } from '../libraries/Web-Legos/components/Text';
+import { WLSpinnerPage } from '../libraries/Web-Legos/components/Layout';
 
 import { blockHeaderFill } from "../assets/style/colors";
-import { Card, Divider, Text } from '@nextui-org/react';
-import { markdownToHTML } from '../libraries/Web-Legos/api/strings';
+import { Card, Divider, Text, Button } from '@nextui-org/react';
 import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
-import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 import { useEffect } from 'react';
-import { InPersonServiceItem, TestimonialSlideshowPicture, VirtualServiceItem } from '../api/siteModels.ts';
+import { InPersonServiceItem, VirtualServiceItem } from '../api/siteModels.ts';
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 
 
 import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
 import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone';
+import { ContactModal } from '../components/Modals';
 
-const userCanEditTestimonials = true;
 const userCanEditText = true;
 
 export default function Services() {
@@ -28,34 +26,18 @@ export default function Services() {
   const [virtualServiceItems, setVirtualServiceItems] = useState([VirtualServiceItem.examples.default]);
   const [inPersonServiceItems, setInPersonServiceItems] = useState([InPersonServiceItem.examples.default]);
 
-  const [slideshowItems, setSlideshowItems] = useState([]);
-  const [slideshowItemsFetched, setSlideshowItemsFetched] = useState(false);
-
   
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
 
+  
+  const [contactModalOpen, setContactModalOpen] = useState(false); // Whether contact modal is open
+
   useEffect(() => {
-    TestimonialSlideshowPicture.getAndSet(setSlideshowItems, setSlideshowItemsFetched);
     VirtualServiceItem.getAndSet(setVirtualServiceItems, setVirtualLoaded);
     InPersonServiceItem.getAndSet(setInPersonServiceItems, setInPersonLoaded);
   }, [])
 
-  
-  function SlideshowItemCard({testimonialSlideshowPicture}) {
-    return (
-      <div className="p-2 gap-2 d-flex flex-column align-items-center justify-content-center" style={{height: '100%', userSelect: "none"}}>
-        <ModelEditButton model={TestimonialSlideshowPicture} data={testimonialSlideshowPicture} userCanEdit={userCanEditTestimonials} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen}/>
-        <div style={{filter: "drop-shadow(1px 1px 24px white)"}}>
-          <Text>
-            {testimonialSlideshowPicture.caption}
-          </Text>
-        </div>
-        <Divider />
-        <img className="no-select" src={testimonialSlideshowPicture.imageSource} alt="slideshow-item" style={{borderRadius: "1rem", width: '100%', height: '100%', objectFit: "contain"}}/>
-      </div>
-    )
-  }
 
   function ServiceItem({serviceItem, virtual}) {
     return (
@@ -86,8 +68,29 @@ export default function Services() {
     return inPersonServiceItems.map((v,i) => <ServiceItem serviceItem={v} key={i} />);
   }
 
+  
+  /**
+   * A button scaled to the screen width that opens the {@link ContactModal}
+   */
+  function ScheduleButton() {
+    
+    /**
+     * When the button is clicked, the contact modal should be opened
+     */
+    function handleScheduleButtonClick() {
+      setContactModalOpen(true);
+    }
+
+    return (
+        <Button className="w-100 d-inline m-2" css={{minHeight: 50, maxWidth: 250}} flat size="$lg" onClick={handleScheduleButtonClick}>
+          Schedule A Consultation
+        </Button>
+    )
+  }
+
   return (
-  <WLSpinnerPage dependencies={[virtualLoaded, inPersonLoaded, slideshowItemsFetched]}>
+  <WLSpinnerPage dependencies={[virtualLoaded, inPersonLoaded]}>
+    <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
     <WLBlockHeader text="Services & Fees" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center">
@@ -140,16 +143,9 @@ export default function Services() {
         </div>
       </div>
     </section>
-    <section className='d-flex flex-column align-items-center justify-content-center slideshow-background'>
-      <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
-        <WLAliceCarousel
-          pagination
-          paginationTop
-          breakpoints={createCarouselBreakpoints(1, 2, 2, 3, 4)}
-          items={slideshowItems.map((s, i) => <SlideshowItemCard testimonialSlideshowPicture={s} key={i} />)}
-        />
-      </div>
-      <AddModelButton userCanEdit={userCanEditTestimonials} model={TestimonialSlideshowPicture} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
+    <section className="d-flex flex-column align-items-center justify-content-center py-2 gap-2" style={{backgroundColor: "#f5f5f5", filter:"drop-shadow(0px 0px 5px rgba(0,0,0,0.2))"}}>    
+      <WLHeader color="#a67fcf" firestoreId="schedule-header" editable={userCanEditText}></WLHeader>
+      <ScheduleButton />
     </section>
     </WLSpinnerPage>
   )

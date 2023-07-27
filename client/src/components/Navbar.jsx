@@ -34,12 +34,12 @@ const collapseItems = [
     href: "services",
   },
   {
-    name: "Media",
-    href: "media",
-  },
-  {
     name: "Resources",
     href: "resources",
+  },
+  {
+    name: "Gallery",
+    href: "gallery",
   },
   {
     name: "Teaching & Speaking",
@@ -81,13 +81,6 @@ function NavbarPages() {
         Services & Fees
       </NextUINavbar.Link>
       <NextUINavbar.Link 
-        isActive={checkLinkActive("media")}
-        href="media"
-        itemCss={{fontSize: navbarItemFontSize}}
-      >
-        Media
-      </NextUINavbar.Link>
-      <NextUINavbar.Link 
         isActive={checkLinkActive("resources")}
         href="resources"
         itemCss={{fontSize: navbarItemFontSize}}
@@ -95,11 +88,18 @@ function NavbarPages() {
         Resources
       </NextUINavbar.Link>
       <NextUINavbar.Link 
-        isActive={checkLinkActive("teaching")}
-        href="teaching"
+        isActive={checkLinkActive("gallery")}
+        href="gallery"
         itemCss={{fontSize: navbarItemFontSize}}
       >
-        Teaching & Speaking
+        Gallery
+      </NextUINavbar.Link>
+      <NextUINavbar.Link 
+        isActive={checkLinkActive("find-me")}
+        href="find-me"
+        itemCss={{fontSize: navbarItemFontSize}}
+      >
+        Find Me
       </NextUINavbar.Link>
     </NextUINavbar.Content>
   )

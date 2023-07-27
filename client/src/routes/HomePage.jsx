@@ -10,12 +10,6 @@ import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import { ContactModal } from '../components/Modals';
 import { iconFills } from '../components/Modals';
 
-import grayWaveTop from "../assets/images/gradient/GrayWaveTop.svg"
-import grayWaveBottom from "../assets/images/gradient/GrayWaveBottom.svg"
-
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-
 import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
 import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone';
 import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components/Text";
@@ -28,6 +22,7 @@ import home3 from "../assets/images/gradient/markup-cropped.svg"
 import { WLAliceCarousel, WLAliceCarouselItem, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 import { SiteModel, fetchModelData, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
 import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
+import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 
 const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
 
@@ -119,7 +114,7 @@ export default function HomePage() {
   const [whyItWorksHeaderLoaded, setWhyItWorksHeaderLoaded] = useState(false);            // Whether "Why This Model Works" header has loaded
   const [whyItWorksDescriptionLoaded, setWhyItWorksDescriptionLoaded] = useState(false);  // Whether "Why This Model Works" description has loaded
   const [saveHookLoaded, setSaveHookLoaded] = useState(false);                            // Whether "Save Money" hook has loaded
-  const [saveDescriptionLoaded, setSaveDescriptionLoaded] = useState(false);              // Whether "Save Money" desctiption has loaded
+  const [saveDescriptionLoaded, setSaveDescriptionLoaded] = useState(false);              // Whether "Save Money" description has loaded
   const [lookHookLoaded, setLookHookLoaded] = useState(false);                            // Whether "Looks Good" hook has loaded
   const [lookDescriptionLoaded, setLookDescriptionLoaded] = useState(false);              // Whether "Looks Good" description has loaded
   const [feelHookLoaded, setFeelHookLoaded] = useState(false);                            // Whether "Feels Good" hook has loaded
@@ -237,7 +232,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <img src={grayWaveTop} alt="gray-wave-top" style={{width: "100%", objectFit: "cover"}} />
+      <WaveTop color="#f5f5f5" />
       <section className='d-flex flex-column align-items-center justify-content-center' style={{backgroundColor: "#F5F5F5"}}>
         <WLHeader color="#a67fcf" firestoreId="testimonial-quotes-header" editable={userCanEditText} />
         <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
@@ -251,8 +246,8 @@ export default function HomePage() {
         </div>
         <AddModelButton userCanEdit={userCanEditTestimonials} model={Testimonial} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
       </section>
-      <img src={grayWaveBottom} alt="gray-wave-top" style={{width: "100%", objectFit: "cover"}} />
-      <section className='d-flex flex-column align-items-center justify-content-center py-5'>
+      <WaveBottom color="#f5f5f5" />
+      <section classwName='d-flex flex-column align-items-center justify-content-center py-5'>
         <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}/>
         <WLAliceCarousel
           pagination
