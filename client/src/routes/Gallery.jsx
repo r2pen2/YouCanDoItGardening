@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { ClientItem, HomeItem, NewHampshireItem, TestimonialSlideshowPicture } from '../api/siteModels.ts';
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
+import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
 
 const userCanEditTestimonials = true;
 const userCanEditText = true;
@@ -53,7 +54,13 @@ export default function Gallery() {
         <WLText firestoreId="gallery-description" editable={userCanEditText}></WLText>
       </div>
     </section>
+    <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
+      <WLYoutubeEmbed maxWidth={1400}>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/rNOzgQm63BE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </WLYoutubeEmbed>
+    </section>
     <section className='d-flex flex-column align-items-center justify-content-center'>
+      <WLHeader color="#a67fcf" firestoreId="home-pictures-header" editable={userCanEditText} />
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
           pagination

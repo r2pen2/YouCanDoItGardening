@@ -7,20 +7,25 @@ import { blockHeaderFill } from "../assets/style/colors";
 import { WLResponsiveSectionEditable, WLSpinnerPage } from '../libraries/Web-Legos/components/Layout';
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 
-import { TeachingItem } from "../api/siteModels.ts";
+import { MediaApperance, TeachingItem } from "../api/siteModels.ts";
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 
 import { AddModelButton, ModelEditButton, ModelEditModal } from "../libraries/Web-Legos/components/Modals"
 import { Card, Divider, Text } from '@nextui-org/react';
+import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
+import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
+import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 
 const userCanEditText = true;
 
 export default function FindMe() {
 
   const [teachingItems, setTeachingItems] = useState([]);
+  const [mediaAppearances, setMediaAppearances] = useState([]);
 
   useEffect(() => {
     TeachingItem.getAndSet(setTeachingItems);
+    MediaApperance.getAndSet(setMediaAppearances);
   }, []);
 
   const [currentModel, setCurrentModel] = useState(new SiteModel());
@@ -55,6 +60,36 @@ export default function FindMe() {
     )
   }
 
+  function MediaAppearanceCard({mediaAppearance}) {
+    return (
+      <div className="p-2">
+        <Card
+          style={{
+            height: 400,
+            width: "100%",
+          }}
+          isPressable
+          isHoverable
+          onPress={() => window.open(mediaAppearance.link, "_blank")}
+        >
+          <Card.Image 
+            src={mediaAppearance.imageSource}
+            height={200}
+            width="100%"
+            objectFit='cover'
+          />
+          <Card.Body>
+            {mediaAppearance.description}
+          </Card.Body>
+          <Divider/>
+          <Card.Footer style={{fontWeight:"bold"}}>
+            {mediaAppearance.title}
+          </Card.Footer>
+        </Card>
+      </div>
+    )
+  }
+
   return (
   <WLSpinnerPage dependencies={[teachingHookLoaded, teachingDescriptionLoaded]} containerClasses="page-background">
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
@@ -65,6 +100,18 @@ export default function FindMe() {
         <WLText firestoreId="teaching-hook" editable={userCanEditText}></WLText>
       </div>
     </section>
+    <WaveTop color="#f5f5f5"/>
+    <section className="d-flex flex-column align-items-center justify-content-center py-2 px-2 px-lg-5" style={{backgroundColor:"#f5f5f5"}}>
+      <WLHeader firestoreId="media-appearances-header" editable={userCanEditText} color="#a67fcf"></WLHeader>
+        <WLAliceCarousel
+          pagination
+          paginationTop
+          scaleActive
+          breakpoints={createCarouselBreakpoints(2, null, 3, 4, 5)}
+          items={mediaAppearances.map((ma, i) => <MediaAppearanceCard key={i} mediaAppearance={ma} />)}
+        />
+    </section>
+    <WaveBottom color="#f5f5f5"/>
     <section className="container-fluid d-flex flex-column align-items-center jusytify-content-start">
       <div className="row w-100">
         <div className="col-xxl-4 py-xl-4 py-3 col-xl-0 d-flex flex-column align-items-center justify-content-center">

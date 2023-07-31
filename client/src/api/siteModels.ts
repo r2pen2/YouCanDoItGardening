@@ -322,3 +322,47 @@ export class ClientItem extends SiteModel {
     return ci;
   }
 }
+
+export class MediaApperance extends SiteModel {
+  constructor() {
+    super("media-appearances", "Media Appearance")
+  }
+  booleans = {}
+  images = {
+    imageSource: "",
+  }
+  numbers = {
+    order: null,
+  }
+  shortStrings = {
+    title: "",
+    link: "",
+  }
+  longStrings = {
+    description: "",
+  }
+
+  fillConstantExampleData(alternate?: boolean) {
+    this.images.imageSource = alternate ? "https://preview.redd.it/7aiypuw0yweb1.jpg?width=640&crop=smart&auto=webp&s=86cc5a49fa0d1936fe03a901b18726fc267de638" : "https://i.ytimg.com/vi/SvVvmyzgWvY/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgBzgWAAoQHigIMCAAQARhlIFIoPzAP&rs=AOn4CLBJA8VdgXgn27gMNH2BQHfPPAr4-A";
+    this.shortStrings.title = alternate ? "Avenged Sevenfold Signed CD" : "Reviewbrah's Big Iron Cover";
+    this.shortStrings.link = alternate ? "https://www.reddit.com/r/avengedsevenfold/comments/15cthzm/whats_your_guys_opinion_is_this_legit/" : "https://www.youtube.com/watch?v=SvVvmyzgWvY&ab_channel=TheXMiles";
+    this.longStrings.description = alternate ? `"I can take it just for 3$, it's my best price. I don't know if someone wants to buy it, do you understand?" 🤣` : "Reviewbrah has gotten into music recently.";
+    return this;
+  }
+
+  static examples = {
+    default: (new MediaApperance()).fillConstantExampleData().toFirestore(),
+    alternate: (new MediaApperance()).fillConstantExampleData(true).toFirestore(),
+  }
+
+  fromFirestore(data: any) : MediaApperance {
+    const ma = new MediaApperance();
+    ma.id = data.id;
+    ma.numbers.order = data.order;
+    ma.images.imageSource = data.imageSource;
+    ma.shortStrings.title = data.title;
+    ma.shortStrings.link = data.link;
+    ma.longStrings.description = data.description;
+    return ma;
+  }
+}

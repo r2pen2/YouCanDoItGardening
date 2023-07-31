@@ -42,8 +42,8 @@ const collapseItems = [
     href: "gallery",
   },
   {
-    name: "Teaching & Speaking",
-    href: "teaching",
+    name: "Find Me",
+    href: "find-me",
   },
 ];
 
