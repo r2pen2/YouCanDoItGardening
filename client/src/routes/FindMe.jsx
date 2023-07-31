@@ -62,7 +62,7 @@ export default function FindMe() {
 
   function MediaAppearanceCard({mediaAppearance}) {
     return (
-      <div className="p-2">
+      <div className="p-2 d-flex flex-column align-items-center justify-content-center">
         <ModelEditButton userCanEdit={userCanEditText} data={mediaAppearance} model={MediaAppearance} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel}/>
         <Card
           style={{
