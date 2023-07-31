@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Button, Text, Card, Divider, Spacer, } from "@nextui-org/react";
+import { Button, Text, Divider, Spacer, } from "@nextui-org/react";
 
 import "../assets/style/homepage.css"
 
@@ -16,15 +16,13 @@ import { WLHeader, WLText, WLTextBlock } from "../libraries/Web-Legos/components
 
 import {BeforeAndAfter, Testimonial} from "../api/siteModels.ts";
 
-import { WLCenteredColumn, WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
+import { WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 import home3 from "../assets/images/gradient/markup-cropped.svg"
-import { WLAliceCarousel, WLAliceCarouselItem, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
-import { SiteModel, fetchModelData, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
+import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
+import { SiteModel, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
 import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
-
-const gradientPadding = {paddingLeft: ".5rem", paddingRight: ".5rem"}
 
 export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
@@ -34,12 +32,8 @@ const userCanEditBeforesAndAfters = true;
 
 export default function HomePage() {
   
-  
-
   const [testimonialsFetched, setTestimonialsFetched] = useState(false);
-
-  const [testimonials, setTestimonials] = useState([]);
-  
+  const [testimonials, setTestimonials] = useState([Testimonial.examples.default, Testimonial.examples.virtual]);
 
 
   const quoteSvg = (
@@ -94,7 +88,7 @@ export default function HomePage() {
   const [modelEditModalOpen, setModelEditModalOpen] = useState(false);
   const [currentModel, setCurrentModel] = useState(new SiteModel());
 
-  const [beforesAndAftersCarouselItems, setBeforesAndAftersCarouselItems] = useState([]);
+  const [beforesAndAftersCarouselItems, setBeforesAndAftersCarouselItems] = useState([<BeforeAndAfterCard beforeAndAfter={BeforeAndAfter.examples.default} />]);
 
   useEffect(() => {
     BeforeAndAfter.get().then((data) => {
@@ -192,7 +186,9 @@ export default function HomePage() {
             <WLHeader>
               You Can Do It Gardening
             </WLHeader>
-            <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText} />
+            <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText}>
+              Empowering you to feel more confident to do it yourself
+            </WLHeader>
           </div>
         </div>
         <img alt="leaf-line" src={home3} className="background-pattern" />
@@ -200,18 +196,18 @@ export default function HomePage() {
           <div className="elevated row d-flex flex-row justify-content-center">
             <TransparentHookCard
               icon={<SavingsTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded} />}
-              subtitleText={<WLText firestoreId="save-money-description" editable={userCanEditText} setLoaded={setSaveDescriptionLoaded} />}
+              titleText={<WLText firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded}>**Save Money**</WLText>}
+              subtitleText={<WLText firestoreId="save-money-description" editable={userCanEditText} setLoaded={setSaveDescriptionLoaded}>Landscapers are expensive!</WLText>}
             />
             <TransparentHookCard
               icon={<VisibilityTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}/>}
-              subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}/>}
+              titleText={<WLText firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}>**Looks Good**</WLText>}
+              subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}>Small changes can make a huge difference!</WLText>}
               />
             <TransparentHookCard
               icon={<LocalFloristTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="feels-good-hook" editable={userCanEditText} setLoaded={setFeelHookLoaded}/>}
-              subtitleText={<WLText firestoreId="feels-good-description" editable={userCanEditText} setLoaded={setFeelDescriptionLoaded}/>}
+              titleText={<WLText firestoreId="feels-good-hook" editable={userCanEditText} setLoaded={setFeelHookLoaded}>**Feels Good**</WLText>}
+              subtitleText={<WLText firestoreId="feels-good-description" editable={userCanEditText} setLoaded={setFeelDescriptionLoaded}>Doing it yourself is so satisfying!</WLText>}
             />
           </div>
         </div>
@@ -224,8 +220,14 @@ export default function HomePage() {
             </div>
             <div className="col-xl-6 col-md-12 d-flex flex-column px-1 py-1 px-lg-5 py-3 px-lg-5 justify-content-around" style={{maxWidth: 750}}>
               <div>
-                <WLHeader headerLevel={2} editable={userCanEditText} firestoreId="why-it-works-header" setLoaded={setWhyItWorksHeaderLoaded}/>
-                <WLTextBlock firestoreId="why-it-works" editable={userCanEditText} setLoaded={setWhyItWorksDescriptionLoaded}/>
+                <WLHeader headerLevel={2} editable={userCanEditText} firestoreId="why-it-works-header" setLoaded={setWhyItWorksHeaderLoaded}>
+                  Why This Model Works:
+                </WLHeader>
+                <WLTextBlock firestoreId="why-it-works" editable={userCanEditText} setLoaded={setWhyItWorksDescriptionLoaded}>
+                  Landscapers are in high demand and outsourcing may not be in the budget right now. Many people are more able than they realize. 
+                  Doing it yourself can result in significant savings that can be used for other things. Also, it can be really gratifying to work 
+                  in the garden, connect with nature and create something beautiful or improve on what you already have.
+                </WLTextBlock>
               </div>
               <ScheduleButton />
             </div>
@@ -234,7 +236,9 @@ export default function HomePage() {
       </section>
       <WaveTop color="#f5f5f5" />
       <section className='d-flex flex-column align-items-center justify-content-center' style={{backgroundColor: "#F5F5F5"}}>
-        <WLHeader color="#a67fcf" firestoreId="testimonial-quotes-header" editable={userCanEditText} />
+        <WLHeader color="#a67fcf" firestoreId="testimonial-quotes-header" editable={userCanEditText}>
+          What People Are Saying  
+        </WLHeader>
         <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
           <WLAliceCarousel
             scaleActive
@@ -247,8 +251,10 @@ export default function HomePage() {
         <AddModelButton userCanEdit={userCanEditTestimonials} model={Testimonial} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
       </section>
       <WaveBottom color="#f5f5f5" />
-      <section classwName='d-flex flex-column align-items-center justify-content-center py-5'>
-        <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}/>
+      <section className='d-flex flex-column align-items-center justify-content-center py-5'>
+        <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}>
+          Befores and Afters
+        </WLHeader>
         <WLAliceCarousel
           pagination
           buttonBlock

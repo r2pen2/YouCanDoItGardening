@@ -18,17 +18,17 @@ const userCanEditText = true;
 
 export default function Gallery() {
   
-  const [homeItems, setHomeItems] = useState([]);
+  const [homeItems, setHomeItems] = useState([HomeItem.examples.default, HomeItem.examples.default, HomeItem.examples.default, HomeItem.examples.default]);
   const [homeItemsFetched, setHomeItemsFetched] = useState(false);
-  const [newHampshireItems, setNewHampshireItems] = useState([]);
+  const [newHampshireItems, setNewHampshireItems] = useState([NewHampshireItem.examples.default, NewHampshireItem.examples.default, NewHampshireItem.examples.default, NewHampshireItem.examples.default]);
   const [newHampshireItemsFetched, setNewHampshireItemsFetched] = useState(false);
-  const [clientItems, setClientItems] = useState([]);
+  const [clientItems, setClientItems] = useState([ClientItem.examples.default, ClientItem.examples.default, ClientItem.examples.default, ClientItem.examples.default]);
   const [clientItemsFetched, setClientItemsFetched] = useState(false);
 
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const [galleryVideo, setGalleryVideo] = useState([]);
+  const [galleryVideo, setGalleryVideo] = useState([GalleryVideo.examples.default]);
 
   useEffect(() => {
     HomeItem.getAndSet(setHomeItems, setHomeItemsFetched);
@@ -52,9 +52,14 @@ export default function Gallery() {
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
     <WLBlockHeader text="Gallery" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center">
-      <WLHeader firestoreId="gallery-header" editable={userCanEditText}></WLHeader>
+      <WLHeader firestoreId="gallery-header" editable={userCanEditText}>
+        A Glimpse into Our Green Spaces
+      </WLHeader>
       <div style={{maxWidth: 1400, width: "100%"}}>
-        <WLText firestoreId="gallery-description" editable={userCanEditText}></WLText>
+        <WLText firestoreId="gallery-description" editable={userCanEditText}>
+          Here, you'll see snapshots of my own garden, my New Hampshire hideaway, and transformations from various clients' gardens. 
+          Hopefully, these photos will show you that with a little guidance, beautiful gardening is achievable for anyone. Enjoy the view!
+        </WLText>
       </div>
     </section>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
@@ -62,7 +67,9 @@ export default function Gallery() {
       <WLYoutubeEmbed maxWidth={1400} embedCode={galleryVideo[0] ? galleryVideo[0].embedCode : ""} />
     </section>
     <section className='d-flex flex-column align-items-center justify-content-center'>
-      <WLHeader firestoreId="home-pictures-header" editable={userCanEditText} />
+      <WLHeader firestoreId="home-pictures-header" editable={userCanEditText}>
+        My Home
+      </WLHeader>
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
           pagination
@@ -76,7 +83,9 @@ export default function Gallery() {
     </section>
     <WaveTop color="#f5f5f5" />
     <section className='d-flex flex-column align-items-center justify-content-center' style={{backgroundColor: "#f5f5f5"}}>    
-      <WLHeader color="#a67fcf" firestoreId="nh-pictures-header" editable={userCanEditText} />
+      <WLHeader color="#a67fcf" firestoreId="nh-pictures-header" editable={userCanEditText}>
+        My New Hampshire Garden
+      </WLHeader>
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
           pagination
@@ -90,7 +99,9 @@ export default function Gallery() {
     </section>
     <WaveBottom color="#f5f5f5" />
     <section className='d-flex flex-column align-items-center justify-content-center'>    
-      <WLHeader firestoreId="client-pictures-header" editable={userCanEditText} />
+      <WLHeader firestoreId="client-pictures-header" editable={userCanEditText}>
+        Clients 
+      </WLHeader>
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
           pagination

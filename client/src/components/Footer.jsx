@@ -49,10 +49,14 @@ function NewFooterContent() {
           <WLFooterSocials.Button platformKey="tiktok" href={tiktokLink} />
           <WLFooterSocials.Button platformKey="youtube" href={youtubeLink} />
         </WLFooterSocials>
-        <WLText editable={userCanEditText} firestoreId="footer-follower-count" />
+        <WLText editable={userCanEditText} firestoreId="footer-follower-count">
+          300,000+ followers on Instagram, TikTok, FaceBook and YouTube combined. Come join the party!
+        </WLText>
       </div>
       <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
-        <WLText firestoreId="footer-hook" editable={userCanEditText} />
+        <WLText firestoreId="footer-hook" editable={userCanEditText}>
+            Empowering gardeners at all levels to get their hands dirty. Serving Great Boston in person and virtual consultations anywhere.
+        </WLText>
       </div>
     </div>
   )

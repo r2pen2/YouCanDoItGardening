@@ -21,7 +21,9 @@ export const theme = createTheme({
       white: "#ffffff",
     },
     space: {},
-    fonts: {},
+    fonts: {
+      sans: 'Ysabeau Infant',
+    },
     fontSizes: {
       xs: '0.75rem', 
       sm: '0.875rem', 
