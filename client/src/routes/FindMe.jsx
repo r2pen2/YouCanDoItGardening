@@ -79,7 +79,7 @@ export default function FindMe() {
             width="100%"
             objectFit='cover'
           />
-          <Card.Body>
+          <Card.Body css={{textAlign: 'center'}}>
             {mediaAppearance.description}
           </Card.Body>
           <Divider/>
