@@ -8,7 +8,7 @@ import { blockHeaderFill } from "../assets/style/colors";
 import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 import { useEffect } from 'react';
-import { ClientItem, HomeItem, NewHampshireItem, TestimonialSlideshowPicture } from '../api/siteModels.ts';
+import { ClientItem, GalleryVideo, HomeItem, NewHampshireItem } from '../api/siteModels.ts';
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
@@ -28,10 +28,13 @@ export default function Gallery() {
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
 
+  const [galleryVideo, setGalleryVideo] = useState([]);
+
   useEffect(() => {
     HomeItem.getAndSet(setHomeItems, setHomeItemsFetched);
     NewHampshireItem.getAndSet(setNewHampshireItems, setNewHampshireItemsFetched);
     ClientItem.getAndSet(setClientItems, setClientItemsFetched);
+    GalleryVideo.getAndSet(setGalleryVideo);
   }, [])
 
   
@@ -55,12 +58,11 @@ export default function Gallery() {
       </div>
     </section>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
-      <WLYoutubeEmbed maxWidth={1400}>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/rNOzgQm63BE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </WLYoutubeEmbed>
+      <ModelEditButton userCanEdit={userCanEditText} model={GalleryVideo} data={galleryVideo[0]} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel} />
+      <WLYoutubeEmbed maxWidth={1400} embedCode={galleryVideo[0] ? galleryVideo[0].embedCode : ""} />
     </section>
     <section className='d-flex flex-column align-items-center justify-content-center'>
-      <WLHeader color="#a67fcf" firestoreId="home-pictures-header" editable={userCanEditText} />
+      <WLHeader firestoreId="home-pictures-header" editable={userCanEditText} />
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
           pagination

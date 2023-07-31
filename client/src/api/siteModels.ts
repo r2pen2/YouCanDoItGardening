@@ -1,5 +1,5 @@
 // @ts-ignore
-import { FirestoreSerializable, SiteModel } from "../libraries/Web-Legos/api/models.ts";
+import { FirestoreSerializable, SiteModel, StaticSiteModel } from "../libraries/Web-Legos/api/models.ts";
 
 export class BeforeAndAfter extends SiteModel implements FirestoreSerializable {
   constructor() {
@@ -323,7 +323,7 @@ export class ClientItem extends SiteModel {
   }
 }
 
-export class MediaApperance extends SiteModel {
+export class MediaAppearance extends SiteModel {
   constructor() {
     super("media-appearances", "Media Appearance")
   }
@@ -351,12 +351,12 @@ export class MediaApperance extends SiteModel {
   }
 
   static examples = {
-    default: (new MediaApperance()).fillConstantExampleData().toFirestore(),
-    alternate: (new MediaApperance()).fillConstantExampleData(true).toFirestore(),
+    default: (new MediaAppearance()).fillConstantExampleData().toFirestore(),
+    alternate: (new MediaAppearance()).fillConstantExampleData(true).toFirestore(),
   }
 
-  fromFirestore(data: any) : MediaApperance {
-    const ma = new MediaApperance();
+  fromFirestore(data: any) : MediaAppearance {
+    const ma = new MediaAppearance();
     ma.id = data.id;
     ma.numbers.order = data.order;
     ma.images.imageSource = data.imageSource;
@@ -364,5 +364,38 @@ export class MediaApperance extends SiteModel {
     ma.shortStrings.link = data.link;
     ma.longStrings.description = data.description;
     return ma;
+  }
+}
+export class GalleryVideo extends StaticSiteModel {
+  constructor() {
+    super("gallery-video", "Gallery Video")
+  }
+  
+  editText = "Change Video"
+
+  booleans = {}
+  images = {
+  }
+  numbers = {
+  }
+  shortStrings = {
+    embedCode: "",
+  }
+  longStrings = {}
+
+  fillConstantExampleData() {
+    this.shortStrings.embedCode = "rNOzgQm63BE";
+    return this;
+  }
+
+  static examples = {
+    default: (new GalleryVideo()).fillConstantExampleData().toFirestore(),
+  }
+
+  fromFirestore(data: any) : GalleryVideo {
+    const gv = new GalleryVideo();
+    gv.id = data.id;
+    gv.shortStrings.embedCode = data.embedCode;
+    return gv;
   }
 }

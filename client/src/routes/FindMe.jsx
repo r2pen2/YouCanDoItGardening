@@ -4,10 +4,10 @@ import "../assets/style/teaching.css"
 import { WLBlockHeader, WLHeader, WLText } from '../libraries/Web-Legos/components/Text';
 
 import { blockHeaderFill } from "../assets/style/colors";
-import { WLResponsiveSectionEditable, WLSpinnerPage } from '../libraries/Web-Legos/components/Layout';
+import { WLSpinnerPage } from '../libraries/Web-Legos/components/Layout';
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 
-import { MediaApperance, TeachingItem } from "../api/siteModels.ts";
+import { MediaAppearance, TeachingItem } from "../api/siteModels.ts";
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 
 import { AddModelButton, ModelEditButton, ModelEditModal } from "../libraries/Web-Legos/components/Modals"
@@ -25,7 +25,7 @@ export default function FindMe() {
 
   useEffect(() => {
     TeachingItem.getAndSet(setTeachingItems);
-    MediaApperance.getAndSet(setMediaAppearances);
+    MediaAppearance.getAndSet(setMediaAppearances);
   }, []);
 
   const [currentModel, setCurrentModel] = useState(new SiteModel());
@@ -63,6 +63,7 @@ export default function FindMe() {
   function MediaAppearanceCard({mediaAppearance}) {
     return (
       <div className="p-2">
+        <ModelEditButton userCanEdit={userCanEditText} data={mediaAppearance} model={MediaAppearance} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel}/>
         <Card
           style={{
             height: 400,
@@ -103,13 +104,14 @@ export default function FindMe() {
     <WaveTop color="#f5f5f5"/>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 px-2 px-lg-5" style={{backgroundColor:"#f5f5f5"}}>
       <WLHeader firestoreId="media-appearances-header" editable={userCanEditText} color="#a67fcf"></WLHeader>
-        <WLAliceCarousel
-          pagination
-          paginationTop
-          scaleActive
-          breakpoints={createCarouselBreakpoints(2, null, 3, 4, 5)}
-          items={mediaAppearances.map((ma, i) => <MediaAppearanceCard key={i} mediaAppearance={ma} />)}
-        />
+      <WLAliceCarousel
+        pagination
+        paginationTop
+        scaleActive
+        breakpoints={createCarouselBreakpoints(2, null, 3, 4, 5)}
+        items={mediaAppearances.map((ma, i) => <MediaAppearanceCard key={i} mediaAppearance={ma} />)}
+      />
+      <AddModelButton model={MediaAppearance} userCanEdit={userCanEditText} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
     </section>
     <WaveBottom color="#f5f5f5"/>
     <section className="container-fluid d-flex flex-column align-items-center jusytify-content-start">
