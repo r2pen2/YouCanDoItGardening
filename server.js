@@ -6,6 +6,7 @@ const fs = require('fs');
 const siteImages = require('./libraries/Server-Legos/siteImages');
 const siteText = require('./libraries/Server-Legos/siteText');
 const siteModels = require('./libraries/Server-Legos/siteModels');
+const siteAuth = require('./libraries/Server-Legos/siteAuth');
 const fileUpload = require('express-fileupload');
 
 // Init express application
@@ -36,6 +37,8 @@ app.use("/site-text", siteText);
 app.use("/site-images", siteImages);
 // Server site models
 app.use("/site-models", siteModels);
+// Server site authentication
+app.use("/site-auth", siteAuth);
 
 app.get("/images/*", (req, res) => {
     res.sendFile(__dirname + req._parsedOriginalUrl.path);

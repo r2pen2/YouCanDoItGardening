@@ -23,15 +23,28 @@ import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Leg
 import { SiteModel, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
 import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
+import { useContext } from 'react';
+import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
 
 export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
-const userCanEditTestimonials = true;
-const userCanEditText = true;
-const userCanEditBeforesAndAfters = true;
-
 export default function HomePage() {
+
+  const {currentSignIn} = useContext(CurrentSignInContext);
+  const {authenticationManager} = useContext(AuthenticationManagerContext);
+
+  const [userCanEditText, setUserCanEditText] = useState(false);
+  const [userCanEditImages, setUserCanEditImages] = useState(false);
+  const [userCanEditTestimonials, setUserCanEditTestimonials] = useState(false);
+  const [userCanEditBeforesAndAfters, setUserCanEditBeforesAndAfters] = useState(false);
   
+  useEffect(() => {
+    authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
+    authenticationManager.getPermission(currentSignIn, "siteImages").then(p => setUserCanEditImages(p));
+    authenticationManager.getPermission(currentSignIn, "testimonials").then(p => setUserCanEditTestimonials(p));
+    authenticationManager.getPermission(currentSignIn, "befores-and-afters").then(p => setUserCanEditBeforesAndAfters(p));
+  }, [authenticationManager, currentSignIn]);
+
   const [testimonialsFetched, setTestimonialsFetched] = useState(false);
   const [testimonials, setTestimonials] = useState([Testimonial.examples.default, Testimonial.examples.virtual]);
 
@@ -137,7 +150,7 @@ export default function HomePage() {
   function BeforeAndAfterCard({beforeAndAfter}) {
     return (
       <div className="container-fluid d-flex flex-column align-items-center justify-content-center" style={{width: '100%', maxWidth: 1400}}>
-        <ModelEditButton model={BeforeAndAfter} data={beforeAndAfter} userCanEdit={userCanEditBeforesAndAfters} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
+        <ModelEditButton model={BeforeAndAfter} data={beforeAndAfter} userCanEdit={userCanEditBeforesAndAfters} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen}/>
         <div className="row">
           <Text>
             {beforeAndAfter.description}
@@ -216,7 +229,7 @@ export default function HomePage() {
         <div className="container d-flex flex-row justify-content-center align-items-center">
           <div className="row w-100 justify-content-center">
             <div className="col-xl-6 col-md-12 p-2 d-flex flex-row justify-content-center align-items-center">
-              <WLImage firestoreId="jess" round editable={userCanEditText} imgClasses="jess-image" />
+              <WLImage firestoreId="jess" round editable={userCanEditImages} imgClasses="jess-image" />
             </div>
             <div className="col-xl-6 col-md-12 d-flex flex-column px-1 py-1 px-lg-5 py-3 px-lg-5 justify-content-around" style={{maxWidth: 750}}>
               <div>
@@ -261,7 +274,7 @@ export default function HomePage() {
           paginationTop
           items={beforesAndAftersCarouselItems}
         />
-        <AddModelButton userCanEdit={userCanEditTestimonials} model={BeforeAndAfter} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
+        <AddModelButton userCanEdit={userCanEditBeforesAndAfters} model={BeforeAndAfter} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
       </section>
     </WLSpinnerPage>
   )

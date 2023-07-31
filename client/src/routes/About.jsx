@@ -7,11 +7,24 @@ import { WLBlockHeader } from '../libraries/Web-Legos/components/Text';
 import { blockHeaderFill } from "../assets/style/colors";
 import { WLResponsiveSectionEditable, WLSpinnerPage } from '../libraries/Web-Legos/components/Layout';
 import { WLImage } from '../libraries/Web-Legos/components/Images';
+import { useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
 
-const userCanEditText = true;
+export default function About() {  
 
-export default function About() {
+  const {currentSignIn} = useContext(CurrentSignInContext);
+  const {authenticationManager} = useContext(AuthenticationManagerContext);
+
+  const [userCanEditText, setUserCanEditText] = useState(false);
+  const [userCanEditImages, setUserCanEditImages] = useState(false);
   
+  useEffect(() => {
+    authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
+    authenticationManager.getPermission(currentSignIn, "siteImages").then(p => setUserCanEditImages(p));
+  }, [authenticationManager, currentSignIn]);
+
+
   const [aboutLoaded, setAboutLoaded] = useState(false);
 
   return (
@@ -27,7 +40,7 @@ export default function About() {
       firestoreId="about" 
       image={
         <WLImage 
-          editable={userCanEditText} 
+          editable={userCanEditImages} 
           firestoreId="about" 
           shadow 
           imgCss={{

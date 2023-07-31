@@ -15,10 +15,21 @@ import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
 import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone';
 import { ContactModal } from '../components/Modals';
-
-const userCanEditText = true;
+import { useContext } from 'react';
+import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
 
 export default function Services() {
+
+  const {currentSignIn} = useContext(CurrentSignInContext);
+  const {authenticationManager} = useContext(AuthenticationManagerContext);
+
+  const [userCanEditText, setUserCanEditText] = useState(false);
+  const [userCanEditServiceItems, setUserCanEditServiceItems] = useState(false);
+  
+  useEffect(() => {
+    authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
+    authenticationManager.getPermission(currentSignIn, "service-items").then(p => setUserCanEditServiceItems(p));
+  }, [authenticationManager, currentSignIn]);
   
   const [virtualLoaded, setVirtualLoaded] = useState(false);
   const [inPersonLoaded, setInPersonLoaded] = useState(false);
@@ -53,7 +64,7 @@ export default function Services() {
             <div style={{border: "2px solid #A67FCF", borderLeftWidth: 0, width: "1rem"}}/>
           </div>
           <div className="col-md-1 col-12 d-flex flex-row justify-content-center">
-            <ModelEditButton small userCanEdit={userCanEditText} model={virtual ? VirtualServiceItem : InPersonServiceItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} data={serviceItem} />
+            <ModelEditButton small userCanEdit={userCanEditServiceItems} model={virtual ? VirtualServiceItem : InPersonServiceItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} data={serviceItem} />
           </div>
         </div>
       </div>
@@ -121,7 +132,7 @@ export default function Services() {
             <Card.Body className="d-flex flex-column align-items-start justify-content-start">
               <div className="w-100 d-flex flex-column align-items-center justify-content-center">
                 { renderInPersonServiceItems() }
-                <AddModelButton userCanEdit={userCanEditText} model={InPersonServiceItem} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel}/>
+                <AddModelButton userCanEdit={userCanEditServiceItems} model={InPersonServiceItem} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel}/>
               </div>
               <div className="d-flex flex-column text-center py-2 w-100">
                 <Divider />
@@ -145,7 +156,7 @@ export default function Services() {
             <Card.Body className="d-flex flex-column align-items-start justify-content-start">
               <div className="w-100 d-flex flex-column align-items-center justify-content-center">
                 { renderVirtualServiceItems() }
-                <AddModelButton userCanEdit={userCanEditText} model={VirtualServiceItem} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel}/>
+                <AddModelButton userCanEdit={userCanEditServiceItems} model={VirtualServiceItem} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel}/>
               </div>
               <div className="d-flex flex-column text-center py-2 w-100">
                 <Divider />

@@ -5,9 +5,19 @@ import { contactMeLink, facebookLink, instagramLink, mailingListLink, tiktokLink
 import { textGradient } from '../routes/HomePage';
 import {  WLFooterLogo, WLFooterSocials } from '../libraries/Web-Legos/components/Footer';
 import { WLCopyright, WLText } from '../libraries/Web-Legos/components/Text';
+import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
+import { FooterAuthButton } from '../libraries/Web-Legos/components/Auth';
+import { useContext } from 'react';
+import { CurrentSignInContext } from '../App';
 
+/**
+ * 
+ * @param {AuthenticationManager} authenticationManager - Web-Legos authentication manager
+ * @returns 
+ */
+export default function Footer({authenticationManager}) {
 
-export default function Footer() {
+  const {currentSignIn, setCurrentSignIn} = useContext(CurrentSignInContext);
 
   return (
     <footer>
@@ -18,6 +28,7 @@ export default function Footer() {
         <div className="fill-line mb-3" />
         <div className="d-flex flex-column gap-2 m-2 align-items-center">
           <WLCopyright editable={userCanEditText}/>
+          <FooterAuthButton authManager={authenticationManager} currentSignIn={currentSignIn} setCurrentSignIn={setCurrentSignIn}/>
         </div>
       </div>
     </footer>

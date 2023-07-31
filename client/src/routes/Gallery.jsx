@@ -12,12 +12,24 @@ import { ClientItem, GalleryVideo, HomeItem, NewHampshireItem } from '../api/sit
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
-
-const userCanEditTestimonials = true;
-const userCanEditText = true;
+import { useContext } from 'react';
+import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
 
 export default function Gallery() {
   
+  const {currentSignIn} = useContext(CurrentSignInContext);
+  const {authenticationManager} = useContext(AuthenticationManagerContext);
+
+  const [userCanEditText, setUserCanEditText] = useState(false);
+  const [userCanEditGalleryPictures, setUserCanEditGalleryPictures] = useState(false);
+  const [userCanEditGalleryVideo, setUserCanEditGalleryVideo] = useState(false);
+  
+  useEffect(() => {
+    authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
+    authenticationManager.getPermission(currentSignIn, "gallery-pictures").then(p => setUserCanEditGalleryPictures(p));
+    authenticationManager.getPermission(currentSignIn, "gallery-video").then(p => setUserCanEditGalleryVideo(p));
+  }, [authenticationManager, currentSignIn]);
+
   const [homeItems, setHomeItems] = useState([HomeItem.examples.default, HomeItem.examples.default, HomeItem.examples.default, HomeItem.examples.default]);
   const [homeItemsFetched, setHomeItemsFetched] = useState(false);
   const [newHampshireItems, setNewHampshireItems] = useState([NewHampshireItem.examples.default, NewHampshireItem.examples.default, NewHampshireItem.examples.default, NewHampshireItem.examples.default]);
@@ -41,7 +53,7 @@ export default function Gallery() {
   function GalleryItem({item, model}) {
     return (
       <div className="p-2 gap-2 d-flex flex-column align-items-center justify-content-center" style={{height: '100%', userSelect: "none"}}>
-        <ModelEditButton model={model} data={item} userCanEdit={userCanEditTestimonials} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen}/>
+        <ModelEditButton model={model} data={item} userCanEdit={userCanEditGalleryPictures} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen}/>
         <img className="no-select img-shadow" src={item.imageSource} alt="slideshow-item" style={{borderRadius: "1rem", width: '100%', maxHeight: 500, height: '100%', objectFit: "cover"}}/>
       </div>
     )
@@ -63,7 +75,7 @@ export default function Gallery() {
       </div>
     </section>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
-      <ModelEditButton userCanEdit={userCanEditText} model={GalleryVideo} data={galleryVideo[0]} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel} />
+      <ModelEditButton userCanEdit={userCanEditGalleryVideo} model={GalleryVideo} data={galleryVideo[0]} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel} />
       <WLYoutubeEmbed maxWidth={1400} embedCode={galleryVideo[0] ? galleryVideo[0].embedCode : ""} />
     </section>
     <section className='d-flex flex-column align-items-center justify-content-center'>
@@ -79,7 +91,7 @@ export default function Gallery() {
           items={homeItems.map((gi, i) => <GalleryItem model={HomeItem} item={gi} key={i} />)}
         />
       </div>
-      <AddModelButton userCanEdit={userCanEditTestimonials} model={HomeItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
+      <AddModelButton userCanEdit={userCanEditGalleryPictures} model={HomeItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
     </section>
     <WaveTop color="#f5f5f5" />
     <section className='d-flex flex-column align-items-center justify-content-center' style={{backgroundColor: "#f5f5f5"}}>    
@@ -95,7 +107,7 @@ export default function Gallery() {
           items={newHampshireItems.map((gi, i) => <GalleryItem model={NewHampshireItem} item={gi} key={i} />)}
         />
       </div>
-      <AddModelButton userCanEdit={userCanEditTestimonials} model={NewHampshireItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
+      <AddModelButton userCanEdit={userCanEditGalleryPictures} model={NewHampshireItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
     </section>
     <WaveBottom color="#f5f5f5" />
     <section className='d-flex flex-column align-items-center justify-content-center'>    
@@ -111,7 +123,7 @@ export default function Gallery() {
           items={clientItems.map((gi, i) => <GalleryItem model={ClientItem} item={gi} key={i} />)}
         />
       </div>
-      <AddModelButton userCanEdit={userCanEditTestimonials} model={ClientItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
+      <AddModelButton userCanEdit={userCanEditGalleryPictures} model={ClientItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
     </section>
     </WLSpinnerPage>
   )

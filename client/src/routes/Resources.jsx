@@ -5,13 +5,24 @@ import { WLBlockHeader, WLHeader, WLText } from '../libraries/Web-Legos/componen
 
 import { blockHeaderFill } from "../assets/style/colors";
 import { ExternalResource } from '../api/siteModels.ts';
-import { ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
+import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 import { Card, Divider, Text } from '@nextui-org/react';
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
-
-const userCanEditText = true;
+import { useContext } from 'react';
+import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
 
 export default function Resources() {
+
+  const {currentSignIn} = useContext(CurrentSignInContext);
+  const {authenticationManager} = useContext(AuthenticationManagerContext);
+
+  const [userCanEditText, setUserCanEditText] = useState(false);
+  const [userCanEditResources, setUserCanEditResources] = useState(false);
+  
+  useEffect(() => {
+    authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
+    authenticationManager.getPermission(currentSignIn, "external-resources").then(p => setUserCanEditResources(p));
+  }, [authenticationManager, currentSignIn]);
   
   const [resources, setResources] = useState([]);
 
@@ -47,7 +58,7 @@ export default function Resources() {
             <Text>{resource.description}</Text>
           </div>
         </Card>
-        <ModelEditButton small userCanEdit={userCanEditText} data={resource} model={ExternalResource} setEditModalOpen={setModelEditModalOpen} setCurrentModel={setCurrentModel}/>
+        <ModelEditButton small userCanEdit={userCanEditResources} data={resource} model={ExternalResource} setEditModalOpen={setModelEditModalOpen} setCurrentModel={setCurrentModel}/>
       </div>
     )
   }
@@ -65,6 +76,7 @@ export default function Resources() {
         plant care tips to design ideas, these resources are here to support and inspire you. Happy gardening!
       </WLText>
       {resources.map((r, i) => <ExternalResourceCard resource={r} key={i}/>)}
+      <AddModelButton userCanEdit={userCanEditResources} model={ExternalResource} setEditModalOpen={setModelEditModalOpen} setCurrentModel={setCurrentModel} />
     </section>
     </div>
   )

@@ -15,10 +15,26 @@ import { Card, Divider, Text } from '@nextui-org/react';
 import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
 import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
-
-const userCanEditText = true;
+import { useContext } from 'react';
+import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
 
 export default function FindMe() {
+
+  const {currentSignIn} = useContext(CurrentSignInContext);
+  const {authenticationManager} = useContext(AuthenticationManagerContext);
+
+  const [userCanEditText, setUserCanEditText] = useState(false);
+  const [userCanEditImages, setUserCanEditImages] = useState(false);
+  const [userCanEditTeachingItems, setUserCanEditTeachingItems] = useState(false);
+  const [userCanEditMediaAppearances, setUserCanEditMediaAppearances] = useState(false);
+  
+  useEffect(() => {
+    authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
+    authenticationManager.getPermission(currentSignIn, "siteImages").then(p => setUserCanEditImages(p));
+    authenticationManager.getPermission(currentSignIn, "teaching-items").then(p => setUserCanEditTeachingItems(p));
+    authenticationManager.getPermission(currentSignIn, "media-appearances").then(p => setUserCanEditMediaAppearances(p));
+  }, [authenticationManager, currentSignIn]);
+
 
   const [teachingItems, setTeachingItems] = useState([TeachingItem.examples.default, TeachingItem.examples.default, TeachingItem.examples.default]);
   const [mediaAppearances, setMediaAppearances] = useState([MediaAppearance.examples.default, MediaAppearance.examples.alternate, MediaAppearance.examples.default, MediaAppearance.examples.alternate, MediaAppearance.examples.default, MediaAppearance.examples.alternate]);
@@ -50,11 +66,11 @@ export default function FindMe() {
             <Text style={{maxWidth: 600}}>{teachingItem.description}</Text>
           </div>
           <div className="d-flex flex-column justify-content-center d-lg-none">          
-            <ModelEditButton userCanEdit={userCanEditText} data={teachingItem} model={TeachingItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
+            <ModelEditButton userCanEdit={userCanEditTeachingItems} data={teachingItem} model={TeachingItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
           </div>
         </Card>
         <div className="d-none d-lg-flex" style={{marginLeft: "2rem"}}>
-          <ModelEditButton userCanEdit={userCanEditText} data={teachingItem} model={TeachingItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
+          <ModelEditButton userCanEdit={userCanEditTeachingItems} data={teachingItem} model={TeachingItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
         </div>
       </div>
     )
@@ -63,7 +79,7 @@ export default function FindMe() {
   function MediaAppearanceCard({mediaAppearance}) {
     return (
       <div className="p-2 d-flex flex-column align-items-center justify-content-center">
-        <ModelEditButton userCanEdit={userCanEditText} data={mediaAppearance} model={MediaAppearance} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel}/>
+        <ModelEditButton userCanEdit={userCanEditMediaAppearances} data={mediaAppearance} model={MediaAppearance} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel}/>
         <Card
           style={{
             height: 400,
@@ -120,14 +136,14 @@ export default function FindMe() {
         breakpoints={createCarouselBreakpoints(2, null, 3, 4, 5)}
         items={mediaAppearances.map((ma, i) => <MediaAppearanceCard key={i} mediaAppearance={ma} />)}
       />
-      <AddModelButton model={MediaAppearance} userCanEdit={userCanEditText} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
+      <AddModelButton model={MediaAppearance} userCanEdit={userCanEditMediaAppearances} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
     </section>
     <WaveBottom color="#f5f5f5"/>
     <section className="container-fluid d-flex flex-column align-items-center jusytify-content-start">
       <div className="row w-100">
         <div className="col-xxl-4 py-xl-4 py-3 col-xl-0 d-flex flex-column align-items-center justify-content-center">
           <WLImage 
-            editable={userCanEditText} 
+            editable={userCanEditImages} 
             firestoreId="teaching-description" 
             shadow 
             imgCss={{
@@ -142,7 +158,7 @@ export default function FindMe() {
             </WLHeader>
             <div className="d-flex flex-column w-100 align-items-center justify-content-start">
               { renderTeachingItems() }
-              <AddModelButton userCanEdit={userCanEditText} model={TeachingItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
+              <AddModelButton userCanEdit={userCanEditTeachingItems} model={TeachingItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
             </div>
         </div>
       </div>
