@@ -14,6 +14,7 @@ import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
 import { useContext } from 'react';
 import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
+import { getYoutubeEmbedCode } from '../libraries/Web-Legos/api/media.ts';
 
 export default function Gallery() {
   
@@ -40,7 +41,7 @@ export default function Gallery() {
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const [galleryVideo, setGalleryVideo] = useState([]);
+  const [galleryVideo, setGalleryVideo] = useState([GalleryVideo.examples.shortLink]);
 
   useEffect(() => {
     HomeItem.getAndSet(setHomeItems, setHomeItemsFetched);
@@ -73,7 +74,7 @@ export default function Gallery() {
     </section>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
       <ModelEditButton userCanEdit={userCanEditGalleryVideo} model={GalleryVideo} data={galleryVideo[0]} setEditModalOpen={setEditModalOpen} setCurrentModel={setCurrentModel} />
-      <WLYoutubeEmbed maxWidth={1400} embedCode={galleryVideo[0] ? galleryVideo[0].embedCode : ""} />
+      <WLYoutubeEmbed maxWidth={1400} embedCode={galleryVideo[0] ? getYoutubeEmbedCode(galleryVideo[0].embedCode) : ""} />
     </section>
     <section className='d-flex flex-column align-items-center justify-content-center'>
       <WLHeader firestoreId="home-pictures-header" editable={userCanEditText}/>

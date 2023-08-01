@@ -9,13 +9,20 @@ import MenuBookTwoToneIcon from '@mui/icons-material/MenuBookTwoTone';
 import AutoAwesomeTwoToneIcon from '@mui/icons-material/AutoAwesomeTwoTone';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 
+import EventAvailableTwoToneIcon from '@mui/icons-material/EventAvailableTwoTone';
+import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
+import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone';
+
+
 // Style Imports
 import "../assets/style/navbar.css";
 import "../assets/style/layout.css";
-import { facebookLink, instagramLink, tiktokLink, youtubeLink } from '../api/links';
+import { facebookLink, instagramLink, scheduleInPersonLink, scheduleOnlineLink, tiktokLink, youtubeLink } from '../api/links';
 
 import {WLNavBrandLeft, WLNavContent, WLNavDropdownMenu, WLNavSocials} from "../libraries/Web-Legos/components/Navigation";
 import { VerticalDivider } from '../libraries/Web-Legos/components/Layout';
+import { CalendarIcon, FacebookIcon, InstagramIcon, TikTokIcon, YouTubeIcon } from '../libraries/Web-Legos/components/Icons';
+import { iconFills } from './Modals';
 
 const navbarItemFontSize = "18px";
 
@@ -122,63 +129,21 @@ export function Navbar() {
           <NavbarPages />
         </WLNavContent.Left>
         <WLNavContent.Right>
-          <WLNavSocials noHide>
+          <WLNavSocials showIn="sm">
             <WLNavSocials.Button size={30} platformKey="instagram" href={instagramLink} />
             <WLNavSocials.Button size={30} platformKey="facebook" href={facebookLink} />
             <WLNavSocials.Button size={30} platformKey="tiktok" href={tiktokLink} />
             <WLNavSocials.Button size={30} platformKey="youtube" href={youtubeLink} />
           </WLNavSocials>
-          <VerticalDivider height={40} color="#212529" padding="1.5rem"/>
-          <NextUINavbar.Content css={{padding: 0}}>
-            <WLNavDropdownMenu 
-              hideTextIn="all"
-              buttonIcon={<ShoppingCartTwoToneIcon style={{fontSize: 30}}/>}
-              buttonLight 
-              buttonText="Shop" 
-              buttonFontSize={navbarItemFontSize} 
-              links={[
-                {
-                  key: "coffee",
-                  href: "https://www.buymeacoffee.com/youcandoitg",
-                },
-                {
-                  key: "pruning",
-                  href: "https://stan.store/youcandoitgardening",
-                },
-                {
-                  key: "clothing",
-                  href: "https://youcandoitgardening.creator-spring.com/",
-                },
-              ]}
-            >
-              <Dropdown.Item
-                key="coffee"
-                showFullDescription 
-                description="Help keep my content free by buying me a virtual cup of coffee!"
-                icon={<LocalCafeTwoToneIcon style={{color: "#603815"}} />}
-              >
-                Buy Me A Coffee
-              </Dropdown.Item>
-              <Dropdown.Item
-                key="pruning"
-                showFullDescription 
-                withDivider
-                description="E-books on pruning sent directly to your email"
-                icon={<MenuBookTwoToneIcon style={{color: "#0037C4"}} />}
-              >
-                Pruning Guides
-              </Dropdown.Item>
-              <Dropdown.Item
-                key="clothing"
-                showFullDescription 
-                withDivider
-                description="Show the world your support with You Can Do It Gardening merch"
-                icon={<AutoAwesomeTwoToneIcon style={{color: "orange"}} />}
-              >
-                Clothing
-              </Dropdown.Item>
-            </WLNavDropdownMenu>
-          </NextUINavbar.Content>
+          <SocialsDropdown />
+          <div className="px-0 px-lg-2" >
+            <VerticalDivider height={40} color="#212529" />
+          </div>
+          <ShopDropdown />
+          <div className="px-0 px-lg-2" >
+            <VerticalDivider height={40} color="#212529" />
+          </div>
+          <ScheduleDropdown />
         </WLNavContent.Right>
       </WLNavContent>
       <NextUINavbar.Collapse >
@@ -197,5 +162,178 @@ export function Navbar() {
         ))}
       </NextUINavbar.Collapse>
     </NextUINavbar>
+  )
+}
+
+function ShopDropdown() {
+  return (
+    <NextUINavbar.Content css={{padding: 0}}>
+      <WLNavDropdownMenu 
+        hideTextIn="all"
+        buttonIcon={<ShoppingCartTwoToneIcon style={{fontSize: 30}}/>}
+        buttonLight 
+        buttonText="Shop" 
+        buttonFontSize={navbarItemFontSize} 
+        links={[
+          {
+            key: "coffee",
+            href: "https://www.buymeacoffee.com/youcandoitg",
+          },
+          {
+            key: "pruning",
+            href: "https://stan.store/youcandoitgardening",
+          },
+          {
+            key: "clothing",
+            href: "https://youcandoitgardening.creator-spring.com/",
+          },
+        ]}
+      >
+        <Dropdown.Item
+          key="coffee"
+          showFullDescription 
+          description="Help keep my content free by buying me a virtual cup of coffee!"
+          icon={<LocalCafeTwoToneIcon style={{color: "#603815"}} />}
+        >
+          Buy Me A Coffee
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="pruning"
+          showFullDescription 
+          withDivider
+          description="E-books on pruning sent directly to your email"
+          icon={<MenuBookTwoToneIcon style={{color: "#0037C4"}} />}
+        >
+          Pruning Guides
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="clothing"
+          showFullDescription 
+          withDivider
+          description="Show the world your support with You Can Do It Gardening merch"
+          icon={<AutoAwesomeTwoToneIcon style={{color: "orange"}} />}
+        >
+          Clothing
+        </Dropdown.Item>
+      </WLNavDropdownMenu>
+    </NextUINavbar.Content>
+  )
+}
+
+function ScheduleDropdown() {
+  return (
+    <NextUINavbar.Content css={{padding: 0}}>
+      <WLNavDropdownMenu 
+        hideTextIn="all"
+        buttonIcon={<EventAvailableTwoToneIcon style={{fontSize: 30, color: "#4C9855"}}/>}
+        buttonLight 
+        buttonText="Schedule" 
+        buttonFontSize={navbarItemFontSize} 
+        links={[
+          {
+            key: "in-person",
+            href: scheduleInPersonLink,
+          },
+          {
+            key: "online",
+            href: scheduleOnlineLink,
+          },
+        ]}
+      >
+        <Dropdown.Item
+          key="in-person"
+          showFullDescription 
+          description="Arrange an in-person consultation in Greater Boston and beyond!"
+          icon={<LocationOnTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.green}} />}
+        >
+          In-Person Consultations
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="online"
+          showFullDescription 
+          withDivider
+          description="Book your zoom lawn check-up now!"
+          icon={<ComputerTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.blue}}/>}
+        >
+          Virtual Consultations
+        </Dropdown.Item>
+      </WLNavDropdownMenu>
+    </NextUINavbar.Content>
+  )
+}
+
+function SocialsDropdown() {
+  return (
+    <NextUINavbar.Content css={{padding: 0}} className="d-flex d-sm-none">
+      <WLNavDropdownMenu 
+        hideTextIn="all"
+        buttonIcon={(
+          <div className="gap-1 d-flex flex-column align-items-center justify-content-center">
+            <div className="gap-1 d-flex flex-row align-items-center justify-content-center">
+              <InstagramIcon size={16} />
+              <FacebookIcon size={16} />
+            </div>
+            <div className="gap-1 d-flex flex-row align-items-center justify-content-center">
+              <TikTokIcon size={16} />
+              <YouTubeIcon size={16} />
+            </div>
+          </div>
+        )}
+        buttonLight 
+        buttonText="Schedule" 
+        buttonFontSize={navbarItemFontSize} 
+        links={[
+          {
+            key: "instagram",
+            href: instagramLink,
+          },
+          {
+            key: "facebook",
+            href: facebookLink,
+          },
+          {
+            key: "tiktok",
+            href: tiktokLink,
+          },
+          {
+            key: "youtube",
+            href: youtubeLink,
+          },
+        ]}
+      >
+        <Dropdown.Item
+          key="instagram"
+          showFullDescription 
+          description="Visit me on Instagram"
+          icon={<InstagramIcon />}
+        >
+          Instagram
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="facebook"
+          showFullDescription 
+          description="Visit me on Facebook"
+          icon={<FacebookIcon />}
+        >
+          Facebook
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="tiktok"
+          showFullDescription 
+          description="Visit me on TikTok"
+          icon={<TikTokIcon />}
+        >
+          TikTok
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="youtube"
+          showFullDescription 
+          description="Visit me on YouTube"
+          icon={<YouTubeIcon />}
+        >
+          YouTube
+        </Dropdown.Item>
+      </WLNavDropdownMenu>
+    </NextUINavbar.Content>
   )
 }

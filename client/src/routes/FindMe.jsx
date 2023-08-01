@@ -11,12 +11,14 @@ import { MediaAppearance, TeachingItem } from "../api/siteModels.ts";
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 
 import { AddModelButton, ModelEditButton, ModelEditModal } from "../libraries/Web-Legos/components/Modals"
-import { Card, Divider, Text } from '@nextui-org/react';
+import { Button, Card, Divider, Text } from '@nextui-org/react';
 import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
 import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { useContext } from 'react';
 import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
+import { ContactModal } from '../components/Modals';
+import { mailingListLink } from '../api/links';
 
 export default function FindMe() {
 
@@ -44,6 +46,8 @@ export default function FindMe() {
 
   const [teachingHookLoaded, setTeachingHookLoaded] = useState(false);
   const [teachingDescriptionLoaded, setTeachingDescriptionLoaded] = useState(false);
+
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   useEffect(() => {
     TeachingItem.getAndSet(setTeachingItems);
@@ -110,6 +114,7 @@ export default function FindMe() {
   return (
   <WLSpinnerPage dependencies={[teachingHookLoaded, teachingDescriptionLoaded]} containerClasses="page-background">
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
+    <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
     <WLBlockHeader text="Find Me" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
       <WLHeader firestoreId="teaching-hook-header" editable={userCanEditText}/>
@@ -117,6 +122,24 @@ export default function FindMe() {
         <WLText firestoreId="teaching-hook" editable={userCanEditText} />
       </div>
     </section>
+    <div className="container d-flex flex-column align-items-center justify-content-center">
+      <Text>You can also:</Text>
+      <div className="row d-flex justify-content-center align-items-center">
+        <div className="col-md-5 col-12 d-flex justify-content-center my-2">
+          <Button flat onClick={() => setContactModalOpen(true)}>
+            Contact Me
+          </Button>
+        </div>
+        <div className="col-2 d-none d-md-flex justify-content-center my-2">
+          <Text style={{padding: 0, margin: 0}}>or</Text>
+        </div>
+        <div className="col-md-5 col-12 d-flex justify-content-center my-2">
+          <Button flat onClick={() => window.open(mailingListLink, "_blank")}>
+            Join my Mailing List
+          </Button>
+        </div>
+      </div>
+    </div>
     <WaveTop color="#f5f5f5"/>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 px-2 px-lg-5" style={{backgroundColor:"#f5f5f5"}}>
       <WLHeader firestoreId="media-appearances-header" editable={userCanEditText} color="#a67fcf" />

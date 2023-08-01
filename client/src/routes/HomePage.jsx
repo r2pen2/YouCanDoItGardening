@@ -105,7 +105,7 @@ export default function HomePage() {
   const [modelEditModalOpen, setModelEditModalOpen] = useState(false);
   const [currentModel, setCurrentModel] = useState(new SiteModel());
 
-  const [beforesAndAftersCarouselItems, setBeforesAndAftersCarouselItems] = useState([<BeforeAndAfterCard beforeAndAfter={BeforeAndAfter.examples.default} />]);
+  const [beforesAndAftersCarouselItems, setBeforesAndAftersCarouselItems] = useState([]);
 
   useEffect(() => {
     BeforeAndAfter.get().then((data) => {

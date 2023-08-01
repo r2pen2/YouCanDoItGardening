@@ -50,16 +50,7 @@ function NewFooterContent() {
     <div className="row d-flex flex-row w-100 align-items-center gap-5 justify-content-center">
       <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
         <WLFooterLogo source={logo} />
-        <Text>
-          <Link block color="primary" href={contactMeLink} target='blank'>
-            Contact Me
-          </Link>
-        </Text>
-        <Text>
-          <Link block color="primary" href={mailingListLink} target='blank'>
-            Join My Mailing List
-          </Link>
-        </Text>
+        <WLText firestoreId="footer-contact" editable={userCanEditText} />
       </div>
       <div className="col-lg-12 col-xl-4 d-flex flex-column align-items-center">
         <WLFooterSocials lineBottom>

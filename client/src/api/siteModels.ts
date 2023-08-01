@@ -382,13 +382,24 @@ export class GalleryVideo extends StaticSiteModel {
   }
   longStrings = {}
 
-  fillConstantExampleData() {
-    this.shortStrings.embedCode = "rNOzgQm63BE";
+  fillConstantExampleData(linkType?: number) {
+    if (linkType) {
+      if (linkType === 1) {
+        this.shortStrings.embedCode = "https://youtu.be/4YuNvIfM-YA"
+      }
+      if (linkType === 2) {
+        this.shortStrings.embedCode = "https://www.youtube.com/watch?v=MXtTXmZp41I&ab_channel=EducationEntertainment-TV"
+      }
+    } else {
+      this.shortStrings.embedCode = "rNOzgQm63BE";
+    }
     return this;
   }
 
   static examples = {
     default: (new GalleryVideo()).fillConstantExampleData().toFirestore(),
+    shortLink: (new GalleryVideo()).fillConstantExampleData(1).toFirestore(),
+    longLink: (new GalleryVideo()).fillConstantExampleData(2).toFirestore(),
   }
 
   fromFirestore(data: any) : GalleryVideo {
