@@ -41,7 +41,7 @@ export default function Gallery() {
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const [galleryVideo, setGalleryVideo] = useState([GalleryVideo.examples.shortLink]);
+  const [galleryVideo, setGalleryVideo] = useState([]);
 
   useEffect(() => {
     HomeItem.getAndSet(setHomeItems, setHomeItemsFetched);
