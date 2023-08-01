@@ -60,7 +60,7 @@ function App() {
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/find-me" element={<FindMe />} />
               </Routes>
-            <Footer authenticationManager={authenticationManager}/>
+            <Footer/>
           </div>
         </Router>
       </div>

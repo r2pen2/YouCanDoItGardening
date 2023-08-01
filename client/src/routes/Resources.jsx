@@ -30,8 +30,7 @@ export default function Resources() {
   const [currentModel, setCurrentModel] = useState(new SiteModel());
 
   useEffect(() => {
-    setResources([ExternalResource.examples.default, ExternalResource.examples.alternate, ExternalResource.examples.default, ExternalResource.examples.alternate, ExternalResource.examples.default, ExternalResource.examples.alternate, ])
-    //ExternalResource.getAndSet(setResources);
+    ExternalResource.getAndSet(setResources);
   }, [])
 
   function ExternalResourceCard({resource}) {
@@ -64,17 +63,12 @@ export default function Resources() {
   }
 
   return (
-  <div className="d-flex flex-column align-items-center">
+  <div className="d-flex flex-column align-items-center justify-content-center">
     <ModelEditModal model={currentModel} open={modelEditModalOpen} setOpen={setModelEditModalOpen} />
     <WLBlockHeader text="Resources" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center m-5 w-80">
-      <WLHeader firestoreId="resources-header" editable={userCanEditText}>
-        Your Gardening Toolkit
-      </WLHeader>
-      <WLText firestoreId="resources-description" editable={userCanEditText}>
-        Here, you'll find handpicked links to external tools and guides that can help enrich your gardening journey. From 
-        plant care tips to design ideas, these resources are here to support and inspire you. Happy gardening!
-      </WLText>
+      <WLHeader firestoreId="resources-header" editable={userCanEditText}/>
+      <WLText firestoreId="resources-description" editable={userCanEditText}/>
       {resources.map((r, i) => <ExternalResourceCard resource={r} key={i}/>)}
       <AddModelButton userCanEdit={userCanEditResources} model={ExternalResource} setEditModalOpen={setModelEditModalOpen} setCurrentModel={setCurrentModel} />
     </section>

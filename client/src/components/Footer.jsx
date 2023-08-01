@@ -1,24 +1,20 @@
 import { Text, Link, } from '@nextui-org/react'
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import logo from "../assets/images/logoTransparent.png";
 import { contactMeLink, facebookLink, instagramLink, mailingListLink, tiktokLink, youtubeLink } from '../api/links';
-import { textGradient } from '../routes/HomePage';
 import {  WLFooterLogo, WLFooterSocials } from '../libraries/Web-Legos/components/Footer';
 import { WLCopyright, WLText } from '../libraries/Web-Legos/components/Text';
-import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
 import { FooterAuthButton } from '../libraries/Web-Legos/components/Auth';
 import { useContext } from 'react';
-import { CurrentSignInContext } from '../App';
+import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
-/**
- * 
- * @param {AuthenticationManager} authenticationManager - Web-Legos authentication manager
- * @returns 
- */
-export default function Footer({authenticationManager}) {
+export default function Footer() {
 
   const {currentSignIn, setCurrentSignIn} = useContext(CurrentSignInContext);
-
+  const {authenticationManager} = useContext(AuthenticationManagerContext);
+  
   return (
     <footer>
       <div className="footer-content w-100" >
@@ -38,6 +34,18 @@ export default function Footer({authenticationManager}) {
 const userCanEditText = true;
 
 function NewFooterContent() {
+  
+  
+
+    const {currentSignIn} = useContext(CurrentSignInContext);
+    const {authenticationManager} = useContext(AuthenticationManagerContext);
+  
+    const [userCanEditText, setUserCanEditText] = useState(false);
+    
+    useEffect(() => {
+      authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
+    }, [authenticationManager, currentSignIn]);
+
   return (
     <div className="row d-flex flex-row w-100 align-items-center gap-5 justify-content-center">
       <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">

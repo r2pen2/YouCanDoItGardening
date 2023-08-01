@@ -33,10 +33,14 @@ export default function HomePage() {
   const {currentSignIn} = useContext(CurrentSignInContext);
   const {authenticationManager} = useContext(AuthenticationManagerContext);
 
+
   const [userCanEditText, setUserCanEditText] = useState(false);
   const [userCanEditImages, setUserCanEditImages] = useState(false);
   const [userCanEditTestimonials, setUserCanEditTestimonials] = useState(false);
   const [userCanEditBeforesAndAfters, setUserCanEditBeforesAndAfters] = useState(false);
+
+  
+  console.log(userCanEditText, userCanEditImages, userCanEditTestimonials)
   
   useEffect(() => {
     authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
@@ -46,7 +50,7 @@ export default function HomePage() {
   }, [authenticationManager, currentSignIn]);
 
   const [testimonialsFetched, setTestimonialsFetched] = useState(false);
-  const [testimonials, setTestimonials] = useState([Testimonial.examples.default, Testimonial.examples.virtual]);
+  const [testimonials, setTestimonials] = useState([]);
 
 
   const quoteSvg = (
@@ -199,9 +203,7 @@ export default function HomePage() {
             <WLHeader>
               You Can Do It Gardening
             </WLHeader>
-            <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText}>
-              Empowering you to feel more confident to do it yourself
-            </WLHeader>
+            <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText}/>
           </div>
         </div>
         <img alt="leaf-line" src={home3} className="background-pattern" />
@@ -233,14 +235,8 @@ export default function HomePage() {
             </div>
             <div className="col-xl-6 col-md-12 d-flex flex-column px-1 py-1 px-lg-5 py-3 px-lg-5 justify-content-around" style={{maxWidth: 750}}>
               <div>
-                <WLHeader headerLevel={2} editable={userCanEditText} firestoreId="why-it-works-header" setLoaded={setWhyItWorksHeaderLoaded}>
-                  Why This Model Works:
-                </WLHeader>
-                <WLTextBlock firestoreId="why-it-works" editable={userCanEditText} setLoaded={setWhyItWorksDescriptionLoaded}>
-                  Landscapers are in high demand and outsourcing may not be in the budget right now. Many people are more able than they realize. 
-                  Doing it yourself can result in significant savings that can be used for other things. Also, it can be really gratifying to work 
-                  in the garden, connect with nature and create something beautiful or improve on what you already have.
-                </WLTextBlock>
+                <WLHeader headerLevel={2} editable={userCanEditText} firestoreId="why-it-works-header" setLoaded={setWhyItWorksHeaderLoaded}/>
+                <WLTextBlock firestoreId="why-it-works" editable={userCanEditText} setLoaded={setWhyItWorksDescriptionLoaded}/>
               </div>
               <ScheduleButton />
             </div>
@@ -249,9 +245,7 @@ export default function HomePage() {
       </section>
       <WaveTop color="#f5f5f5" />
       <section className='d-flex flex-column align-items-center justify-content-center' style={{backgroundColor: "#F5F5F5"}}>
-        <WLHeader color="#a67fcf" firestoreId="testimonial-quotes-header" editable={userCanEditText}>
-          What People Are Saying  
-        </WLHeader>
+        <WLHeader color="#a67fcf" firestoreId="testimonial-quotes-header" editable={userCanEditText}/>
         <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
           <WLAliceCarousel
             scaleActive
@@ -265,9 +259,7 @@ export default function HomePage() {
       </section>
       <WaveBottom color="#f5f5f5" />
       <section className='d-flex flex-column align-items-center justify-content-center py-5'>
-        <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}>
-          Befores and Afters
-        </WLHeader>
+        <WLHeader firestoreId="befores-and-afters-header" setLoaded={setBeforesAndAftersHeaderLoaded} editable={userCanEditText}/>
         <WLAliceCarousel
           pagination
           buttonBlock

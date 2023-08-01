@@ -30,17 +30,17 @@ export default function Gallery() {
     authenticationManager.getPermission(currentSignIn, "gallery-video").then(p => setUserCanEditGalleryVideo(p));
   }, [authenticationManager, currentSignIn]);
 
-  const [homeItems, setHomeItems] = useState([HomeItem.examples.default, HomeItem.examples.default, HomeItem.examples.default, HomeItem.examples.default]);
+  const [homeItems, setHomeItems] = useState([]);
   const [homeItemsFetched, setHomeItemsFetched] = useState(false);
-  const [newHampshireItems, setNewHampshireItems] = useState([NewHampshireItem.examples.default, NewHampshireItem.examples.default, NewHampshireItem.examples.default, NewHampshireItem.examples.default]);
+  const [newHampshireItems, setNewHampshireItems] = useState([]);
   const [newHampshireItemsFetched, setNewHampshireItemsFetched] = useState(false);
-  const [clientItems, setClientItems] = useState([ClientItem.examples.default, ClientItem.examples.default, ClientItem.examples.default, ClientItem.examples.default]);
+  const [clientItems, setClientItems] = useState([]);
   const [clientItemsFetched, setClientItemsFetched] = useState(false);
 
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const [galleryVideo, setGalleryVideo] = useState([GalleryVideo.examples.default]);
+  const [galleryVideo, setGalleryVideo] = useState([]);
 
   useEffect(() => {
     HomeItem.getAndSet(setHomeItems, setHomeItemsFetched);
@@ -68,10 +68,7 @@ export default function Gallery() {
         A Glimpse into Our Green Spaces
       </WLHeader>
       <div style={{maxWidth: 1400, width: "100%"}}>
-        <WLText firestoreId="gallery-description" editable={userCanEditText}>
-          Here, you'll see snapshots of my own garden, my New Hampshire hideaway, and transformations from various clients' gardens. 
-          Hopefully, these photos will show you that with a little guidance, beautiful gardening is achievable for anyone. Enjoy the view!
-        </WLText>
+        <WLText firestoreId="gallery-description" editable={userCanEditText}/>
       </div>
     </section>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
@@ -79,9 +76,7 @@ export default function Gallery() {
       <WLYoutubeEmbed maxWidth={1400} embedCode={galleryVideo[0] ? galleryVideo[0].embedCode : ""} />
     </section>
     <section className='d-flex flex-column align-items-center justify-content-center'>
-      <WLHeader firestoreId="home-pictures-header" editable={userCanEditText}>
-        My Home
-      </WLHeader>
+      <WLHeader firestoreId="home-pictures-header" editable={userCanEditText}/>
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
           pagination
@@ -95,9 +90,7 @@ export default function Gallery() {
     </section>
     <WaveTop color="#f5f5f5" />
     <section className='d-flex flex-column align-items-center justify-content-center' style={{backgroundColor: "#f5f5f5"}}>    
-      <WLHeader color="#a67fcf" firestoreId="nh-pictures-header" editable={userCanEditText}>
-        My New Hampshire Garden
-      </WLHeader>
+      <WLHeader color="#a67fcf" firestoreId="nh-pictures-header" editable={userCanEditText}/>
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
           pagination
@@ -111,9 +104,7 @@ export default function Gallery() {
     </section>
     <WaveBottom color="#f5f5f5" />
     <section className='d-flex flex-column align-items-center justify-content-center'>    
-      <WLHeader firestoreId="client-pictures-header" editable={userCanEditText}>
-        Clients 
-      </WLHeader>
+      <WLHeader firestoreId="client-pictures-header" editable={userCanEditText}/>
       <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
         <WLAliceCarousel
           pagination

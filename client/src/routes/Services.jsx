@@ -34,8 +34,8 @@ export default function Services() {
   const [virtualLoaded, setVirtualLoaded] = useState(false);
   const [inPersonLoaded, setInPersonLoaded] = useState(false);
 
-  const [virtualServiceItems, setVirtualServiceItems] = useState([VirtualServiceItem.examples.default, VirtualServiceItem.examples.default, VirtualServiceItem.examples.default, VirtualServiceItem.examples.default]);
-  const [inPersonServiceItems, setInPersonServiceItems] = useState([InPersonServiceItem.examples.default, InPersonServiceItem.examples.default, InPersonServiceItem.examples.default, InPersonServiceItem.examples.default]);
+  const [virtualServiceItems, setVirtualServiceItems] = useState([]);
+  const [inPersonServiceItems, setInPersonServiceItems] = useState([]);
 
   
   const [currentModel, setCurrentModel] = useState(new SiteModel());
@@ -105,16 +105,9 @@ export default function Services() {
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
     <WLBlockHeader text="Services & Fees" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center">
-      <WLHeader firestoreId="services-header" editable={userCanEditText}>
-        What I Do
-      </WLHeader>
+      <WLHeader firestoreId="services-header" editable={userCanEditText}/>
       <div style={{maxWidth: 1400, width: "100%"}}>
-        <WLText firestoreId="services-description" editable={userCanEditText}>
-          In these sessions, we begin by understanding your garden and your unique needs. I assist with plant identification, 
-          care tips, and prioritize immediate improvements. I'll teach you practical gardening skills, helping you save money by 
-          avoiding common mistakes. My goal is to meet you where you are, boosting your confidence in gardening whether you're a novice 
-          or an experienced gardener seeking a fresh perspective.
-        </WLText>
+        <WLText firestoreId="services-description" editable={userCanEditText}/>
       </div>
     </section>
     <section className='container'>
@@ -122,9 +115,7 @@ export default function Services() {
         <div className="p-2 col-xl-6 col-lg-12 d-flex">
           <Card variant='flat' css={{backgroundColor: "#ffffff", width: "100%",}}>
             <Card.Header>
-              <WLHeader headerLevel={2}>
-                In-Person Sessions
-              </WLHeader>
+              <WLHeader headerLevel={2}/>
             </Card.Header>
             <div className="px-5">
               <Divider/>
@@ -136,9 +127,7 @@ export default function Services() {
               </div>
               <div className="d-flex flex-column text-center py-2 w-100">
                 <Divider />
-                <WLText firestoreId="in-person-pricing" editable={userCanEditText}>
-                  **Pricing:** $150/hr.
-                </WLText>
+                <WLText firestoreId="in-person-pricing" editable={userCanEditText}/>
               </div>
             </Card.Body>
           </Card>
@@ -146,9 +135,7 @@ export default function Services() {
         <div className="p-2 col-xl-6 col-lg-12 d-flex">
           <Card variant='flat' css={{backgroundColor: "#ffffff", width: "100%",}}>
             <Card.Header>
-              <WLHeader headerLevel={2}>
-                Virtual Sessions
-              </WLHeader>
+              <WLHeader headerLevel={2}/>
             </Card.Header>
             <div className="px-5">
               <Divider/>
@@ -160,9 +147,7 @@ export default function Services() {
               </div>
               <div className="d-flex flex-column text-center py-2 w-100">
                 <Divider />
-                <WLText firestoreId="virtual-pricing" editable={userCanEditText}>
-                  **Pricing:** Winchester: $125/hr, Surrounding towns: $150/hr, Beyond: $125/hr including travel time.
-                </WLText>
+                <WLText firestoreId="virtual-pricing" editable={userCanEditText}/>
               </div>
             </Card.Body>
           </Card>
@@ -170,9 +155,7 @@ export default function Services() {
       </div>
     </section>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 gap-2" style={{backgroundColor: "#f5f5f5", filter:"drop-shadow(0px 0px 5px rgba(0,0,0,0.2))"}}>    
-      <WLHeader color="#a67fcf" firestoreId="schedule-header" editable={userCanEditText}>
-        Your New Garden, Just a Click Away!
-      </WLHeader>
+      <WLHeader color="#a67fcf" firestoreId="schedule-header" editable={userCanEditText}/>
       <ScheduleButton />
     </section>
     </WLSpinnerPage>

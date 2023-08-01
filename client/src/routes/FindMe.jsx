@@ -36,8 +36,8 @@ export default function FindMe() {
   }, [authenticationManager, currentSignIn]);
 
 
-  const [teachingItems, setTeachingItems] = useState([TeachingItem.examples.default, TeachingItem.examples.default, TeachingItem.examples.default]);
-  const [mediaAppearances, setMediaAppearances] = useState([MediaAppearance.examples.default, MediaAppearance.examples.alternate, MediaAppearance.examples.default, MediaAppearance.examples.alternate, MediaAppearance.examples.default, MediaAppearance.examples.alternate]);
+  const [teachingItems, setTeachingItems] = useState([]);
+  const [mediaAppearances, setMediaAppearances] = useState([]);
 
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -112,23 +112,14 @@ export default function FindMe() {
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
     <WLBlockHeader text="Find Me" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center py-2 py-lg-5">
-      <WLHeader firestoreId="teaching-hook-header" editable={userCanEditText}>
-        Learn To Do It Yourself
-      </WLHeader>
+      <WLHeader firestoreId="teaching-hook-header" editable={userCanEditText}/>
       <div style={{maxWidth: 1400, width: "100%"}}>
-        <WLText firestoreId="teaching-hook" editable={userCanEditText}>
-          I enjoy teaching people about gardening and design concepts and offering new ideas. I'm a cheerleader and I 
-          love to encourage people to see what is possible with some hard work and experimentation. You can't learn without 
-          making mistakes. See below for classes I have taught and get in touch if you are interested in having me come and 
-          speak.
-        </WLText>
+        <WLText firestoreId="teaching-hook" editable={userCanEditText} />
       </div>
     </section>
     <WaveTop color="#f5f5f5"/>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 px-2 px-lg-5" style={{backgroundColor:"#f5f5f5"}}>
-      <WLHeader firestoreId="media-appearances-header" editable={userCanEditText} color="#a67fcf">
-        Media Appearances
-      </WLHeader>
+      <WLHeader firestoreId="media-appearances-header" editable={userCanEditText} color="#a67fcf" />
       <WLAliceCarousel
         pagination
         paginationTop
@@ -153,9 +144,7 @@ export default function FindMe() {
           />
         </div>
         <div className="col-xxl-8 py-xl-4 py-3 col-xl-12 d-flex flex-column align-items-center justify-content-center">
-            <WLHeader editable={userCanEditText} firestoreId="teaching-description-header" setLoaded={setTeachingDescriptionLoaded}>
-              Where You Can Find Me
-            </WLHeader>
+            <WLHeader editable={userCanEditText} firestoreId="teaching-description-header" setLoaded={setTeachingDescriptionLoaded} />
             <div className="d-flex flex-column w-100 align-items-center justify-content-start">
               { renderTeachingItems() }
               <AddModelButton userCanEdit={userCanEditTeachingItems} model={TeachingItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
