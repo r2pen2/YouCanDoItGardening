@@ -121,25 +121,25 @@ export default function FindMe() {
       <div style={{maxWidth: 1400, width: "100%"}}>
         <WLText firestoreId="teaching-hook" editable={userCanEditText} />
       </div>
-    </section>
-    <div className="container d-flex flex-column align-items-center justify-content-center">
-      <Text>You can also:</Text>
-      <div className="row d-flex justify-content-center align-items-center">
-        <div className="col-md-5 col-12 d-flex justify-content-center my-2">
-          <Button flat onClick={() => setContactModalOpen(true)}>
-            Contact Me
-          </Button>
-        </div>
-        <div className="col-2 d-none d-md-flex justify-content-center my-2">
-          <Text style={{padding: 0, margin: 0}}>or</Text>
-        </div>
-        <div className="col-md-5 col-12 d-flex justify-content-center my-2">
-          <Button flat onClick={() => window.open(mailingListLink, "_blank")}>
-            Join my Mailing List
-          </Button>
+      <div className="container d-flex flex-column align-items-center justify-content-center">
+        <Text>You can also:</Text>
+        <div className="row d-flex justify-content-center align-items-center">
+          <div className="col-md-5 col-12 d-flex justify-content-center my-2">
+            <Button flat onClick={() => setContactModalOpen(true)}>
+              Contact Me
+            </Button>
+          </div>
+          <div className="col-2 d-none d-md-flex justify-content-center my-2">
+            <Text style={{padding: 0, margin: 0}}>or</Text>
+          </div>
+          <div className="col-md-5 col-12 d-flex justify-content-center my-2">
+            <Button flat onClick={() => window.open(mailingListLink, "_blank")}>
+              Join my Mailing List
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
     <WaveTop color="#f5f5f5"/>
     <section className="d-flex flex-column align-items-center justify-content-center py-2 px-2 px-lg-5" style={{backgroundColor:"#f5f5f5"}}>
       <WLHeader firestoreId="media-appearances-header" editable={userCanEditText} color="#a67fcf" />

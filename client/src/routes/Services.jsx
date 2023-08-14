@@ -115,7 +115,7 @@ export default function Services() {
         <div className="p-2 col-xl-6 col-lg-12 d-flex">
           <Card variant='flat' css={{backgroundColor: "#ffffff", width: "100%",}}>
             <Card.Header>
-              <WLHeader headerLevel={2}/>
+              <WLHeader firestoreId="in-person-header" headerLevel={2}/>
             </Card.Header>
             <div className="px-5">
               <Divider/>
@@ -135,7 +135,7 @@ export default function Services() {
         <div className="p-2 col-xl-6 col-lg-12 d-flex">
           <Card variant='flat' css={{backgroundColor: "#ffffff", width: "100%",}}>
             <Card.Header>
-              <WLHeader headerLevel={2}/>
+              <WLHeader firestoreId="virtual-header" headerLevel={2}/>
             </Card.Header>
             <div className="px-5">
               <Divider/>
