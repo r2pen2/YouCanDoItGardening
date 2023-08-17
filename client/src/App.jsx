@@ -13,6 +13,8 @@ import Gallery from './routes/Gallery';
 import { AuthenticationManager, WLPermissionsConfig } from './libraries/Web-Legos/api/auth.ts';
 import { createContext } from 'react';
 import { useState } from 'react';
+import { themeLarge } from './assets/style/theme';
+import { NextUIProvider, theme } from '@nextui-org/react';
 
 export const AuthenticationManagerContext = createContext(null);
 export const CurrentSignInContext = createContext(null);
@@ -45,7 +47,15 @@ function App() {
 
   const [currentSignIn, setCurrentSignIn] = useState(null);
 
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  window.onresize = () => {
+    setWindowSize(window.innerWidth)
+  }
+
   return (
+    <NextUIProvider theme={windowSize > 1200 ? themeLarge : theme}>
+
     <AuthenticationManagerContext.Provider value={{authenticationManager}}>
     <CurrentSignInContext.Provider value={{currentSignIn, setCurrentSignIn}}>
       <div className="App d-flex flex-column align-items-center w-100">
@@ -66,6 +76,7 @@ function App() {
       </div>
     </CurrentSignInContext.Provider>
     </AuthenticationManagerContext.Provider>
+    </NextUIProvider>
   );
 }
 

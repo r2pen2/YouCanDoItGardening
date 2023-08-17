@@ -42,3 +42,84 @@ export const theme = createTheme({
     },
   }
 })
+
+export const themeLarge = createTheme({
+  type: "light", // it could be "light" or "dark"
+  theme: {
+    colors: {
+      primaryLight: "$purple200",
+      primaryLightHover: "$purple300",
+      primaryLightActive: "#890058",
+      primaryLightContrast: "#730050",
+      primary: "#4F0341",
+      primaryBorder: "#730050",
+      primaryBorderHover: "#730050",
+      primarySolidHover: "#37034f",
+      primarySolidContrast: white,
+      primaryShadow: "#730050",
+
+      success: "#A6C437",
+      white: "#ffffff",
+    },
+    space: {},
+    fonts: {
+      sans: 'Ysabeau Infant',
+    },
+    fontSizes: {
+      xs: '0.875rem', 
+      sm: '1rem', 
+      base: '1.125rem', 
+      md: '1.125rem', 
+      lg: '1.25rem', 
+      xl: '1.5rem', 
+      '2xl': '1.875rem', 
+      '3xl': '2.25rem', 
+      '4xl': '3rem', 
+      '5xl': '3.75rem', 
+      '6xl': '4.5rem', 
+      '7xl': '6rem', 
+      '8xl': '7.5rem', 
+      '9xl': '8rem', 
+    },
+  }
+})
+export const themeExtraLarge = createTheme({
+  type: "light", // it could be "light" or "dark"
+  theme: {
+    colors: {
+      primaryLight: "$purple200",
+      primaryLightHover: "$purple300",
+      primaryLightActive: "#890058",
+      primaryLightContrast: "#730050",
+      primary: "#4F0341",
+      primaryBorder: "#730050",
+      primaryBorderHover: "#730050",
+      primarySolidHover: "#37034f",
+      primarySolidContrast: white,
+      primaryShadow: "#730050",
+
+      success: "#A6C437",
+      white: "#ffffff",
+    },
+    space: {},
+    fonts: {
+      sans: 'Ysabeau Infant',
+    },
+    fontSizes: {
+      xs: '1rem', 
+      sm: '1.125rem', 
+      base: '1.25rem', 
+      md: '1.25rem', 
+      lg: '1.5rem', 
+      xl: '1.875rem', 
+      '2xl': '2.25rem', 
+      '3xl': '3rem', 
+      '4xl': '3.75rem', 
+      '5xl': '4.5rem', 
+      '6xl': '6rem', 
+      '7xl': '7.5rem', 
+      '8xl': '8rem', 
+      '9xl': '9rem', 
+    },
+  }
+})
