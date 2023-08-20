@@ -23,6 +23,7 @@ export const theme = createTheme({
     space: {},
     fonts: {
       sans: 'Ysabeau Infant',
+      mono: 'Ysabeau Infant',
     },
     fontSizes: {
       xs: '0.75rem', 
@@ -64,6 +65,7 @@ export const themeLarge = createTheme({
     space: {},
     fonts: {
       sans: 'Ysabeau Infant',
+      mono: 'Ysabeau Infant',
     },
     fontSizes: {
       xs: '0.875rem', 

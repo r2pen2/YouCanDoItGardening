@@ -47,14 +47,8 @@ function App() {
 
   const [currentSignIn, setCurrentSignIn] = useState(null);
 
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
-
-  window.onresize = () => {
-    setWindowSize(window.innerWidth)
-  }
-
   return (
-    <NextUIProvider theme={windowSize > 1200 ? themeLarge : theme}>
+    <NextUIProvider theme={themeLarge}>
 
     <AuthenticationManagerContext.Provider value={{authenticationManager}}>
     <CurrentSignInContext.Provider value={{currentSignIn, setCurrentSignIn}}>
