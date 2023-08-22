@@ -13,7 +13,7 @@ import Gallery from './routes/Gallery';
 import { AuthenticationManager, WLPermissionsConfig } from './libraries/Web-Legos/api/auth.ts';
 import { createContext } from 'react';
 import { useState } from 'react';
-import { themeLarge } from './assets/style/theme';
+import { themeExtraLarge, themeLarge } from './assets/style/theme';
 import { NextUIProvider, theme } from '@nextui-org/react';
 
 export const AuthenticationManagerContext = createContext(null);

@@ -132,6 +132,7 @@ export class TeachingItem extends SiteModel {
     order: null,
   }
   shortStrings = {
+    link: "",
   }
   longStrings = {
     title: "",
@@ -139,6 +140,7 @@ export class TeachingItem extends SiteModel {
   }
 
   fillConstantExampleData() {
+    this.shortStrings.link = "https://www.google.com/";
     this.longStrings.title = "The Arlington Community Education Catalog";
     this.longStrings.description = "I usually teach at least one class on gardening for beginners in the spring and fall, so look out for those if you're local!";
     return this;
@@ -151,6 +153,7 @@ export class TeachingItem extends SiteModel {
   fromFirestore(data: any) : TeachingItem {
     const ti = new TeachingItem();
     ti.id = data.id;
+    ti.shortStrings.link = data.link;
     ti.longStrings.title = data.title;
     ti.longStrings.description = data.description;
     ti.numbers.order = data.order;

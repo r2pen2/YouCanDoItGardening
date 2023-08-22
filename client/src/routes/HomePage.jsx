@@ -39,9 +39,6 @@ export default function HomePage() {
   const [userCanEditTestimonials, setUserCanEditTestimonials] = useState(false);
   const [userCanEditBeforesAndAfters, setUserCanEditBeforesAndAfters] = useState(false);
 
-  
-  console.log(userCanEditText, userCanEditImages, userCanEditTestimonials)
-  
   useEffect(() => {
     authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
     authenticationManager.getPermission(currentSignIn, "siteImages").then(p => setUserCanEditImages(p));
@@ -51,6 +48,9 @@ export default function HomePage() {
 
   const [testimonialsFetched, setTestimonialsFetched] = useState(false);
   const [testimonials, setTestimonials] = useState([]);
+
+  const [beforesAndAftersFetched, setBeforesAndAftersFetched] = useState(false);
+  const [beforesAndAfters, setBeforesAndAfters] = useState([]);
 
   function TestimonialCard({testimonial}) {
     return (
@@ -79,17 +79,8 @@ export default function HomePage() {
   const [modelEditModalOpen, setModelEditModalOpen] = useState(false);
   const [currentModel, setCurrentModel] = useState(new SiteModel());
 
-  const [beforesAndAftersCarouselItems, setBeforesAndAftersCarouselItems] = useState([]);
-
   useEffect(() => {
-    BeforeAndAfter.get().then((data) => {
-      const sortedData = sortByOrder(data);
-      let newItems = [];
-      for (const item of sortedData) {
-        newItems.push(<BeforeAndAfterCard beforeAndAfter={item} />);
-      }
-      setBeforesAndAftersCarouselItems(newItems)
-    })
+    BeforeAndAfter.getAndSet(setBeforesAndAfters, setBeforesAndAftersFetched)
     Testimonial.getAndSet(setTestimonials, setTestimonialsFetched);
   }, [])
 
@@ -119,13 +110,14 @@ export default function HomePage() {
     }
 
     return (
-        <Button className="w-100 d-inline mt-2" css={{minHeight: 50}} flat size="$sm" onClick={handleScheduleButtonClick}>
+        <Button className="w-100 d-inline mt-2" css={{minHeight: 50, maxWidth: 1000}} flat size="$sm" onClick={handleScheduleButtonClick}>
           Schedule A Consultation
         </Button>
     )
   }
   
   function BeforeAndAfterCard({beforeAndAfter}) {
+
     return (
       <div className="container-fluid d-flex flex-column align-items-center justify-content-center" style={{width: '100%', maxWidth: 1400}}>
         <ModelEditButton model={BeforeAndAfter} data={beforeAndAfter} userCanEdit={userCanEditBeforesAndAfters} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen}/>
@@ -166,7 +158,8 @@ export default function HomePage() {
         lookHookLoaded, 
         lookDescriptionLoaded, 
         feelHookLoaded, 
-        feelDescriptionLoaded
+        feelDescriptionLoaded,
+        beforesAndAftersFetched
       ]}
     >
       <ModelEditModal model={currentModel} open={modelEditModalOpen} setOpen={setModelEditModalOpen} />
@@ -193,11 +186,6 @@ export default function HomePage() {
               titleText={<WLText firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}>**Looks Good**</WLText>}
               subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}>Small changes can make a huge difference!</WLText>}
               />
-            <TransparentHookCard
-              icon={<LocalFloristTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="feels-good-hook" editable={userCanEditText} setLoaded={setFeelHookLoaded}>**Feels Good**</WLText>}
-              subtitleText={<WLText firestoreId="feels-good-description" editable={userCanEditText} setLoaded={setFeelDescriptionLoaded}>Doing it yourself is so satisfying!</WLText>}
-            />
           </div>
         </div>
       </section>
@@ -212,10 +200,13 @@ export default function HomePage() {
                 <WLHeader headerLevel={2} editable={userCanEditText} firestoreId="why-it-works-header" setLoaded={setWhyItWorksHeaderLoaded}/>
                 <WLTextBlock firestoreId="why-it-works" editable={userCanEditText} setLoaded={setWhyItWorksDescriptionLoaded}/>
               </div>
-              <ScheduleButton />
             </div>
-          </div>
         </div>
+        </div>
+      </section>
+      <section className="d-flex flex-column align-items-center justify-content-center py-2 px-3 gap-2" style={{width: "100%"}}>    
+        <WLHeader firestoreId="schedule-header" editable={userCanEditText}/>
+        <ScheduleButton />
       </section>
       <WaveTop color="#f5f5f5" />
       <section className='d-flex flex-column align-items-center justify-content-center' style={{backgroundColor: "#F5F5F5"}}>
@@ -238,7 +229,7 @@ export default function HomePage() {
           pagination
           buttonBlock
           paginationTop
-          items={beforesAndAftersCarouselItems}
+          items={beforesAndAfters.map((b, i) => <BeforeAndAfterCard beforeAndAfter={b} key={i} />)}
         />
         <AddModelButton userCanEdit={userCanEditBeforesAndAfters} model={BeforeAndAfter} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
       </section>
@@ -248,7 +239,7 @@ export default function HomePage() {
 
 function TransparentHookCard({icon, titleText, subtitleText}) {
   return (
-    <div className="col-xl-4 col-md-12 p-3 d-flex flex-column align-items-center">
+    <div className="col-xl-6 col-md-12 p-3 d-flex flex-column align-items-center">
       <div
         className='transparent-card'
       >

@@ -61,7 +61,14 @@ export default function FindMe() {
   function TeachingItemCard({teachingItem}) {
     return (
       <div className="d-flex w-100 my-2 align-items-center justify-content-center">
-        <Card className="p-2" isHoverable variant="bordered" style={{maxWidth: 640}}>
+        <Card 
+          isPressable 
+          onPress={() => window.open(teachingItem.link, "_blank")} 
+          className="p-2" 
+          isHoverable 
+          variant="bordered" 
+          style={{maxWidth: 640}}
+        >
           <div className="d-flex flex-column align-items-center justify-content-center">
             <div className="d-flex flex-column">
               <Text b>{teachingItem.title}</Text>
