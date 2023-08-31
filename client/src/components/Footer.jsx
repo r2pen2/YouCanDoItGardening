@@ -2,7 +2,7 @@ import { Text, Link, } from '@nextui-org/react'
 import React from 'react'
 import logo from "../assets/images/logoTransparent.png";
 import { contactMeLink, facebookLink, instagramLink, mailingListLink, tiktokLink, youtubeLink } from '../api/links';
-import {  WLFooterLogo, WLFooterSocials } from '../libraries/Web-Legos/components/Footer';
+import {  WLFooterLogo, WLFooterSignature, WLFooterSocials } from '../libraries/Web-Legos/components/Footer';
 import { WLCopyright, WLText } from '../libraries/Web-Legos/components/Text';
 import { FooterAuthButton } from '../libraries/Web-Legos/components/Auth';
 import { useContext } from 'react';
@@ -26,6 +26,7 @@ export default function Footer() {
           <WLCopyright editable={userCanEditText}/>
           <FooterAuthButton authManager={authenticationManager} currentSignIn={currentSignIn} setCurrentSignIn={setCurrentSignIn}/>
         </div>
+        <WLFooterSignature />
       </div>
     </footer>
   )
