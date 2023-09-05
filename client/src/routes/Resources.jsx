@@ -24,13 +24,13 @@ export default function Resources() {
     authenticationManager.getPermission(currentSignIn, "external-resources").then(p => setUserCanEditResources(p));
   }, [authenticationManager, currentSignIn]);
   
-  const [resources, setResources] = useState([]);
+  const [resources, setResources] = useState([ExternalResource.examples.default, ExternalResource.examples.alternate]);
 
   const [modelEditModalOpen, setModelEditModalOpen] = useState(false);
   const [currentModel, setCurrentModel] = useState(new SiteModel());
 
   useEffect(() => {
-    ExternalResource.getAndSet(setResources);
+    //ExternalResource.getAndSet(setResources);
   }, [])
 
   function ExternalResourceCard({resource}) {
@@ -39,11 +39,32 @@ export default function Resources() {
         <Card
           style={{
             width: "100%",
-            display: "flex",
             flexDirection: "row",
             alignItems: "center", 
-            justifyContent: "space-between"
+            justifyContent: "space-between",
           }}
+          className="d-none d-lg-flex"
+          isPressable
+          isHoverable
+          onPress={() => window.open(resource.link, "_blank")}
+        >
+          <Card.Image style={{height: "100%", width: "100%", maxWidth: 300, maxHeight: 300,}} src={resource.imageSource}/>
+          <div style={{flex: 1}} className="d-flex flex-column align-items-center justify-content-center">
+            <div>
+              <Text b>{resource.title}</Text>
+              <Divider />
+            </div>
+            <Text>{resource.description}</Text>
+          </div>
+        </Card>
+        <Card
+          style={{
+            width: "100%",
+            flexDirection: "column",
+            alignItems: "center", 
+            justifyContent: "space-between",
+          }}
+          className="d-flex d-lg-none gap-2"
           isPressable
           isHoverable
           onPress={() => window.open(resource.link, "_blank")}
