@@ -24,13 +24,13 @@ export default function Resources() {
     authenticationManager.getPermission(currentSignIn, "external-resources").then(p => setUserCanEditResources(p));
   }, [authenticationManager, currentSignIn]);
   
-  const [resources, setResources] = useState([ExternalResource.examples.default, ExternalResource.examples.alternate]);
+  const [resources, setResources] = useState([]);
 
   const [modelEditModalOpen, setModelEditModalOpen] = useState(false);
   const [currentModel, setCurrentModel] = useState(new SiteModel());
 
   useEffect(() => {
-    //ExternalResource.getAndSet(setResources);
+    ExternalResource.getAndSet(setResources);
   }, [])
 
   function ExternalResourceCard({resource}) {
