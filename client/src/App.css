@@ -85,3 +85,14 @@ section {
   display: block;
   background: url("./assets/images/purple-stripe.jpg") repeat-x;
 }
+
+@media (max-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+
+html {
+  font-size: 20px;
+}

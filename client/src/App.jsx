@@ -11,9 +11,9 @@ import FindMe from './routes/FindMe';
 import Footer from './components/Footer';
 import Gallery from './routes/Gallery';
 import { AuthenticationManager, WLPermissionsConfig } from './libraries/Web-Legos/api/auth.ts';
-import { createContext } from 'react';
+import { createContext, useEffect, useLayoutEffect } from 'react';
 import { useState } from 'react';
-import { themeExtraLarge, themeLarge } from './assets/style/theme';
+import { largeSizes, mobileSizes, themeExtraLarge, themeLarge } from './assets/style/theme';
 import { NextUIProvider, theme } from '@nextui-org/react';
 
 export const AuthenticationManagerContext = createContext(null);
@@ -46,6 +46,19 @@ function App() {
   authenticationManager.initialize();
 
   const [currentSignIn, setCurrentSignIn] = useState(null);
+
+  function updateTheme() {
+    if (window.innerWidth <= 768) {
+      document.getElementById("root-element").setAttribute("style", "color-scheme: light; font-size: 18px;")
+    } else {
+      document.getElementById("root-element").setAttribute("style", "color-scheme: light; font-size: 20px;")
+    }
+  }
+  
+  useLayoutEffect(() => {
+    updateTheme();
+    window.addEventListener('resize', updateTheme)
+  }, [])
 
   return (
     <NextUIProvider theme={themeLarge}>
