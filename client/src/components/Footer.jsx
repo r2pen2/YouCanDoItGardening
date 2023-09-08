@@ -14,6 +14,18 @@ export default function Footer() {
 
   const {currentSignIn, setCurrentSignIn} = useContext(CurrentSignInContext);
   const {authenticationManager} = useContext(AuthenticationManagerContext);
+
+
+    const {currentSignIn} = useContext(CurrentSignInContext);
+    const {authenticationManager} = useContext(AuthenticationManagerContext);
+  
+// These are redefined because I'm making a hot-fix on my phone. Next time this is seen, please make it so we're not checking back-end twice.
+    const [userCanEditText, setUserCanEditText] = useState(false);
+    
+    useEffect(() => {
+      authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
+    }, [authenticationManager, currentSignIn]);
+
   
   return (
     <footer>
@@ -31,8 +43,6 @@ export default function Footer() {
     </footer>
   )
 }
-
-const userCanEditText = true;
 
 function NewFooterContent() {
   
