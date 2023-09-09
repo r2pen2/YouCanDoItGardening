@@ -210,7 +210,7 @@ function ShopDropdown() {
           key="clothing"
           showFullDescription 
           withDivider
-          description="Show the world your support with You Can Do It Gardening merch"
+          description="Show your support with You Can Do It Gardening merch"
           icon={<AutoAwesomeTwoToneIcon style={{color: "orange"}} />}
         >
           Clothing
