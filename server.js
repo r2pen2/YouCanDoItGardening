@@ -6,8 +6,7 @@ const fs = require('fs');
 const siteImages = require('./libraries/Server-Legos/siteImages');
 const siteText = require('./libraries/Server-Legos/siteText');
 const siteModels = require('./libraries/Server-Legos/siteModels');
-const siteAuth = require('./libraries/Server-Legos/siteAuth');
-const siteMail = require('./libraries/Server-Legos/siteMail');
+const SiteAuthenticationManager = require('./libraries/Server-Legos/siteAuth');
 const fileUpload = require('express-fileupload');
 
 // Init express application
@@ -39,9 +38,9 @@ app.use("/site-images", siteImages);
 // Server site models
 app.use("/site-models", siteModels);
 // Server site authentication
-app.use("/site-auth", siteAuth);
-// Server site mail
-app.use("/site-mail", siteMail);
+const siteAuthenticationManager = new SiteAuthenticationManager(process.env.YCDUSERKEY);
+const siteAuthenticationRouter = siteAuthenticationManager.getRouter();
+app.use("/site-auth", siteAuthenticationRouter);
 
 app.get("/images/*", (req, res) => {
     res.sendFile(__dirname + req._parsedOriginalUrl.path);
