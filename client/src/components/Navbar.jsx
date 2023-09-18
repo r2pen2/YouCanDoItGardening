@@ -243,7 +243,7 @@ function ScheduleDropdown() {
         <Dropdown.Item
           key="in-person"
           showFullDescription 
-          description="Arrange an in-person consultation in Greater Boston and beyond!"
+          description="Arrange an in-person consultation in Greater Boston and beyond"
           icon={<LocationOnTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.green}} />}
         >
           In-Person Consultations
@@ -252,7 +252,7 @@ function ScheduleDropdown() {
           key="online"
           showFullDescription 
           withDivider
-          description="Book your zoom lawn check-up now!"
+          description="Book a virtual consultation during the most convenient time for your schedule"
           icon={<ComputerTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.blue}}/>}
         >
           Virtual Consultations
