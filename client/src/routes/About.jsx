@@ -9,12 +9,17 @@ import { WLResponsiveSectionEditable, WLSpinnerPage } from '../libraries/Web-Leg
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
+import { CurrentSignInContext } from '../App';
+import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
+import { AnalyticsManager } from '../libraries/Web-Legos/api/analytics.ts';
 
 export default function About() {  
 
   const {currentSignIn} = useContext(CurrentSignInContext);
-  const {authenticationManager} = useContext(AuthenticationManagerContext);
+  const {authenticationManager} = useContext(AuthenticationManager.Context);
+  const {analyticsManager} = useContext(AnalyticsManager.Context);
+
+  analyticsManager.logPageView("about")
 
   const [userCanEditText, setUserCanEditText] = useState(false);
   const [userCanEditImages, setUserCanEditImages] = useState(false);

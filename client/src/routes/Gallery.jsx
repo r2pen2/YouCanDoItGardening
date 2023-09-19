@@ -13,13 +13,18 @@ import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
 import { useContext } from 'react';
-import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
+import { CurrentSignInContext } from '../App';
 import { getYoutubeEmbedCode } from '../libraries/Web-Legos/api/media.ts';
+import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
+import { AnalyticsManager } from '../libraries/Web-Legos/api/analytics.ts';
 
 export default function Gallery() {
   
   const {currentSignIn} = useContext(CurrentSignInContext);
-  const {authenticationManager} = useContext(AuthenticationManagerContext);
+  const {authenticationManager} = useContext(AuthenticationManager.Context);
+  const {analyticsManager} = useContext(AnalyticsManager.Context);
+
+  analyticsManager.logPageView("gallery")
 
   const [userCanEditText, setUserCanEditText] = useState(false);
   const [userCanEditGalleryPictures, setUserCanEditGalleryPictures] = useState(false);

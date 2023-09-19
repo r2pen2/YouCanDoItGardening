@@ -15,8 +15,8 @@ import { createContext, useEffect, useLayoutEffect } from 'react';
 import { useState } from 'react';
 import { largeSizes, mobileSizes, themeExtraLarge, themeLarge } from './assets/style/theme';
 import { NextUIProvider, theme } from '@nextui-org/react';
-import { AnalyticsManager } from './libraries/Web-Legos/api/analytics';
-import { firebaseConfig } from './api/firebase';
+import { AnalyticsManager } from './libraries/Web-Legos/api/analytics.ts';
+import { firebaseConfig } from './api/firebase.ts';
 
 export const CurrentSignInContext = createContext(null);
 
@@ -37,6 +37,7 @@ const authenticationManager = new AuthenticationManager(
 authenticationManager.initialize();
 
 const analyticsManager = new AnalyticsManager(firebaseConfig)
+analyticsManager.initialize();
 
 function App() {
 

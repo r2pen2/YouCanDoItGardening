@@ -16,12 +16,17 @@ import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
 import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone';
 import { ContactModal } from '../components/Modals';
 import { useContext } from 'react';
-import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
+import { CurrentSignInContext } from '../App';
+import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
+import { AnalyticsManager } from '../libraries/Web-Legos/api/analytics.ts';
 
 export default function Services() {
 
   const {currentSignIn} = useContext(CurrentSignInContext);
-  const {authenticationManager} = useContext(AuthenticationManagerContext);
+  const {authenticationManager} = useContext(AuthenticationManager.Context);
+  const {analyticsManager} = useContext(AnalyticsManager.Context);
+
+  analyticsManager.logPageView("services")
 
   const [userCanEditText, setUserCanEditText] = useState(false);
   const [userCanEditServiceItems, setUserCanEditServiceItems] = useState(false);

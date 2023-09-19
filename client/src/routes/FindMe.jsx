@@ -16,14 +16,19 @@ import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
 import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { useContext } from 'react';
-import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
+import { CurrentSignInContext } from '../App';
 import { ContactModal } from '../components/Modals';
 import { mailingListLink } from '../api/links';
+import { AnalyticsManager } from '../libraries/Web-Legos/api/analytics.ts';
+import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
 
 export default function FindMe() {
 
   const {currentSignIn} = useContext(CurrentSignInContext);
-  const {authenticationManager} = useContext(AuthenticationManagerContext);
+  const {authenticationManager} = useContext(AuthenticationManager.Context);
+  const {analyticsManager} = useContext(AnalyticsManager.Context);
+
+  analyticsManager.logPageView("find-me")
 
   const [userCanEditText, setUserCanEditText] = useState(false);
   const [userCanEditImages, setUserCanEditImages] = useState(false);

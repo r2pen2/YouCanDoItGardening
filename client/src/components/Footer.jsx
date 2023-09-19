@@ -6,14 +6,15 @@ import {  WLFooterLogo, WLFooterSignature, WLFooterSocials } from '../libraries/
 import { WLCopyright, WLText } from '../libraries/Web-Legos/components/Text';
 import { FooterAuthButton } from '../libraries/Web-Legos/components/Auth';
 import { useContext } from 'react';
-import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
+import { CurrentSignInContext } from '../App';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
 
 export default function Footer() {
 
   const {currentSignIn, setCurrentSignIn} = useContext(CurrentSignInContext);
-  const {authenticationManager} = useContext(AuthenticationManagerContext);
+  const {authenticationManager} = useContext(AuthenticationManager.Context);
 
   
   return (
@@ -39,7 +40,7 @@ function FooterCopyright() {
   const [userCanEditText, setUserCanEditText] = useState(false);
 
   const {currentSignIn} = useContext(CurrentSignInContext);
-  const {authenticationManager} = useContext(AuthenticationManagerContext);
+  const {authenticationManager} = useContext(AuthenticationManager.Context);
     
   useEffect(() => {
     authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
@@ -52,7 +53,7 @@ function FooterCopyright() {
 function NewFooterContent() {  
 
     const {currentSignIn} = useContext(CurrentSignInContext);
-    const {authenticationManager} = useContext(AuthenticationManagerContext);
+    const {authenticationManager} = useContext(AuthenticationManager.Context);
   
     const [userCanEditText, setUserCanEditText] = useState(false);
     

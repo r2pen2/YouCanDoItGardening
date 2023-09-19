@@ -24,15 +24,19 @@ import { SiteModel, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
 import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { useContext } from 'react';
-import { AuthenticationManagerContext, CurrentSignInContext } from '../App';
+import { CurrentSignInContext } from '../App';
+import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
+import { AnalyticsManager } from '../libraries/Web-Legos/api/analytics.ts';
 
 export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
 export default function HomePage() {
 
   const {currentSignIn} = useContext(CurrentSignInContext);
-  const {authenticationManager} = useContext(AuthenticationManagerContext);
+  const {authenticationManager} = useContext(AuthenticationManager.Context);
+  const {analyticsManager} = useContext(AnalyticsManager.Context);
 
+  analyticsManager.logPageView("home")
 
   const [userCanEditText, setUserCanEditText] = useState(false);
   const [userCanEditImages, setUserCanEditImages] = useState(false);
