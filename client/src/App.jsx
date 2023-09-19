@@ -15,35 +15,30 @@ import { createContext, useEffect, useLayoutEffect } from 'react';
 import { useState } from 'react';
 import { largeSizes, mobileSizes, themeExtraLarge, themeLarge } from './assets/style/theme';
 import { NextUIProvider, theme } from '@nextui-org/react';
+import { AnalyticsManager } from './libraries/Web-Legos/api/analytics';
+import { firebaseConfig } from './api/firebase';
 
-export const AuthenticationManagerContext = createContext(null);
 export const CurrentSignInContext = createContext(null);
 
-function App() {
+const permissions = new WLPermissionsConfig({
+  beforesAndAfters: "befores-and-afters",
+  galleryVideo: "gallery-video",
+  galleryPictures: "gallery-pictures",
+  serviceItems: "service-items",
+  mediaAppearances: "media-appearances",
+  teachingItems: "teaching-items",
+  testimonials: "testimonials",
+  externalResources: "external-resources",
+})
 
-  const permissions = new WLPermissionsConfig({
-    beforesAndAfters: "befores-and-afters",
-    galleryVideo: "gallery-video",
-    galleryPictures: "gallery-pictures",
-    serviceItems: "service-items",
-    mediaAppearances: "media-appearances",
-    teachingItems: "teaching-items",
-    testimonials: "testimonials",
-    externalResources: "external-resources",
-  })
-  const authenticationManager = new AuthenticationManager(
-    {
-      apiKey: "AIzaSyBfHhueJ3kD6zYfSDGBCzer9qcjSa-5Q8g",
-      authDomain: "you-can-do-it-gardening.firebaseapp.com",
-      projectId: "you-can-do-it-gardening",
-      storageBucket: "you-can-do-it-gardening.appspot.com",
-      messagingSenderId: "1018875853470",
-      appId: "1:1018875853470:web:e1a861226e1c3e4a75198f",
-      measurementId: "G-0DJWTZTY6G"
-    },
-    permissions
-  );
-  authenticationManager.initialize();
+const authenticationManager = new AuthenticationManager(
+  firebaseConfig, permissions
+);
+authenticationManager.initialize();
+
+const analyticsManager = new AnalyticsManager(firebaseConfig)
+
+function App() {
 
   const [currentSignIn, setCurrentSignIn] = useState(null);
 
@@ -63,7 +58,8 @@ function App() {
   return (
     <NextUIProvider theme={themeLarge}>
 
-    <AuthenticationManagerContext.Provider value={{authenticationManager}}>
+    <AnalyticsManager.Context.Provider value={{analyticsManager}}>
+    <AuthenticationManager.Context.Provider value={{authenticationManager}}>
     <CurrentSignInContext.Provider value={{currentSignIn, setCurrentSignIn}}>
       <div className="App d-flex flex-column align-items-center w-100">
         <Router>
@@ -82,7 +78,9 @@ function App() {
         </Router>
       </div>
     </CurrentSignInContext.Provider>
-    </AuthenticationManagerContext.Provider>
+    </AuthenticationManager.Context.Provider>
+    </AnalyticsManager.Context.Provider>
+
     </NextUIProvider>
   );
 }
