@@ -67,7 +67,7 @@ export function ContactModal({open, setOpen}) {
       <ModalOptionCard 
         icon={<LocationOnTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.purple}} />}
         title="In-Person Consultations" 
-        subtitle="Arrange an in-person consultation in Greater Boston and beyond!" 
+        subtitle="Arrange an in-person consultation in Greater Boston and beyond" 
         href={scheduleInPersonLink}
       />
     )
@@ -78,7 +78,7 @@ export function ContactModal({open, setOpen}) {
       <ModalOptionCard 
         icon={<ComputerTwoToneIcon fontSize="large" className="mx-0 mx-md-4" style={{color: iconFills.purple}}/>}
         title="Virtual Consultations" 
-        subtitle="Book your zoom lawn check-up now!" 
+        subtitle="Book a virtual consultation during the most convenient tme for your schedule" 
         href={scheduleOnlineLink}
       />
     )
