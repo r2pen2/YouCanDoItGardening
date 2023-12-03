@@ -27,6 +27,8 @@ import { useContext } from 'react';
 import { CurrentSignInContext } from '../App';
 import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
 import { AnalyticsManager } from '../libraries/Web-Legos/api/analytics.ts';
+import { Alert } from '@mui/material';
+import { mailingListLink } from '../api/links.js';
 
 export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
@@ -175,6 +177,9 @@ export default function HomePage() {
               You Can Do It Gardening
             </WLHeader>
             <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText}/>
+          </div>
+          <div className="elevated mt-3 d-flex flex-row align-items-center justify-content-center w-100">
+            <Alert severity="info"><a href={mailingListLink}>Don't miss out — click here to join my mailing list!</a></Alert>
           </div>
         </div>
         <img alt="leaf-line" src={home3} className="background-pattern" />
