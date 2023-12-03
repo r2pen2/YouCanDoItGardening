@@ -11,10 +11,10 @@ import FindMe from './routes/FindMe';
 import Footer from './components/Footer';
 import Gallery from './routes/Gallery';
 import { AuthenticationManager, WLPermissionsConfig } from './libraries/Web-Legos/api/auth.ts';
-import { createContext, useEffect, useLayoutEffect } from 'react';
+import { createContext, useLayoutEffect } from 'react';
 import { useState } from 'react';
-import { largeSizes, mobileSizes, themeExtraLarge, themeLarge } from './assets/style/theme';
-import { NextUIProvider, theme } from '@nextui-org/react';
+import { themeLarge } from './assets/style/theme';
+import { NextUIProvider } from '@nextui-org/react';
 import { AnalyticsManager } from './libraries/Web-Legos/api/analytics.ts';
 import { firebaseConfig } from './api/firebase.ts';
 

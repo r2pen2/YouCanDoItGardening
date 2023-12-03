@@ -6,7 +6,7 @@ import "../assets/style/homepage.css"
 
 import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
 import SavingsTwoToneIcon from '@mui/icons-material/SavingsTwoTone';
-import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
+// import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import { ContactModal } from '../components/Modals';
 import { iconFills } from '../components/Modals';
 
@@ -20,7 +20,7 @@ import { WLSpinnerPage } from "../libraries/Web-Legos/components/Layout"
 import { WLImage } from '../libraries/Web-Legos/components/Images';
 import home3 from "../assets/images/gradient/markup-cropped.svg"
 import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
-import { SiteModel, sortByOrder } from '../libraries/Web-Legos/api/models.ts';
+import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { useContext } from 'react';
@@ -97,8 +97,8 @@ export default function HomePage() {
   const [saveDescriptionLoaded, setSaveDescriptionLoaded] = useState(false);              // Whether "Save Money" description has loaded
   const [lookHookLoaded, setLookHookLoaded] = useState(false);                            // Whether "Looks Good" hook has loaded
   const [lookDescriptionLoaded, setLookDescriptionLoaded] = useState(false);              // Whether "Looks Good" description has loaded
-  const [feelHookLoaded, setFeelHookLoaded] = useState(false);                            // Whether "Feels Good" hook has loaded
-  const [feelDescriptionLoaded, setFeelDescriptionLoaded] = useState(false);              // Whether "Feels Good" description has loaded
+  // const [feelHookLoaded, setFeelHookLoaded] = useState(false);                            // Whether "Feels Good" hook has loaded
+  // const [feelDescriptionLoaded, setFeelDescriptionLoaded] = useState(false);              // Whether "Feels Good" description has loaded
   const [beforesAndAftersHeaderLoaded, setBeforesAndAftersHeaderLoaded] = useState(false);// Whether "Befores and Afters" header has loaded
 
   /**
@@ -161,8 +161,8 @@ export default function HomePage() {
         saveDescriptionLoaded, 
         lookHookLoaded, 
         lookDescriptionLoaded, 
-        feelHookLoaded, 
-        feelDescriptionLoaded,
+        // feelHookLoaded, 
+        // feelDescriptionLoaded,
         beforesAndAftersFetched
       ]}
     >
