@@ -1,7 +1,7 @@
-import { Text, Link, } from '@nextui-org/react'
+import { Button, } from '@nextui-org/react'
 import React from 'react'
 import logo from "../assets/images/logoTransparent.png";
-import { contactMeLink, facebookLink, instagramLink, mailingListLink, tiktokLink, youtubeLink } from '../api/links';
+import { mailingListLink, facebookLink, instagramLink, tiktokLink, youtubeLink } from '../api/links';
 import {  WLFooterLogo, WLFooterSignature, WLFooterSocials } from '../libraries/Web-Legos/components/Footer';
 import { WLCopyright, WLText } from '../libraries/Web-Legos/components/Text';
 import { FooterAuthButton } from '../libraries/Web-Legos/components/Auth';
@@ -74,14 +74,13 @@ function NewFooterContent() {
           <WLFooterSocials.Button platformKey="tiktok" href={tiktokLink} />
           <WLFooterSocials.Button platformKey="youtube" href={youtubeLink} />
         </WLFooterSocials>
-        <WLText editable={userCanEditText} firestoreId="footer-follower-count">
-          300,000+ followers on Instagram, TikTok, FaceBook and YouTube combined. Come join the party!
-        </WLText>
+        <WLText editable={userCanEditText} firestoreId="footer-follower-count" />
+        <Button flat onClick={() => window.open(mailingListLink, "_blank")}>
+          Join my Mailing List
+        </Button>
       </div>
       <div className="col-lg-12 col-xl-3 d-flex flex-column align-items-center">
-        <WLText firestoreId="footer-hook" editable={userCanEditText}>
-            Empowering gardeners at all levels to get their hands dirty. Serving Great Boston in person and virtual consultations anywhere.
-        </WLText>
+        <WLText firestoreId="footer-hook" editable={userCanEditText} />
       </div>
     </div>
   )

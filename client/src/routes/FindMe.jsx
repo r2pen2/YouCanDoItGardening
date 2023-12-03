@@ -12,7 +12,7 @@ import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 
 import { AddModelButton, ModelEditButton, ModelEditModal } from "../libraries/Web-Legos/components/Modals"
 import { Button, Card, Divider, Text } from '@nextui-org/react';
-import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
+// import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
 import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { useContext } from 'react';
@@ -49,7 +49,7 @@ export default function FindMe() {
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const [teachingHookLoaded, setTeachingHookLoaded] = useState(false);
+  // const [teachingHookLoaded, setTeachingHookLoaded] = useState(false);
   const [teachingDescriptionLoaded, setTeachingDescriptionLoaded] = useState(false);
 
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -124,7 +124,7 @@ export default function FindMe() {
   }
 
   return (
-  <WLSpinnerPage dependencies={[teachingHookLoaded, teachingDescriptionLoaded]} containerClasses="page-background">
+  <WLSpinnerPage dependencies={[teachingDescriptionLoaded]} containerClasses="page-background">
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
     <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
     <WLBlockHeader text="Find Me" color={blockHeaderFill} short />

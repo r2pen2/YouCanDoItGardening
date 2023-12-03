@@ -114,9 +114,9 @@ export default function HomePage() {
     }
 
     return (
-        <Button className="w-100 d-inline mt-2" css={{minHeight: 50, maxWidth: 1000}} flat size="$sm" onClick={handleScheduleButtonClick}>
-          Schedule A Consultation
-        </Button>
+      <Button className="w-100 d-inline mt-2" css={{minHeight: 50, maxWidth: 1000}} flat size="$sm" onClick={handleScheduleButtonClick}>
+        Schedule A Consultation
+      </Button>
     )
   }
   
