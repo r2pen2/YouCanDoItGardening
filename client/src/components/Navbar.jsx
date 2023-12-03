@@ -1,13 +1,13 @@
 // Library Imports
 import React from 'react';
-import { Navbar as NextUINavbar, Link, Dropdown, Divider, } from "@nextui-org/react";
+import { Navbar as NextUINavbar, Link, Dropdown, Divider, Text, } from "@nextui-org/react";
 
 import logoBlack from "../assets/images/logoNoText.png";
 
 import LocalCafeTwoToneIcon from '@mui/icons-material/LocalCafeTwoTone';
 import MenuBookTwoToneIcon from '@mui/icons-material/MenuBookTwoTone';
 import AutoAwesomeTwoToneIcon from '@mui/icons-material/AutoAwesomeTwoTone';
-import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
+// import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 
 import EventAvailableTwoToneIcon from '@mui/icons-material/EventAvailableTwoTone';
 import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
@@ -21,7 +21,7 @@ import { facebookLink, instagramLink, scheduleInPersonLink, scheduleOnlineLink, 
 
 import {WLNavBrandLeft, WLNavContent, WLNavDropdownMenu, WLNavSocials} from "../libraries/Web-Legos/components/Navigation";
 import { VerticalDivider } from '../libraries/Web-Legos/components/Layout';
-import { CalendarIcon, FacebookIcon, InstagramIcon, TikTokIcon, YouTubeIcon } from '../libraries/Web-Legos/components/Icons';
+import { FacebookIcon, InstagramIcon, TikTokIcon, YouTubeIcon } from '../libraries/Web-Legos/components/Icons';
 import { iconFills } from './Modals';
 
 const navbarItemFontSize = "18px";
@@ -139,11 +139,11 @@ export function Navbar() {
           <div className="px-0 px-lg-2" >
             <VerticalDivider height={40} color="#212529" />
           </div>
-          <ShopDropdown />
+          <ScheduleDropdown />
           <div className="px-0 px-lg-2" >
             <VerticalDivider height={40} color="#212529" />
           </div>
-          <ScheduleDropdown />
+          <ShopDropdown />
         </WLNavContent.Right>
       </WLNavContent>
       <NextUINavbar.Collapse >
@@ -170,7 +170,7 @@ function ShopDropdown() {
     <NextUINavbar.Content css={{padding: 0}}>
       <WLNavDropdownMenu 
         hideTextIn="all"
-        buttonIcon={<ShoppingCartTwoToneIcon style={{fontSize: 30}}/>}
+        buttonIcon={<Text className="m-0">Shop</Text>}
         buttonLight 
         buttonText="Shop" 
         buttonFontSize={navbarItemFontSize} 
