@@ -129,7 +129,7 @@ export function Navbar() {
           <NavbarPages />
         </WLNavContent.Left>
         <WLNavContent.Right>
-          <WLNavSocials showIn="sm">
+          {/* <WLNavSocials showIn="sm">
             <WLNavSocials.Button size={30} platformKey="instagram" href={instagramLink} />
             <WLNavSocials.Button size={30} platformKey="facebook" href={facebookLink} />
             <WLNavSocials.Button size={30} platformKey="tiktok" href={tiktokLink} />
@@ -142,7 +142,7 @@ export function Navbar() {
           <ScheduleDropdown />
           <div className="px-0 px-lg-2" >
             <VerticalDivider height={40} color="#212529" />
-          </div>
+          </div> */}
           <ShopDropdown />
         </WLNavContent.Right>
       </WLNavContent>
@@ -170,15 +170,15 @@ function ShopDropdown() {
     <NextUINavbar.Content css={{padding: 0}}>
       <WLNavDropdownMenu 
         hideTextIn="all"
-        buttonIcon={<Text className="m-0">Shop</Text>}
+        buttonIcon={<Text className="m-0">SHOP</Text>}
         buttonLight 
-        buttonText="Shop" 
+        buttonText="SHOP" 
         buttonFontSize={navbarItemFontSize} 
         links={[
-          {
-            key: "coffee",
-            href: "https://www.buymeacoffee.com/youcandoitg",
-          },
+          // {
+          //   key: "coffee",
+          //   href: "https://www.buymeacoffee.com/youcandoitg",
+          // },
           {
             key: "pruning",
             href: "https://stan.store/youcandoitgardening",
@@ -189,14 +189,14 @@ function ShopDropdown() {
           },
         ]}
       >
-        <Dropdown.Item
+        {/* <Dropdown.Item
           key="coffee"
           showFullDescription 
           description="Help keep my content free by buying me a virtual cup of coffee!"
           icon={<LocalCafeTwoToneIcon style={{color: "#603815"}} />}
         >
           Buy Me A Coffee
-        </Dropdown.Item>
+        </Dropdown.Item> */}
         <Dropdown.Item
           key="pruning"
           showFullDescription 
