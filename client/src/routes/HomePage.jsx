@@ -179,7 +179,7 @@ export default function HomePage() {
             <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText}/>
           </div>
           <div className="elevated mt-3 d-flex flex-row align-items-center justify-content-center w-100">
-            <Alert severity="info"><a href={mailingListLink}>Don't miss out — click here to join my mailing list!</a></Alert>
+            <Alert severity="info"><a target="_blank" rel="noreferrer" href={mailingListLink}>Don't miss out — click here to join my mailing list!</a></Alert>
           </div>
         </div>
         <img alt="leaf-line" src={home3} className="background-pattern" />
