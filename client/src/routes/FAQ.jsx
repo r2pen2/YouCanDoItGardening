@@ -46,7 +46,7 @@ export default function FAQ() {
       <div className="fill-line"></div>
       { editable && <ModelEditButton data={faqItem} userCanEdit={editable} model={FAQItem} small setEditModalOpen={setModelEditModalOpen} setCurrentModel={setCurrentModel}  />}
     </dt>,
-    <dd style={{maxWidth: 1200, textIndent: "2rem"}}>
+    <dd className="d-flex flex-row align-items-center justify-content-start" style={{maxWidth: 1200, textIndent: "2rem"}}>
       <Text align="left">{faqItem.answer}</Text>
     </dd>
   ]
@@ -58,8 +58,9 @@ export default function FAQ() {
     <dl className="d-flex flex-column align-items-center justify-content-center w-100 px-2 px-md-4">
       {FAQItems.map((f, i) => <FAQRender faqItem={f} key={i} editable={userCanEditText}/>)}
     </dl>
-    
-    <AddModelButton userCanEdit={userCanEditText} model={FAQItem} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
+    <div className="d-flex flex-row align-items-center justify-content-center">
+      <AddModelButton userCanEdit={userCanEditText} model={FAQItem} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
+    </div>
     </WLSpinnerPage>
   )
 }
