@@ -456,3 +456,42 @@ export class ExternalResource extends SiteModel {
     return er;
   }
 }
+
+export class FAQItem extends SiteModel {
+  
+  constructor() {
+    super("faq-items", "FAQ Item")
+  }
+  
+  booleans = {
+  }
+  images = {}
+  numbers = {
+    order: null,
+  }
+  shortStrings = {
+    question: "",
+  }
+  longStrings = {
+    answer: "",
+  }
+
+  fillConstantExampleData() {
+    this.shortStrings.question = "How do I water my garden?";
+    this.longStrings.answer = "Watering your garden is essential to keeping it happy, healthy, and vibrant. Consider putting your garden outdoors so that you can make use of natural rainwater.";
+    return this;
+  }
+
+  static examples = {
+    default: (new FAQItem()).fillConstantExampleData().toFirestore(),
+  }
+
+  fromFirestore(data: any) : FAQItem {
+    const fi = new FAQItem();
+    fi.id = data.id;
+    fi.shortStrings.question = data.question;
+    fi.longStrings.answer = data.answer;
+    fi.numbers.order = data.order;
+    return fi;
+  }
+}
