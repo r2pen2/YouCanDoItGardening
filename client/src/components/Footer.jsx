@@ -1,4 +1,4 @@
-import { Button, } from '@nextui-org/react'
+import { Button, Spacer, } from '@nextui-org/react'
 import React from 'react'
 import logo from "../assets/images/logoTransparent.png";
 import { mailingListLink, facebookLink, instagramLink, tiktokLink, youtubeLink } from '../api/links';
@@ -75,6 +75,7 @@ function NewFooterContent() {
           <WLFooterSocials.Button platformKey="youtube" href={youtubeLink} />
         </WLFooterSocials>
         <WLText editable={userCanEditText} firestoreId="footer-follower-count" />
+        <Spacer y={1} />
         <Button flat onClick={() => window.open(mailingListLink, "_blank")}>
           Join my Mailing List
         </Button>
