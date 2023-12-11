@@ -46,7 +46,7 @@ export default function FAQ() {
       <div className="fill-line"></div>
       { editable && <ModelEditButton data={faqItem} userCanEdit={editable} model={FAQItem} small setEditModalOpen={setModelEditModalOpen} setCurrentModel={setCurrentModel}  />}
     </dt>,
-    <dd className="d-flex flex-row align-items-center justify-content-start" style={{maxWidth: 1200, textIndent: "2rem"}}>
+    <dd className="w-100 d-flex flex-row align-items-center justify-content-start" style={{maxWidth: 1200}}>
       <Text align="left">{faqItem.answer}</Text>
     </dd>
   ]
