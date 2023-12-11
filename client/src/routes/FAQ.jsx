@@ -47,7 +47,10 @@ export default function FAQ() {
       { editable && <ModelEditButton data={faqItem} userCanEdit={editable} model={FAQItem} small setEditModalOpen={setModelEditModalOpen} setCurrentModel={setCurrentModel}  />}
     </dt>,
     <dd className="w-100 d-flex flex-row align-items-center justify-content-start" style={{maxWidth: 1200}}>
-      <Text align="left">{faqItem.answer}</Text>
+      <Text align="left">
+        <span style={{color: "#8A4FCC"}}>A: </span>
+        {faqItem.answer}
+      </Text>
     </dd>
   ]
 
