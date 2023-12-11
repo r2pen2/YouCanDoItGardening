@@ -52,6 +52,10 @@ const collapseItems = [
     name: "Find Me",
     href: "find-me",
   },
+  {
+    faq: "FAQ",
+    href: "faq"
+  }
 ];
 
 function NavbarPages() {
@@ -107,6 +111,13 @@ function NavbarPages() {
         itemCss={{fontSize: navbarItemFontSize}}
       >
         Find Me
+      </NextUINavbar.Link>
+      <NextUINavbar.Link 
+        isActive={checkLinkActive("faq")}
+        href="faq"
+        itemCss={{fontSize: navbarItemFontSize}}
+      >
+        FAQ
       </NextUINavbar.Link>
     </NextUINavbar.Content>
   )
