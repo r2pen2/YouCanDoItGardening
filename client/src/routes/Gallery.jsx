@@ -8,7 +8,7 @@ import { blockHeaderFill } from "../assets/style/colors";
 import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content';
 import { useEffect } from 'react';
-import { ClientItem, GalleryVideo, HomeItem, NewHampshireItem } from '../api/siteModels.ts';
+import { GalleryVideo, HomeItem, NewHampshireItem } from '../api/siteModels.ts';
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 import { WaveBottom, WaveTop } from '../libraries/Web-Legos/components/Waves';
 import { WLYoutubeEmbed } from '../libraries/Web-Legos/components/Media';
@@ -40,8 +40,6 @@ export default function Gallery() {
   const [homeItemsFetched, setHomeItemsFetched] = useState(false);
   const [newHampshireItems, setNewHampshireItems] = useState([]);
   const [newHampshireItemsFetched, setNewHampshireItemsFetched] = useState(false);
-  const [clientItems, setClientItems] = useState([]);
-  const [clientItemsFetched, setClientItemsFetched] = useState(false);
 
   const [currentModel, setCurrentModel] = useState(new SiteModel());
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -51,7 +49,6 @@ export default function Gallery() {
   useEffect(() => {
     HomeItem.getAndSet(setHomeItems, setHomeItemsFetched);
     NewHampshireItem.getAndSet(setNewHampshireItems, setNewHampshireItemsFetched);
-    ClientItem.getAndSet(setClientItems, setClientItemsFetched);
     GalleryVideo.getAndSet(setGalleryVideo);
   }, [])
 
@@ -66,7 +63,7 @@ export default function Gallery() {
   }
 
   return (
-  <WLSpinnerPage dependencies={[homeItemsFetched, newHampshireItemsFetched, clientItemsFetched]}>
+  <WLSpinnerPage dependencies={[homeItemsFetched, newHampshireItemsFetched]}>
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
     <WLBlockHeader text="Gallery" color={blockHeaderFill} short />
     <section className="d-flex flex-column align-items-center justify-content-center">
@@ -109,19 +106,6 @@ export default function Gallery() {
       <AddModelButton userCanEdit={userCanEditGalleryPictures} model={NewHampshireItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
     </section>
     <WaveBottom color="#f5f5f5" />
-    <section className='d-flex flex-column align-items-center justify-content-center'>    
-      <WLHeader firestoreId="client-pictures-header" editable={userCanEditText}/>
-      <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
-        <WLAliceCarousel
-          pagination
-          scaleActive
-          paginationTop
-          breakpoints={createCarouselBreakpoints(1, 2, 2, 3, 4)}
-          items={clientItems.map((gi, i) => <GalleryItem model={ClientItem} item={gi} key={i} />)}
-        />
-      </div>
-      <AddModelButton userCanEdit={userCanEditGalleryPictures} model={ClientItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
-    </section>
     </WLSpinnerPage>
   )
 }

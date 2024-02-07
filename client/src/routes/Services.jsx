@@ -8,7 +8,7 @@ import { blockHeaderFill } from "../assets/style/colors";
 import { Card, Divider, Text, Button } from '@nextui-org/react';
 import { AddModelButton, ModelEditButton, ModelEditModal } from '../libraries/Web-Legos/components/Modals';
 import { useEffect } from 'react';
-import { InPersonServiceItem, VirtualServiceItem } from '../api/siteModels.ts';
+import { ClientItem, InPersonServiceItem, VirtualServiceItem } from '../api/siteModels.ts';
 import { SiteModel } from '../libraries/Web-Legos/api/models.ts';
 
 
@@ -19,6 +19,7 @@ import { useContext } from 'react';
 import { CurrentSignInContext } from '../App';
 import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
 import { AnalyticsManager } from '../libraries/Web-Legos/api/analytics.ts';
+import { WLAliceCarousel, createCarouselBreakpoints } from '../libraries/Web-Legos/components/Content.jsx';
 
 export default function Services() {
 
@@ -31,9 +32,14 @@ export default function Services() {
   const [userCanEditText, setUserCanEditText] = useState(false);
   const [userCanEditServiceItems, setUserCanEditServiceItems] = useState(false);
   
+  const [clientItems, setClientItems] = useState([]);
+  const [clientItemsFetched, setClientItemsFetched] = useState(false);
+  const [userCanEditGalleryPictures, setUserCanEditGalleryPictures] = useState(false);
+  
   useEffect(() => {
     authenticationManager.getPermission(currentSignIn, "siteText").then(p => setUserCanEditText(p));
     authenticationManager.getPermission(currentSignIn, "service-items").then(p => setUserCanEditServiceItems(p));
+    authenticationManager.getPermission(currentSignIn, "gallery-pictures").then(p => setUserCanEditGalleryPictures(p));
   }, [authenticationManager, currentSignIn]);
   
   const [virtualLoaded, setVirtualLoaded] = useState(false);
@@ -52,6 +58,7 @@ export default function Services() {
   useEffect(() => {
     VirtualServiceItem.getAndSet(setVirtualServiceItems, setVirtualLoaded);
     InPersonServiceItem.getAndSet(setInPersonServiceItems, setInPersonLoaded);
+    ClientItem.getAndSet(setClientItems, setClientItemsFetched);
   }, [])
 
 
@@ -104,8 +111,17 @@ export default function Services() {
     )
   }
 
+  function GalleryItem({item, model}) {
+    return (
+      <div className="p-2 gap-2 d-flex flex-column align-items-center justify-content-center" style={{height: '100%', userSelect: "none"}}>
+        <ModelEditButton model={model} data={item} userCanEdit={userCanEditGalleryPictures} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen}/>
+        <img className="no-select img-shadow" src={item.imageSource} alt="slideshow-item" style={{borderRadius: "1rem", width: '100%', maxHeight: 500, height: '100%', objectFit: "cover"}}/>
+      </div>
+    )
+  }
+
   return (
-  <WLSpinnerPage dependencies={[virtualLoaded, inPersonLoaded]}>
+  <WLSpinnerPage dependencies={[virtualLoaded, inPersonLoaded, clientItemsFetched]}>
     <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
     <ModelEditModal open={editModalOpen} setOpen={setEditModalOpen} model={currentModel} />
     <WLBlockHeader text="Services & Fees" color={blockHeaderFill} short />
@@ -162,6 +178,19 @@ export default function Services() {
     <section className="d-flex flex-column align-items-center justify-content-center py-2 gap-2" style={{backgroundColor: "#f5f5f5", filter:"drop-shadow(0px 0px 5px rgba(0,0,0,0.2))"}}>    
       <WLHeader color="#a67fcf" firestoreId="schedule-header" editable={userCanEditText}/>
       <ScheduleButton />
+    </section>
+    <section className='d-flex flex-column align-items-center justify-content-center'>    
+      <WLHeader firestoreId="client-pictures-header" editable={userCanEditText}/>
+      <div className="d-flex flex-column align-items-center justify-content-center px-xxl-5 px-xl-4 px-md-3 px-2" style={{width: "100%", overflow: "visible"}}>
+        <WLAliceCarousel
+          pagination
+          scaleActive
+          paginationTop
+          breakpoints={createCarouselBreakpoints(1, 2, 2, 3, 4)}
+          items={clientItems.map((gi, i) => <GalleryItem model={ClientItem} item={gi} key={i} />)}
+        />
+      </div>
+      <AddModelButton userCanEdit={userCanEditGalleryPictures} model={ClientItem} setCurrentModel={setCurrentModel} setEditModalOpen={setEditModalOpen} />
     </section>
     </WLSpinnerPage>
   )
