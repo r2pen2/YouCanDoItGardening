@@ -10,6 +10,7 @@ import Resources from './routes/Resources';
 import FindMe from './routes/FindMe';
 import Footer from './components/Footer';
 import Gallery from './routes/Gallery';
+import FAQ from "./routes/FAQ";
 import { AuthenticationManager, WLPermissionsConfig } from './libraries/Web-Legos/api/auth.ts';
 import { createContext, useLayoutEffect } from 'react';
 import { useState } from 'react';
@@ -73,6 +74,7 @@ function App() {
                 <Route path="/resources" element={<Resources />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/find-me" element={<FindMe />} />
+                <Route path="/faq" element={<FAQ />} />
               </Routes>
             <Footer/>
           </div>
