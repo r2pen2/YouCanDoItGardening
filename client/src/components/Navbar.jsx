@@ -6,21 +6,15 @@ import logoBlack from "../assets/images/logoNoText.png";
 
 import ContentCutTwoToneIcon from '@mui/icons-material/ContentCutTwoTone';
 import FilterVintageTwoToneIcon from '@mui/icons-material/FilterVintageTwoTone';
-
-import EventAvailableTwoToneIcon from '@mui/icons-material/EventAvailableTwoTone';
-import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
-import LocationOnTwoToneIcon from '@mui/icons-material/LocationOnTwoTone';
-
+import CottageTwoToneIcon from '@mui/icons-material/CottageTwoTone';
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
+import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 
 // Style Imports
 import "../assets/style/navbar.css";
 import "../assets/style/layout.css";
-import { facebookLink, instagramLink, scheduleInPersonLink, scheduleOnlineLink, tiktokLink, youtubeLink } from '../api/links';
 
-import {WLNavBrandLeft, WLNavContent, WLNavDropdownMenu, WLNavSocials} from "../libraries/Web-Legos/components/Navigation";
-import { VerticalDivider } from '../libraries/Web-Legos/components/Layout';
-import { FacebookIcon, InstagramIcon, TikTokIcon, YouTubeIcon } from '../libraries/Web-Legos/components/Icons';
-import { iconFills } from './Modals';
+import { WLNavBrandLeft, WLNavContent, WLNavDropdownMenu } from "../libraries/Web-Legos/components/Navigation";
 
 const navbarItemFontSize = "18px";
 
@@ -171,6 +165,10 @@ function ShopDropdown() {
         buttonFontSize={navbarItemFontSize} 
         links={[
           {
+            key: "swag",
+            href: "https://youcandoitgardening.creator-spring.com/",
+          },
+          {
             key: "hydrangea",
             href: "https://youcangardening.samcart.com/products/hydrangea-pruning-guide",
           },
@@ -178,8 +176,25 @@ function ShopDropdown() {
             key: "pruning",
             href: "https://youcangardening.samcart.com/products/comprehensive-pruning-guide",
           },
+          {
+            key: "home",
+            href: "https://youcangardening.samcart.com/products/new-homeowners-guide",
+          },
+          {
+            key: "master-home",
+            href: "https://youcangardening.samcart.com/products/new-homeowners-masterclass",
+          },
         ]}
       >
+        <Dropdown.Item
+          key="swag"
+          showFullDescription 
+          withDivider
+          description="Show the world your support with You Can Do It Gardening merch."
+          icon={<ShoppingCartTwoToneIcon style={{color: "#86236A"}} />}
+        >
+          Swag
+        </Dropdown.Item>
         <Dropdown.Item
           key="hydrangea"
           showFullDescription 
@@ -197,6 +212,24 @@ function ShopDropdown() {
           icon={<ContentCutTwoToneIcon style={{color: "#4C9855"}} />}
         >
           Pruning Guide
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="home"
+          showFullDescription 
+          withDivider
+          description="Learn how to avoid making costly mistakes and have the landscape of your dreams."
+          icon={<HomeTwoToneIcon style={{color: "#b60c26"}} />}
+        >
+          New Homeowners Guide
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="master-home"
+          showFullDescription 
+          withDivider
+          description="This masterclass will help you get a handle on your situation so you can maintain your property economically and create the garden of your dreams."
+          icon={<CottageTwoToneIcon style={{color: "#d4af37"}} />}
+        >
+          New Homeowners Masterclass
         </Dropdown.Item>
       </WLNavDropdownMenu>
     </NextUINavbar.Content>
