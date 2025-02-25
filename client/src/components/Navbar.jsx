@@ -10,6 +10,8 @@ import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 
 import LocalMallTwoToneIcon from '@mui/icons-material/LocalMallTwoTone'
 import OndemandVideoTwoToneIcon from '@mui/icons-material/OndemandVideoTwoTone';
+import StoreMallDirectoryTwoToneIcon from '@mui/icons-material/StoreMallDirectoryTwoTone';
+import HandymanTwoToneIcon from '@mui/icons-material/HandymanTwoTone';
 
 // Style Imports
 import "../assets/style/navbar.css";
@@ -185,6 +187,14 @@ function ShopDropdown() {
             key: "new-homeowner-masterclass",
             href: "https://youcangardening.samcart.com/products/new-homeowners-masterclass",
           },
+          {
+            key: "stan-store",
+            href: "https://stan.store/youcandoitgardening",
+          },
+          {
+            key: "resources",
+            href: "https://www.youcandoitgardening.com/resources",
+          }
         ]}
       >
         <Dropdown.Item
@@ -229,6 +239,24 @@ function ShopDropdown() {
           withDivider
           description="This masterclass will help you get a handle on your situation so you can maintain your property economically and create the garden of your dreams."
           icon={<OndemandVideoTwoToneIcon style={{color: "goldenrod"}} />}
+        >
+          New Homeowners Masterclass
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="stan-store"
+          showFullDescription 
+          withDivider
+          description="Check out the YCD Stan Store!"
+          icon={<StoreMallDirectoryTwoToneIcon style={{color: "goldenrod"}} />}
+        >
+          New Homeowners Masterclass
+        </Dropdown.Item>
+        <Dropdown.Item
+          key="resources"
+          showFullDescription 
+          withDivider
+          description="See a list of posted resources."
+          icon={<HandymanTwoToneIcon style={{color: "goldenrod"}} />}
         >
           New Homeowners Masterclass
         </Dropdown.Item>
