@@ -29,7 +29,7 @@ export default function Resources() {
     authenticationManager.getPermission(currentSignIn, "external-resources").then(p => setUserCanEditResources(p));
   }, [authenticationManager, currentSignIn]);
   
-  const [resources, setResources] = useState([]);
+  const [resources, setResources] = useState([ExternalResource.examples.default, ExternalResource.examples.default, ExternalResource.examples.default]);
 
   const [modelEditModalOpen, setModelEditModalOpen] = useState(false);
   const [currentModel, setCurrentModel] = useState(new SiteModel());
@@ -40,36 +40,14 @@ export default function Resources() {
 
   function ExternalResourceCard({resource}) {
     return (
-      <div className="w-100 p-2 d-flex flex-row align-items-center justify-content-center">
-        <Card
-          style={{
-            width: "100%",
-            flexDirection: "row",
-            alignItems: "center", 
-            justifyContent: "space-between",
-          }}
-          className="d-none d-lg-flex"
-          isPressable
-          isHoverable
-          onPress={() => window.open(resource.link, "_blank")}
-        >
-          <Card.Image style={{height: "100%", width: "100%", maxWidth: 300, maxHeight: 300,}} src={resource.imageSource}/>
-          <div style={{flex: 1}} className="d-flex flex-column align-items-center justify-content-center">
-            <div>
-              <Text b>{resource.title}</Text>
-              <Divider />
-            </div>
-            <Text>{resource.description}</Text>
-          </div>
-        </Card>
+      <div className="p-2 col-12 col-sm-6 col-md-4 col-lg-3">
         <Card
           style={{
             width: "100%",
             flexDirection: "column",
-            alignItems: "center", 
+            alignItems: "center",
             justifyContent: "space-between",
           }}
-          className="d-flex d-lg-none gap-2"
           isPressable
           isHoverable
           onPress={() => window.open(resource.link, "_blank")}
@@ -95,7 +73,11 @@ export default function Resources() {
     <section className="d-flex flex-column align-items-center justify-content-center m-5 w-80">
       <WLHeader firestoreId="resources-header" editable={userCanEditText}/>
       <WLText firestoreId="resources-description" editable={userCanEditText}/>
-      {resources.map((r, i) => <ExternalResourceCard resource={r} key={i}/>)}
+      <div className="container">
+        <div className="row  d-flex align-items-center justify-content-center">
+          {resources.map((r, i) => <ExternalResourceCard resource={r} key={i}/>)}
+        </div>
+      </div>
       <AddModelButton userCanEdit={userCanEditResources} model={ExternalResource} setEditModalOpen={setModelEditModalOpen} setCurrentModel={setCurrentModel} />
     </section>
     </div>

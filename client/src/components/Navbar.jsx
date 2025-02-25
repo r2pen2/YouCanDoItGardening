@@ -247,7 +247,7 @@ function ShopDropdown() {
           showFullDescription 
           withDivider
           description="Check out the YCD Stan Store!"
-          icon={<StoreMallDirectoryTwoToneIcon style={{color: "goldenrod"}} />}
+          icon={<StoreMallDirectoryTwoToneIcon style={{color: "crimson"}} />}
         >
           New Homeowners Masterclass
         </Dropdown.Item>
@@ -256,7 +256,7 @@ function ShopDropdown() {
           showFullDescription 
           withDivider
           description="See a list of posted resources."
-          icon={<HandymanTwoToneIcon style={{color: "goldenrod"}} />}
+          icon={<HandymanTwoToneIcon style={{color: "darkgreen"}} />}
         >
           New Homeowners Masterclass
         </Dropdown.Item>
