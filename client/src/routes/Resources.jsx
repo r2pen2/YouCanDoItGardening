@@ -40,25 +40,25 @@ export default function Resources() {
 
   function ExternalResourceCard({resource}) {
     return (
-      <div className="p-2 col-12 col-sm-6 col-md-4 col-lg-3">
+      <div className="p-2 col-12 col-md-6">
         <Card
           style={{
             width: "100%",
-            flexDirection: "column",
-            alignItems: "center",
+            flexDirection: "row",
+            alignItems: "start",
             justifyContent: "space-between",
           }}
           isPressable
           isHoverable
           onPress={() => window.open(resource.link, "_blank")}
         >
-          <Card.Image style={{width: "100%", objectFit: "cover", maxHeight: 250}} src={resource.imageSource}/>
-          <div style={{flex: 1}} className="d-flex flex-column align-items-center justify-content-center">
-            <div>
+          <Card.Image style={{width: "100%", objectFit: "cover", maxHeight: 200}} src={resource.imageSource}/>
+          <div style={{flex: 1}} className="d-flex p-2 flex-column w-100 align-items-start text-start">
+            <div className="w-100 mb-1">
               <Text b>{resource.title}</Text>
               <Divider />
             </div>
-            <Text>{resource.description}</Text>
+            <Text style={{fontSize: "1rem"}}>{resource.description}</Text>
           </div>
         </Card>
         <ModelEditButton small userCanEdit={userCanEditResources} data={resource} model={ExternalResource} setEditModalOpen={setModelEditModalOpen} setCurrentModel={setCurrentModel}/>
