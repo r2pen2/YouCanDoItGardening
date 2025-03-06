@@ -44,11 +44,11 @@ export default function Resources() {
         <Card
           style={{
             width: "100%",
-            flexDirection: "row",
             alignItems: "start",
             justifyContent: "space-between",
             minHeight: "100%"
           }}
+          className="d-flex flex-column flex-md-row"
           isPressable
           isHoverable
           onPress={() => window.open(resource.link, "_blank")}
