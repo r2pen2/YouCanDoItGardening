@@ -40,13 +40,14 @@ export default function Resources() {
 
   function ExternalResourceCard({resource}) {
     return (
-      <div className="p-2 col-12 col-lg-6">
+      <div className="p-2 col-12 col-xl-6">
         <Card
           style={{
             width: "100%",
             flexDirection: "row",
             alignItems: "start",
             justifyContent: "space-between",
+            minHeight: "100%"
           }}
           isPressable
           isHoverable
