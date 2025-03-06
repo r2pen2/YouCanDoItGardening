@@ -52,7 +52,7 @@ export default function Resources() {
           isHoverable
           onPress={() => window.open(resource.link, "_blank")}
         >
-          <Card.Image style={{width: "100%", objectFit: "cover"}} src={resource.imageSource}/>
+          <Card.Image style={{width: "100%", objectFit: "cover", maxHeight: 250}} src={resource.imageSource}/>
           <div style={{flex: 1}} className="d-flex flex-column align-items-center justify-content-center">
             <div>
               <Text b>{resource.title}</Text>
