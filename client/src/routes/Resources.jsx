@@ -52,7 +52,7 @@ export default function Resources() {
           isHoverable
           onPress={() => window.open(resource.link, "_blank")}
         >
-          <Card.Image style={{height: "100%", width: "100%", maxWidth: 300, maxHeight: 300, objectFit: "cover"}} src={resource.imageSource}/>
+          <Card.Image style={{width: "100%", objectFit: "cover"}} src={resource.imageSource}/>
           <div style={{flex: 1}} className="d-flex flex-column align-items-center justify-content-center">
             <div>
               <Text b>{resource.title}</Text>
@@ -74,7 +74,7 @@ export default function Resources() {
       <WLHeader firestoreId="resources-header" editable={userCanEditText}/>
       <WLText firestoreId="resources-description" editable={userCanEditText}/>
       <div className="container">
-        <div className="row  d-flex align-items-center justify-content-center">
+        <div className="row  d-flex align-items-start justify-content-center">
           {resources.map((r, i) => <ExternalResourceCard resource={r} key={i}/>)}
         </div>
       </div>

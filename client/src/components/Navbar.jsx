@@ -167,26 +167,26 @@ function ShopDropdown() {
         buttonText="SHOP" 
         buttonFontSize={navbarItemFontSize} 
         links={[
-          {
-            key: "swag",
-            href: "https://youcandoitgardening.creator-spring.com/",
-          },
-          {
-            key: "hydrangea",
-            href: "https://youcangardening.samcart.com/products/hydrangea-pruning-guide",
-          },
-          {
-            key: "pruning",
-            href: "https://youcangardening.samcart.com/products/comprehensive-pruning-guide",
-          },
-          {
-            key: "new-homeowner",
-            href: "https://youcangardening.samcart.com/products/new-homeowners-guide",
-          },
-          {
-            key: "new-homeowner-masterclass",
-            href: "https://youcangardening.samcart.com/products/new-homeowners-masterclass",
-          },
+          // {
+          //   key: "swag",
+          //   href: "https://youcandoitgardening.creator-spring.com/",
+          // },
+          // {
+          //   key: "hydrangea",
+          //   href: "https://youcangardening.samcart.com/products/hydrangea-pruning-guide",
+          // },
+          // {
+          //   key: "pruning",
+          //   href: "https://youcangardening.samcart.com/products/comprehensive-pruning-guide",
+          // },
+          // {
+          //   key: "new-homeowner",
+          //   href: "https://youcangardening.samcart.com/products/new-homeowners-guide",
+          // },
+          // {
+          //   key: "new-homeowner-masterclass",
+          //   href: "https://youcangardening.samcart.com/products/new-homeowners-masterclass",
+          // },
           {
             key: "stan-store",
             href: "https://stan.store/youcandoitgardening",
@@ -197,7 +197,7 @@ function ShopDropdown() {
           }
         ]}
       >
-        <Dropdown.Item
+        {/* <Dropdown.Item
           key="swag"
           showFullDescription 
           withDivider
@@ -241,24 +241,24 @@ function ShopDropdown() {
           icon={<OndemandVideoTwoToneIcon style={{color: "goldenrod"}} />}
         >
           New Homeowners Masterclass
-        </Dropdown.Item>
+        </Dropdown.Item> */}
         <Dropdown.Item
           key="stan-store"
           showFullDescription 
           withDivider
-          description="Check out the YCD Stan Store!"
+          description="Check out the YCD Stan Store for ebook guides, masterclasses, and more!"
           icon={<StoreMallDirectoryTwoToneIcon style={{color: "crimson"}} />}
         >
-          New Homeowners Masterclass
+          Stan Store
         </Dropdown.Item>
         <Dropdown.Item
           key="resources"
           showFullDescription 
           withDivider
-          description="See a list of posted resources."
+          description="See a list of all posted resources."
           icon={<HandymanTwoToneIcon style={{color: "darkgreen"}} />}
         >
-          New Homeowners Masterclass
+          Resources
         </Dropdown.Item>
       </WLNavDropdownMenu>
     </NextUINavbar.Content>
