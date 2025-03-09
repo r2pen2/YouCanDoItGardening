@@ -40,7 +40,7 @@ export default function Resources() {
 
   function ExternalResourceCard({resource}) {
     return (
-      <div className="p-2 col-12 col-xl-6">
+      <div className="p-2 col-12">
         <Card
           style={{
             width: "100%",
