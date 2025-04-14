@@ -86,13 +86,13 @@ function NavbarPages() {
       >
         Services & Fees
       </NextUINavbar.Link>
-      <NextUINavbar.Link 
+      {/* <NextUINavbar.Link 
         isActive={checkLinkActive("resources")}
         href="resources"
         itemCss={{fontSize: navbarItemFontSize}}
       >
         Resources
-      </NextUINavbar.Link>
+      </NextUINavbar.Link> */}
       <NextUINavbar.Link 
         isActive={checkLinkActive("gallery")}
         href="gallery"
@@ -191,10 +191,10 @@ function ShopDropdown() {
             key: "stan-store",
             href: "https://stan.store/youcandoitgardening",
           },
-          {
-            key: "resources",
-            href: "https://www.youcandoitgardening.com/resources",
-          }
+          // {
+          //   key: "resources",
+          //   href: "https://www.youcandoitgardening.com/resources",
+          // }
         ]}
       >
         {/* <Dropdown.Item
@@ -251,7 +251,7 @@ function ShopDropdown() {
         >
           Stan Store
         </Dropdown.Item>
-        <Dropdown.Item
+        {/* <Dropdown.Item
           key="resources"
           showFullDescription 
           withDivider
@@ -259,7 +259,7 @@ function ShopDropdown() {
           icon={<HandymanTwoToneIcon style={{color: "darkgreen"}} />}
         >
           Resources
-        </Dropdown.Item>
+        </Dropdown.Item> */}
       </WLNavDropdownMenu>
     </NextUINavbar.Content>
   )
