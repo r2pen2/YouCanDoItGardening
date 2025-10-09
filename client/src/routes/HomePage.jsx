@@ -172,7 +172,7 @@ export default function HomePage() {
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
       <section className="d-flex flex-column w-100 align-items-center">
         <div className="w-100 flex-column align-items-center background-image" style={{paddingTop: "10vh", paddingBottom: "40vh",}}>
-          <div className="elevated d-flex flex-column w-100 text-background py-5">
+          <div className="elevated d-flex flex-column w-100 text-background py-2">
             <WLHeader>
               You Can Do It Gardening
             </WLHeader>

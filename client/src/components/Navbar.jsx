@@ -246,10 +246,10 @@ function ShopDropdown() {
           key="stan-store"
           showFullDescription 
           withDivider
-          description="Check out the YCD Stan Store for ebook guides, masterclasses, and more!"
+          description="Check out digital and other products here!"
           icon={<StoreMallDirectoryTwoToneIcon style={{color: "crimson"}} />}
         >
-          Stan Store
+          Store
         </Dropdown.Item>
         {/* <Dropdown.Item
           key="resources"
