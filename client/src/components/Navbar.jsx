@@ -10,6 +10,8 @@ import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 
 import LocalMallTwoToneIcon from '@mui/icons-material/LocalMallTwoTone'
 import OndemandVideoTwoToneIcon from '@mui/icons-material/OndemandVideoTwoTone';
+import StoreMallDirectoryTwoToneIcon from '@mui/icons-material/StoreMallDirectoryTwoTone';
+import HandymanTwoToneIcon from '@mui/icons-material/HandymanTwoTone';
 
 // Style Imports
 import "../assets/style/navbar.css";
@@ -84,13 +86,13 @@ function NavbarPages() {
       >
         Services & Fees
       </NextUINavbar.Link>
-      <NextUINavbar.Link 
+      {/* <NextUINavbar.Link 
         isActive={checkLinkActive("resources")}
         href="resources"
         itemCss={{fontSize: navbarItemFontSize}}
       >
         Resources
-      </NextUINavbar.Link>
+      </NextUINavbar.Link> */}
       <NextUINavbar.Link 
         isActive={checkLinkActive("gallery")}
         href="gallery"
@@ -165,29 +167,37 @@ function ShopDropdown() {
         buttonText="SHOP" 
         buttonFontSize={navbarItemFontSize} 
         links={[
+          // {
+          //   key: "swag",
+          //   href: "https://youcandoitgardening.creator-spring.com/",
+          // },
+          // {
+          //   key: "hydrangea",
+          //   href: "https://youcangardening.samcart.com/products/hydrangea-pruning-guide",
+          // },
+          // {
+          //   key: "pruning",
+          //   href: "https://youcangardening.samcart.com/products/comprehensive-pruning-guide",
+          // },
+          // {
+          //   key: "new-homeowner",
+          //   href: "https://youcangardening.samcart.com/products/new-homeowners-guide",
+          // },
+          // {
+          //   key: "new-homeowner-masterclass",
+          //   href: "https://youcangardening.samcart.com/products/new-homeowners-masterclass",
+          // },
           {
-            key: "swag",
-            href: "https://youcandoitgardening.creator-spring.com/",
+            key: "stan-store",
+            href: "https://stan.store/youcandoitgardening",
           },
-          {
-            key: "hydrangea",
-            href: "https://youcangardening.samcart.com/products/hydrangea-pruning-guide",
-          },
-          {
-            key: "pruning",
-            href: "https://youcangardening.samcart.com/products/comprehensive-pruning-guide",
-          },
-          {
-            key: "new-homeowner",
-            href: "https://youcangardening.samcart.com/products/new-homeowners-guide",
-          },
-          {
-            key: "new-homeowner-masterclass",
-            href: "https://youcangardening.samcart.com/products/new-homeowners-masterclass",
-          },
+          // {
+          //   key: "resources",
+          //   href: "https://www.youcandoitgardening.com/resources",
+          // }
         ]}
       >
-        <Dropdown.Item
+        {/* <Dropdown.Item
           key="swag"
           showFullDescription 
           withDivider
@@ -231,7 +241,25 @@ function ShopDropdown() {
           icon={<OndemandVideoTwoToneIcon style={{color: "goldenrod"}} />}
         >
           New Homeowners Masterclass
+        </Dropdown.Item> */}
+        <Dropdown.Item
+          key="stan-store"
+          showFullDescription 
+          withDivider
+          description="Check out digital and other products here!"
+          icon={<StoreMallDirectoryTwoToneIcon style={{color: "crimson"}} />}
+        >
+          Store
         </Dropdown.Item>
+        {/* <Dropdown.Item
+          key="resources"
+          showFullDescription 
+          withDivider
+          description="See a list of all posted resources."
+          icon={<HandymanTwoToneIcon style={{color: "darkgreen"}} />}
+        >
+          Resources
+        </Dropdown.Item> */}
       </WLNavDropdownMenu>
     </NextUINavbar.Content>
   )

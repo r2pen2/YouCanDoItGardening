@@ -138,7 +138,7 @@ export default function FindMe() {
         <div className="row d-flex justify-content-center align-items-center">
           <div className="col-md-5 col-12 d-flex justify-content-center my-2">
             <Button flat onClick={() => setContactModalOpen(true)}>
-              Contact Me
+              Schedule a Consultation
             </Button>
           </div>
           <div className="col-2 d-none d-md-flex justify-content-center my-2">
