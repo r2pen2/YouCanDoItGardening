@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
-import { Button, Text, Divider, Spacer, } from "@nextui-org/react";
+import { Button, Text, Divider, Spacer } from "@nextui-org/react";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 import "../assets/style/homepage.css"
 
@@ -27,8 +29,9 @@ import { useContext } from 'react';
 import { CurrentSignInContext } from '../App';
 import { AuthenticationManager } from '../libraries/Web-Legos/api/auth.ts';
 import { AnalyticsManager } from '../libraries/Web-Legos/api/analytics.ts';
-import { Alert } from '@mui/material';
 import { mailingListLink } from '../api/links.js';
+
+const MAILING_LIST_PROMPT_DELAY_MS = 5000;
 
 export const textGradient = {textGradient: "0deg, $purple600 -20%, $pink600 100%"}
 
@@ -57,6 +60,20 @@ export default function HomePage() {
 
   const [beforesAndAftersFetched, setBeforesAndAftersFetched] = useState(false);
   const [beforesAndAfters, setBeforesAndAfters] = useState([]);
+
+  const [contactModalOpen, setContactModalOpen] = useState(false); // Whether contact modal is open
+
+  const [whyItWorksHeaderLoaded, setWhyItWorksHeaderLoaded] = useState(false);            // Whether "Why This Model Works" header has loaded
+  const [whyItWorksDescriptionLoaded, setWhyItWorksDescriptionLoaded] = useState(false);  // Whether "Why This Model Works" description has loaded
+  const [saveHookLoaded, setSaveHookLoaded] = useState(false);                            // Whether "Save Money" hook has loaded
+  const [saveDescriptionLoaded, setSaveDescriptionLoaded] = useState(false);              // Whether "Save Money" description has loaded
+  const [lookHookLoaded, setLookHookLoaded] = useState(false);                            // Whether "Looks Good" hook has loaded
+  const [lookDescriptionLoaded, setLookDescriptionLoaded] = useState(false);              // Whether "Looks Good" description has loaded
+  // const [feelHookLoaded, setFeelHookLoaded] = useState(false);                            // Whether "Feels Good" hook has loaded
+  // const [feelDescriptionLoaded, setFeelDescriptionLoaded] = useState(false);              // Whether "Feels Good" description has loaded
+  const [beforesAndAftersHeaderLoaded, setBeforesAndAftersHeaderLoaded] = useState(false);// Whether "Befores and Afters" header has loaded
+
+  const [mailingListPromptOpen, setMailingListPromptOpen] = useState(false);
 
   function TestimonialCard({testimonial}) {
     return (
@@ -90,18 +107,28 @@ export default function HomePage() {
     Testimonial.getAndSet(setTestimonials, setTestimonialsFetched);
   }, [])
 
-  // Initialize all states
-  const [contactModalOpen, setContactModalOpen] = useState(false); // Whether contact modal is open
+  function dismissMailingListPrompt() {
+    setMailingListPromptOpen(false);
+  }
 
-  const [whyItWorksHeaderLoaded, setWhyItWorksHeaderLoaded] = useState(false);            // Whether "Why This Model Works" header has loaded
-  const [whyItWorksDescriptionLoaded, setWhyItWorksDescriptionLoaded] = useState(false);  // Whether "Why This Model Works" description has loaded
-  const [saveHookLoaded, setSaveHookLoaded] = useState(false);                            // Whether "Save Money" hook has loaded
-  const [saveDescriptionLoaded, setSaveDescriptionLoaded] = useState(false);              // Whether "Save Money" description has loaded
-  const [lookHookLoaded, setLookHookLoaded] = useState(false);                            // Whether "Looks Good" hook has loaded
-  const [lookDescriptionLoaded, setLookDescriptionLoaded] = useState(false);              // Whether "Looks Good" description has loaded
-  // const [feelHookLoaded, setFeelHookLoaded] = useState(false);                            // Whether "Feels Good" hook has loaded
-  // const [feelDescriptionLoaded, setFeelDescriptionLoaded] = useState(false);              // Whether "Feels Good" description has loaded
-  const [beforesAndAftersHeaderLoaded, setBeforesAndAftersHeaderLoaded] = useState(false);// Whether "Befores and Afters" header has loaded
+  function handleMailingListSnackbarClose(_event, reason) {
+    if (reason === "clickaway") {
+      return;
+    }
+    dismissMailingListPrompt();
+  }
+
+  function handleJoinMailingListClick() {
+    window.open(mailingListLink, "_blank", "noopener,noreferrer");
+    dismissMailingListPrompt();
+  }
+
+  useEffect(() => {
+    const timerId = window.setTimeout(() => {
+      setMailingListPromptOpen(true);
+    }, MAILING_LIST_PROMPT_DELAY_MS);
+    return () => window.clearTimeout(timerId);
+  }, []);
 
   /**
    * A button scaled to the screen width that opens the {@link ContactModal}
@@ -153,6 +180,7 @@ export default function HomePage() {
   }
 
   return (
+    <>
     <WLSpinnerPage 
       dependencies={[
         testimonialsFetched,
@@ -178,23 +206,27 @@ export default function HomePage() {
             </WLHeader>
             <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText}/>
           </div>
-          <div className="elevated mt-3 d-flex flex-row align-items-center justify-content-center w-100">
-            <Alert severity="info"><a target="_blank" rel="noreferrer" href={mailingListLink}>Don't miss out — click here to join my mailing list!</a></Alert>
+          <div className="elevated mt-3 d-flex px-2 flex-column align-items-center justify-content-center w-100">
+            <ScheduleButton />
           </div>
         </div>
         <img alt="leaf-line" src={home3} className="background-pattern" />
-        <div className="elevated container-fluid" style={{marginTop: -250, marginBottom: 50}}>
+        <div className="elevated container-fluid" style={{marginTop: -500, marginBottom: 50}}>
           <div className="elevated row d-flex flex-row justify-content-center">
             <TransparentHookCard
-              icon={<SavingsTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded}>**Save Money**</WLText>}
-              subtitleText={<WLText firestoreId="save-money-description" editable={userCanEditText} setLoaded={setSaveDescriptionLoaded}>Landscapers are expensive!</WLText>}
+              sections={[
+                {
+                  icon: <SavingsTwoToneIcon sx={{fontSize: 50}}/>,
+                  titleText: <WLText firestoreId="save-money-hook" editable={userCanEditText} setLoaded={setSaveHookLoaded}>**Save Money**</WLText>,
+                  subtitleText: <WLText firestoreId="save-money-description" editable={userCanEditText} setLoaded={setSaveDescriptionLoaded}>Landscapers are expensive!</WLText>
+                },
+                {
+                  icon: <VisibilityTwoToneIcon sx={{fontSize: 50}}/>,
+                  titleText: <WLText firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}>**Looks Good**</WLText>,
+                  subtitleText: <WLText firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}>Small changes can make a huge difference!</WLText>
+                }
+              ]}
             />
-            <TransparentHookCard
-              icon={<VisibilityTwoToneIcon sx={{fontSize: 50}}/>} 
-              titleText={<WLText firestoreId="looks-good-hook" editable={userCanEditText} setLoaded={setLookHookLoaded}>**Looks Good**</WLText>}
-              subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}>Small changes can make a huge difference!</WLText>}
-              />
           </div>
         </div>
       </section>
@@ -215,7 +247,6 @@ export default function HomePage() {
       </section>
       <section className="d-flex flex-column align-items-center justify-content-center py-2 px-3 gap-2" style={{width: "100%"}}>    
         <WLHeader firestoreId="schedule-header" editable={userCanEditText}/>
-        <ScheduleButton />
       </section>
       <WaveTop color="#f5f5f5" />
       <section className='d-flex flex-column align-items-center justify-content-center' style={{backgroundColor: "#F5F5F5"}}>
@@ -243,22 +274,69 @@ export default function HomePage() {
         <AddModelButton userCanEdit={userCanEditBeforesAndAfters} model={BeforeAndAfter} setCurrentModel={setCurrentModel} setEditModalOpen={setModelEditModalOpen} />
       </section>
     </WLSpinnerPage>
+    <Snackbar
+      open={mailingListPromptOpen}
+      anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      autoHideDuration={null}
+      onClose={handleMailingListSnackbarClose}
+      sx={{
+        top: { xs: "calc(12px + env(safe-area-inset-top, 0px))", sm: "calc(20px + env(safe-area-inset-top, 0px))" },
+        zIndex: 20000,
+      }}
+    >
+      <Alert
+        severity="info"
+        variant="filled"
+        onClose={dismissMailingListPrompt}
+        icon={false}
+        onClick={(e) => {
+          if (e.target.closest("button")) {
+            return;
+          }
+          handleJoinMailingListClick();
+        }}
+        sx={{
+          alignItems: "center",
+          cursor: "pointer",
+          whiteSpace: "nowrap",
+          width: "max-content",
+          maxWidth: "calc(100vw - 48px)",
+        }}
+      >
+        Click to join my newsletter.
+      </Alert>
+    </Snackbar>
+    </>
   )
 }
 
-function TransparentHookCard({icon, titleText, subtitleText}) {
+function TransparentHookCardSection({icon, titleText, subtitleText}) {
   return (
-    <div className="col-xl-6 col-md-12 p-3 d-flex flex-column align-items-center">
-      <div
-        className='transparent-card'
-      >
-          <div className="d-flex flex-column w-100 align-items-center">
-            {icon}
-            {titleText}
-          </div>
-        <Divider />
-        <div className="d-flex flex-column w-100 align-items-center">
-          {subtitleText}
+    <div className="d-flex flex-column align-items-center">
+      <div className="d-flex flex-column align-items-center">
+        {icon}
+        <div className="fw-bold">{titleText}</div>
+      </div>
+      <div className="d-flex flex-column align-items-center">
+        {subtitleText}
+      </div>
+    </div>
+  )
+}
+
+function TransparentHookCard({sections}) {
+  return (
+    <div className="col-12 col-xl-6 hook-card-col-padding d-flex flex-column align-items-center">
+      <div className="transparent-card">
+        <div className="d-flex flex-column align-items-center gap-4">
+          {sections.map((section, i) => (
+            <TransparentHookCardSection
+              key={i}
+              icon={section.icon}
+              titleText={section.titleText}
+              subtitleText={section.subtitleText}
+            />
+          ))}
         </div>
       </div>
     </div>

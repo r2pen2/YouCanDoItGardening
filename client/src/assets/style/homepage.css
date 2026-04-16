@@ -1,7 +1,7 @@
 .background-pattern {
-  min-height: 300px;
+  min-height: 600px;
   object-fit: cover;
-  margin-top: -150px;
+  margin-top: -300px;
   filter: drop-shadow(1px 1px 4px black);
 }
 
@@ -46,6 +46,10 @@
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+
+.hook-card-col-padding {
+  padding: 0.0625rem;
 }
 
 .no-select {
