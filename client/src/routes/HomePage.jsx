@@ -116,8 +116,8 @@ export default function HomePage() {
     }
 
     return (
-      <Button className="w-100 d-inline mt-2" css={{minHeight: 50, maxWidth: 1000}} flat size="$sm" onClick={handleScheduleButtonClick}>
-        Schedule A Consultation
+      <Button className="w-100 d-inline mt-2" css={{minHeight: 50, maxWidth: 1000}} flat size="$md" onClick={handleScheduleButtonClick}>
+        SCHEDULE A CONSULTATION
       </Button>
     )
   }
@@ -171,18 +171,20 @@ export default function HomePage() {
       <ModelEditModal model={currentModel} open={modelEditModalOpen} setOpen={setModelEditModalOpen} />
       <ContactModal open={contactModalOpen} setOpen={setContactModalOpen} />
       <section className="d-flex flex-column w-100 align-items-center">
-        <div className="w-100 flex-column align-items-center background-image" style={{paddingTop: "10vh", paddingBottom: "40vh",}}>
+        <div className="w-100 flex-column align-items-center background-image" style={{paddingTop: "10vh", paddingBottom: "10vh",}}>
           <div className="elevated d-flex flex-column w-100 text-background py-2">
             <WLHeader>
               You Can Do It Gardening
             </WLHeader>
             <WLHeader headerLevel={2} firestoreId="home-subtitle" editable={userCanEditText}/>
           </div>
-          <div className="elevated mt-3 d-flex flex-row align-items-center justify-content-center w-100">
-            <Alert severity="info"><a target="_blank" rel="noreferrer" href={mailingListLink}>Don't miss out — click here to join my mailing list!</a></Alert>
+          <div className="elevated mt-3 d-flex flex-row text-center align-items-center justify-content-center w-100">
+            <div className="mailing-list-wobble">
+              <Alert className="mailing-list-alert" severity="success"><a target="_blank" rel="noreferrer" href={mailingListLink}>Click here to join my mailing list!</a></Alert>
+            </div>
           </div>
         </div>
-        <img alt="leaf-line" src={home3} className="background-pattern" />
+        {/* <img alt="leaf-line" src={home3} className="background-pattern" />
         <div className="elevated container-fluid" style={{marginTop: -250, marginBottom: 50}}>
           <div className="elevated row d-flex flex-row justify-content-center">
             <TransparentHookCard
@@ -196,7 +198,7 @@ export default function HomePage() {
               subtitleText={<WLText firestoreId="looks-good-description" editable={userCanEditText} setLoaded={setLookDescriptionLoaded}>Small changes can make a huge difference!</WLText>}
               />
           </div>
-        </div>
+        </div> */}
       </section>
       <section className='py-lg-5 py-2 d-flex flex-column align-items-center justify-content-center'>
         <div className="container d-flex flex-row justify-content-center align-items-center">
